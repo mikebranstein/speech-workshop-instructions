@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Speech Workshop</title>
+
+	<meta charset="utf-8">
+	<meta name="description" content="Speech Workshop">
+	<meta name="author" content="Mike Branstein">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="#" class="menu header-btn" id="toggle-toc"></a>
+		<h1>Speech Workshop</h1>
+		<a href="https://github.com/mikebranstein/speech-workshop-instructions" class="github header-btn"></a>
+	</div>
+
+	<div id="content-container">
+		<div id="toc">
+			<div class="toc-heading">Table of Contents</div>
+			<div id="toc-padding"></div>
+			<br />
+			<br />
+			<br />
+		</div>
+		<div id="book">
+			<div class="chapter">
+				@@include(markdown("chapters/chapter0.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter1.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter2.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter3.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter4.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter5.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter6.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter7.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter8.md"))
+			</div>
+			<hr>
+			<div class="chapter">
+				@@include(markdown("chapters/chapter9.md"))
+			</div>
+			<hr>
+			<br />
+			<br />
+			<br />
+			<br />
+		</div>
+	</div>
+</div>
+
+<script src="scripts/built.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Speech Workshop</title>
+
+	<meta charset="utf-8">
+	<meta name="description" content="Speech Workshop">
+	<meta name="author" content="Mike Branstein">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="#" class="menu header-btn" id="toggle-toc"></a>
+		<h1>Speech Workshop</h1>
+		<a href="https://github.com/mikebranstein/speech-workshop-instructions" class="github header-btn"></a>
+	</div>
+
+	<div id="content-container">
+		<div id="toc">
+			<div class="toc-heading">Table of Contents</div>
+			<div id="toc-padding"></div>
+			<br />
+			<br />
+			<br />
+		</div>
+		<div id="book">
+			<div class="chapter">
+				<h2 id="introduction">Introduction</h2>
+<p>Welcome to the Speech Workshop!</p>
+<h3 id="about-the-speech-workshop">About the Speech Workshop</h3>
+<p>The Speech Workshop is a free one-day training event on Azure, from the community to the community. </p>
+<p>The format for the workshop is a brief presentation, followed by hands-on and guided labs. </p>
+<p>Your speakers include:</p>
+<ul>
+<li><a href="https://twitter.com/mikebranstein">Mike Branstein</a><ul>
+<li><a href="http://kizan.com">KiZAN Technologies</a></li>
+<li><a href="https://brosteins.com">Brosteins</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="getting-started">Getting Started</h3>
+<p>To get started you&#39;ll need the following pre-requisites. Please take a few moments to ensure everything is installed and configured.</p>
+<ul>
+<li>Microsoft Windows PC or Mac or Linux. Just have a laptop.</li>
+<li><a href="https://azure.microsoft.com">Azure Subscription</a> (Trial is ok, or an Azure account linked to a Visual Studio subscription or MSDN account. See later sections of this chapter to create a free trial account or activate your Visual Studio subscription)</li>
+</ul>
+<h3 id="what-you-re-building">What You&#39;re Building</h3>
+<p>Azure is big. Really big. Too big to talk about all things Azure in a single day. </p>
+<p>We&#39;ve assembled an exciting workshop to introduce you to several Azure services that cloud developers should know about:</p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/services/app-service/web/">Web app</a></li>
+<li><a href="https://www.microsoft.com/cognitive-services">Cognitive Services</a> API for <a href="https://azure.microsoft.com/en-us/services/cognitive-services/custom-speech-service/">customized speech to text</a></li>
+<li><a href="https://www.microsoft.com/cognitive-services">Cognitive Services</a> API for <a href="https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/">Language Understanding (LUIS)</a></li>
+</ul>
+<p>In this workshop, you’ll learn how to integrate Azure’s customizable speech recognition, text analytics, and intent analysis APIs into an Azure-hosted app. You’ll start by learning about the Custom Speech Service, a speech recognition API that can be trained to filter out background noise and recognize obscure words and phrases. After training the speech recognition model, you’ll integrate it into an Azure-hosted web app to recognize real-time speech. Finally, you’ll integrate and train the Language Understanding and Intelligence Service (LUIS) to analyze the intent of speech phrases you generate. With the intent identified, your app will be able to respond in real time.</p>
+<h4 id="key-concepts-and-takeaways">Key concepts and takeaways</h4>
+<ul>
+<li>Navigating the Azure portal</li>
+<li>Using Azure Resource Groups to manage multiple Azure services</li>
+<li>Deploying a web app to Azure web app service</li>
+<li>Developing language and acoustic models for the Custom Speech Service</li>
+<li>Deploying a customized speech recognition API</li>
+<li>Developing intent models for the Language Understanding (LUIS) service</li>
+<li>Deploying a customized LUIS endpoint</li>
+<li>Integrating speech recognition and intent analysis into an application</li>
+</ul>
+<h3 id="agenda">Agenda</h3>
+<ul>
+<li>Chapter 0: Introduction</li>
+<li>Chapter 1: Getting Started in Azure</li>
+<li>Chapter 2: Introduction to the Custom Speech Service</li>
+<li>Chapter 3: Building Custom Speech Service data sets </li>
+<li>Chapter 4: Custom Speech Service Models</li>
+<li>Chapter 5: Deploying Custom Speech Service Endpoints</li>
+<li>Chapter 6: Introduction to Language Understanding (LUIS)</li>
+<li>Chapter 7: Building a LUIS App</li>
+<li>Chapter 8: Publishing and Testing LUIS Endpoints</li>
+<li>Chapter 9: Integrating LUIS into Your App</li>
+</ul>
+<h3 id="materials">Materials</h3>
+<p>You can find additional lab materials and presentation content at the locations below:</p>
+<ul>
+<li>Presentation: <a href="https://github.com/mikebranstein/speech-workshop">https://github.com/mikebranstein/speech-workshop</a></li>
+<li>Source code for the code used in this guide: <a href="https://github.com/mikebranstein/speech-workshop">https://github.com/mikebranstein/speech-workshop</a></li>
+<li>This guide: <a href="https://github.com/mikebranstein/speech-workshop-instructions/">https://github.com/mikebranstein/speech-workshop-instructions</a></li>
+</ul>
+<h3 id="creating-a-trial-azure-subscription">Creating a Trial Azure Subscription</h3>
+<blockquote>
+<p><strong>If you already have an Azure account</strong> </p>
+<p>If you have an Azure account already, you can skip this section. If you have a Visual Studio subscription (formerly known as an MSDN account), you get free Azure dollars every month. Check out the next section for activating these benefits.</p>
+</blockquote>
+<p>There are several ways to get an Azure subscription, such as the free trial subscription, the pay-as-you-go subscription, which has no minimums or commitments and you can cancel any time; Enterprise agreement subscriptions, or you can buy one from a Microsoft retailer. In exercise, you&#39;ll create a free trial subscription.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Create a Free Trial Subscription
+</h4>
+
+<p>Browse to the following page <a href="http://azure.microsoft.com/en-us/pricing/free-trial/">http://azure.microsoft.com/en-us/pricing/free-trial/</a> to obtain a free trial account.</p>
+<p>Click <em>Start free</em>.</p>
+<p>Enter the credentials for the Microsoft account that you want to use. You will be redirected to the Sign up page.</p>
+<blockquote>
+<p><strong>Note</strong> </p>
+<p>Some of the following sections could be omitted in the Sign up process, if you recently verified your Microsoft account.</p>
+</blockquote>
+<p>Enter your personal information in the About you section. If you have previously loaded this info in your Microsoft Account, it will be automatically populated.</p>
+<p><img src="images/chapter0/sign-up.png" class="img-medium" /></p>
+<p>In the <em>Verify by phone</em> section, enter your mobile phone number, and click <em>Send text message</em>.</p>
+<p><img src="images/chapter0/send-text-message.png" class="img-medium" /></p>
+<p>When you receive the verification code, enter it in the corresponding box, and click <em>Verify code</em>.</p>
+<p><img src="images/chapter0/verify-code.png" class="img-medium" /></p>
+<p>After a few seconds, the <em>Verification by card</em> section will refresh. Fill in the Payment information form. </p>
+<blockquote>
+<p><strong>A Note about your Credit Card</strong> </p>
+<p>Your credit card will not be billed, unless you remove the spending limits. If you run out of credit, your services will be shut down unless you choose to be billed.</p>
+</blockquote>
+<p><img src="images/chapter0/verify-by-card.png" class="img-medium" /></p>
+<p>In the <em>Agreement</em> section, check the <em>I agree to the subscription Agreement</em>, <em>offer details</em>, and <em>privacy statement</em> option, and click <em>Sign up</em>.</p>
+<p>Your free subscription will be set up, and after a while, you can start using it. Notice that you will be informed when the subscription expires.</p>
+<p><img src="images/chapter0/agreement.png" class="img-medium" /></p>
+<p>Your free trial will expire in 29 days from it&#39;s creation.</p>
+<p><img src="images/chapter0/expiration.png" class="img-medium" /></p>
+<div class="exercise-end"></div>
+
+<h3 id="activating-visual-studio-subscription-benefits">Activating Visual Studio Subscription Benefits</h3>
+<p>If you happen to be a Visual Studio subscriber (formerly known as MSDN) you can activate your Azure Visual Studio subscription benefits. It is no charge, you can use your MSDN software in the cloud, and most importantly you get up to $150 in Azure credits every month. You can also get 33% discount in Virtual Machines and much more.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Activate Visual Studio Subscription Benefits
+</h4>
+
+<p>To active the Visual Studio subscription benefits, browse to the following URL: <a href="http://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/">http://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/</a></p>
+<p>Scroll down to see the full list of benefits you will get for being a MSDN member. There is even a FAQ section you can read.</p>
+<p>Click <em>Activate</em> to activate the benefits.</p>
+<p><img src="images/chapter0/activate.png" class="img-medium" /></p>
+<p>You will need to enter your Microsoft account credentials to verify the subscription and complete the activation steps.</p>
+<div class="exercise-end"></div>
+
+<h3 id="preparing-your-azure-environment">Preparing your Azure environment</h3>
+<p>You might be wondering how you can participate in a cloud development workshop and not need Visual Studio installed. Am I right? </p>
+<p>Thanks to the Azure Resource Manager and some nifty templates I put together, we&#39;re going to provision a virtual machine (VM) with Visual Studio installed in your Azure subscription. From that point forward, you can work from the VM. </p>
+<p>It takes about 10 minutes to get the VM deployed to your subscription, so let&#39;s get started!</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Provisioning a Visual Studio Community VM in your Azure Subscription
+</h4>
+
+<p>Start by clicking the <em>Deploy to Azure</em> button below.</p>
+<p><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmikebranstein%2Fvscommunity-workshop-vm%2Fmaster%2Ftemplate.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png" class="img-override" /></a></p>
+<p>This opens the Azure portal in a new tab of your browser. If you&#39;re prompted to sign in, do so. </p>
+<p>When the page loads, you&#39;ll see this custom deployment page:</p>
+<p><img src="images/chapter0/custom-deployment.png" class="img-override" /></p>
+<h4 id="under-basics-select-enter-the-following">Under <em>Basics</em>, select/enter the following</h4>
+<ul>
+<li>Subscription: <em>your Azure subscription</em></li>
+<li>Resource group: <em>Create new</em></li>
+<li>Resource group name: <em>workshop-vm</em>, or some other name that&#39;s easy to remember</li>
+<li>Location: <em>East US</em></li>
+</ul>
+<blockquote>
+<p><strong>Resource Groups</strong> </p>
+<p>Formally, resource groups provide a way to monitor, control access, provision and manage billing for collections of assets that are required to run an application, or used by a client or company department. Informally, think of resource groups like a file system folder, but instead of holding files and other folders, resource groups hold azure objects like storage accounts, web apps, functions, etc.</p>
+</blockquote>
+<h4 id="under-settings-enter">Under <em>Settings</em>, enter</h4>
+<ul>
+<li>Virtual Machine Name: <em>workshop-vm</em>, or some other name that is less than 15 characters long, and no special characters</li>
+<li>Admin Username: <em>your first name</em>, or some other username without spaces</li>
+<li>Admin Password: <em>P@ssW0rd1234</em>, or another 12-character password with upper, lower, numbers, and a special character </li>
+</ul>
+<blockquote>
+<p><strong>WARNING</strong> </p>
+<p>Do not forget your username and password. Write it down for today. </p>
+</blockquote>
+<h4 id="approving-the-purchase">Approving the &quot;Purchase&quot;</h4>
+<p>Scroll down to the bottom of the page and click two boxes:</p>
+<ol>
+<li>I agree to the terms and conditions stated above</li>
+<li>Pin to dashboard</li>
+</ol>
+<p>Press the <em>Purchase</em> button.</p>
+<h4 id="deploying-the-vm">Deploying the VM</h4>
+<p>After a few moments, the deployment of your VM will begin, and you&#39;ll see a status notification in the upper right:</p>
+<p><img src="images/chapter0/deployment-start1.png" class="img-override" /></p>
+<p>...and a deployment tile on your dashboard:</p>
+<p><img src="images/chapter0/deployment-start2.png" class="img-override" /></p>
+<p>Now, wait for about 10 minutes and your virtual machine will be deployed and ready to use.</p>
+<div class="exercise-end"></div>
+
+<p>That&#39;s it for the pre-requisites for today&#39;s workshop. Wait until your VM is created, and we&#39;ll be getting started soon!</p>
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="getting-started-in-azure">Getting started in Azure</h2>
+<h3 id="pre-requisites">Pre-requisites</h3>
+<p>Before we go any further, be sure you have all the pre-requisites downloaded and installed. You&#39;ll need the following:</p>
+<ul>
+<li>Microsoft Windows PC or Mac</li>
+<li>Evergreen web browser (Edge, Chrome, Firefox)</li>
+<li><a href="https://azure.microsoft.com">Azure Subscription</a> (trial is ok, and you should have already done this in the chapter 0)</li>
+<li>A Visual Studio Community edition VM running in Azure (see chapter 0 for setting this up)</li>
+</ul>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>If you&#39;ve been following along, you should have all of these above items. </p>
+</blockquote>
+<h3 id="organizing-your-resources-in-the-azure-portal">Organizing your resources in the Azure portal</h3>
+<p>One of the most important aspects of your Azure subscription and using the Azure portal is organization. You can create a lot of Azure resources very quickly in the portal, and it can become cluttered quickly. So, it&#39;s important to start your Azure subscription off right.</p>
+<p>Our first stop will be to create a new Dashboard to organize our Azure resources we&#39;re building today.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Create a Dashboard and Resource Group
+</h4>
+
+<h4 id="creating-a-dashboard">Creating a Dashboard</h4>
+<p>We&#39;ll start by creating a dashboard. </p>
+<p>Login to the Azure portal, click <em>+ New Dashboard</em>, give the dashboard name, and click <em>Done customizing</em>.</p>
+<p><img src="images/chapter1/new-dashboard.gif" class="img-medium" /></p>
+<p>That was easy! Dashboards are a quick way of organizing your Azure services. We like to create one for the workshop because it helps keep everything organized. You&#39;ll have a single place to go to find everything you build today.</p>
+<h4 id="pinning-a-resource-group-to-the-dashboard">Pinning a Resource Group to the Dashboard</h4>
+<p>Now that you have a new dashboard, let&#39;s put something on it. We&#39;ll be searching for the resource group you created in chapter 0 (the one that is holding your VM), and pinning it to this dashboard.</p>
+<blockquote>
+<p><strong>Resource Groups</strong> </p>
+<p>You&#39;ll recall from the last chapter that resource groups provide a way to monitor, control access, provision and manage billing for collections of assets that are required to run an application, or used by a client or company department. Informally, think of resource groups like a file system folder, but instead of holding files and other folders, resource groups hold azure objects like storage accounts, web apps, functions, etc.</p>
+</blockquote>
+<p>Start by searching for the resource group you created in chapter 0. My resource group was called <em>workshop-test7</em>. </p>
+<p><img src="images/chapter1/find-resource-group.gif" class="img-override" /></p>
+<p>Click in the search bar at the top. If you&#39;re lucky your resource group will be at the very top (like mine was). If not, type it&#39;s name and click on it.</p>
+<p>This opens the resource group. Next, click the <em>pin</em> icon at the upper-right to pin the resource group to your dashboard:</p>
+<p><img src="images/chapter1/pin-resource-group.png" class="img-large" /></p>
+<p>Finally, close the resource group, by clicking the <em>X</em> in the upper right corner (next to the <em>pin</em> icon). You should see the resource group pinned to your dashboard:</p>
+<p><img src="images/chapter1/pinned.png" class="img-override" /></p>
+<p>Now that you have the VM&#39;s resource group pinned to your dashboard, it will be easy to locate the VM in later exercises.</p>
+<h4 id="creating-a-resource-group">Creating a Resource Group</h4>
+<p>Our last step will be to create a new Resource Group to house the non-VM resources we&#39;ll create in this workshop. </p>
+<p>Start by clicking the <em>+ Create a resource</em> button on the left.</p>
+<p><img src="images/chapter1/new.png" class="img-override" /></p>
+<p>Search for resource group by using the search box, selecting <em>Resource Group</em> when it appears.</p>
+<p><img src="images/chapter1/new-resource.png" class="img-medium" /></p>
+<p>Select <em>Resource Group</em> from the search results window:</p>
+<p><img src="images/chapter1/resource-group-results.png" class="img-medium" /></p>
+<p>Click <em>Create</em> at the bottom:</p>
+<p><img src="images/chapter1/create-resource-group.png" class="img-medium" /></p>
+<p>Give the Resource group a name, select your Azure subscription, and a location. Press <em>Create</em> when you&#39;re finished.</p>
+<p><img src="images/chapter1/create-resource-group-2.png" class="img-override" /></p>
+<p>After it&#39;s created, you&#39;ll see a message in the notification area:</p>
+<p><img src="images/chapter1/resource-group-created.png" class="img-override" /></p>
+<p>Pin it to your dashboard by clicking the <em>Pin to dashboard</em> button. Note that the resource group has been added to your dashboard.</p>
+<p><img src="images/chapter1/resource-group-dashboard.png" class="img-override" /></p>
+<div class="exercise-end"></div>
+
+<p>That wraps up the basics of creating dashboard, creating resource groups, and pinning resources to a dashboard. We&#39;re not going to take a deep dive into Azure Resource Group. If you&#39;re interested in learning more, check out this <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-portal">article</a>.</p>
+<h3 id="logging-into-your-virtual-machine">Logging into your virtual machine</h3>
+<p>Next, let&#39;s get logged into the VM that we created in chapter 0. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Logging into your VM
+</h4>
+
+<p>Start by navigating to your Azure portal dashboard. </p>
+<p>Locate the VM resource group you pinned earlier in this chapter and click on your virtual machine:</p>
+<p><img src="images/chapter1/click-vm.png" class="img-override" /></p>
+<p>Click the <em>Connect</em> button.</p>
+<p><img src="images/chapter1/connect.png" class="img-override" /></p>
+<p>This downloads a file to your computer that will open in your Remote Desktop program.</p>
+<p><img src="images/chapter1/connect-download.png" class="img-override" /></p>
+<p>Click the downloaded file to open a connection to your VM. Enter your username and password you created earlier. </p>
+<p><img src="images/chapter1/connect-password.png" class="img-override" /></p>
+<p>Click <em>OK</em> to connect.</p>
+<p>If you&#39;re prompted by a security message, respond <em>Yes</em>:</p>
+<p><img src="images/chapter1/connect-security.png" class="img-override" /></p>
+<p>You&#39;re now connected to your VM. </p>
+<blockquote>
+<p><strong>Download additional software</strong></p>
+<p>If you&#39;re like me, you have a standard toolset you like to use. Please, download software for your VM and don&#39;t forget your browser of choice, Notepad++, Visual Studio Code, etc.</p>
+</blockquote>
+<h4 id="get-a-real-browser-">Get a real browser!</h4>
+<blockquote>
+<p><strong>Download Chrome/Firefox/Edge</strong></p>
+<p>It&#39;s important that you download an evergreen browser on your virtual machine, because the version of Internet Explorer installed on the VM is not compatible with some of the JavaScript we have in this workshop.  </p>
+</blockquote>
+<p>Before you can download files through Internet Explorer, you need to enable downloads. Go to Tools -&gt; Internet Options -&gt; Security -&gt; Internet -&gt; Custom Level. Find Downloads -&gt; File download, then select Enabled. Close Internet Explorer, then re-open.</p>
+<p><img src="images/chapter1/enable-downloads.gif" class="img-override" /></p>
+<p>Now, you can download your favorite browser. And don&#39;t forget to set it as your default. Don&#39;t use IE.</p>
+<p>This concludes the exercise.</p>
+<div class="exercise-end"></div>
+
+<p>Now that you&#39;re connected to your VM, you can continue to workshop from inside the VM. </p>
+<blockquote>
+<p><strong>Running a VM in Azure</strong> </p>
+<p>If you&#39;re worried about excessive charges to your Azure subscription because you&#39;re running a VM constantly, don&#39;t worry. This VM is programmed to shut itself down every morning at 1:00 AM. </p>
+</blockquote>
+<h3 id="clone-project-from-master-branch">Clone project from master branch</h3>
+<p>Let&#39;s get started by getting the <code>master</code> branch.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Getting the workshop files
+</h4>
+
+<p>Clone or download the <code>master</code> branch from <a href="https://github.com/mikebranstein/speech-workshop">https://github.com/mikebranstein/speech-workshop</a>.</p>
+<p>Use this <a href="https://github.com/mikebranstein/speech-workshop/archive/master.zip">link</a> to download a zip file of the <code>master</code> branch.</p>
+<p><img src="images/chapter1/downloaded-zip.png" class="img-override" /></p>
+<blockquote>
+<p><strong>Unblock the .zip file!</strong> </p>
+<p>Don&#39;t open the zip file yet. You may need to unblock it first!</p>
+</blockquote>
+<p>If you&#39;re running Windows, right-click the zip file and go to the properties option. Check the <em>Unblock</em> option, press <em>Apply</em>, press <em>Ok</em>.</p>
+<p><img src="images/chapter1/unblock.gif" class="img-override" /></p>
+<p>Now it&#39;s safe to unzip the file. </p>
+<div class="exercise-end"></div>
+
+<h3 id="verify-the-site-works">Verify the site works</h3>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Compiling the solution
+</h4>
+
+<p>Open the solution in Visual Studio by double-clicking the <code>Web.sln</code> file in the <em>web</em> folder of the extracted files:</p>
+<p><img src="images/chapter1/solution-file.png" class="img-override" /></p>
+<blockquote>
+<p><strong>Logging into Visual Studio the first time</strong></p>
+<p>When you open Visual Studio the first time, it may take a few minutes. Be patient. You&#39;ll probably be prompted to sign in. Use your Microsoft account to sign in (the same one you used to sign up for the Azure trial).</p>
+</blockquote>
+<p>The opened solution should look like this:</p>
+<p><img src="images/chapter1/opened-solution.png" class="img-override" /></p>
+<p>Build and debug the solution. You should see the Speech Recognition site load in your browser.</p>
+<p><img src="images/chapter1/site.png" class="img-override" /></p>
+<p>This concludes the exercise.</p>
+<div class="exercise-end"></div>
+
+<p>That&#39;s it! You&#39;re up and running and ready to move on! In the next section, you&#39;ll learn how to deploy your website to Azure.</p>
+<h3 id="understanding-app-service-and-web-apps">Understanding App Service and Web Apps</h3>
+<p>In the last part of this chapter, you&#39;ll learn how to create an Azure Web App and deploy the Speech Service website to the cloud. In short, I like to think of Azure Web Apps like IIS in the cloud, but without the pomp and circumstance of setting up and configuring IIS.</p>
+<p>Web Apps are also part of a larger Azure service called the App Service, which is focused on helping you to build highly-scalable cloud apps focused on the web (via Web Apps), mobile (via Mobile Apps), APIs (via API Apps), and automated business processes (via Logic Apps). </p>
+<p>We don&#39;t have time to fully explore all of the components of the Azure App Service, so if you&#39;re interested, you can read more <a href="https://azure.microsoft.com/en-us/services/app-service/">online</a>.</p>
+<h4 id="what-is-an-azure-web-app-">What is an Azure Web App?</h4>
+<p>As we&#39;ve mentioned, Web Apps are like IIS in the cloud, but calling it that seems a bit unfair because there&#39;s quite a bit more to  Web Apps:</p>
+<ul>
+<li><p><strong>Websites and Web Apps:</strong> Web Apps let developers rapidly build, deploy, and manage powerful websites and web apps. Build standards-based web apps and APIs using .NET, Node.js, PHP, Python, and Java. Deliver both web and mobile apps for employees or customers using a single back end. Securely deliver APIs that enable additional apps and devices.</p>
+</li>
+<li><p><strong>Familiar and fast:</strong> Use your existing skills to code in your favorite language and IDE to build APIs and apps faster than ever. Access a rich gallery of pre-built APIs that make connecting to cloud services like Office 365 and Salesforce.com easy. Use templates to automate common workflows and accelerate your development. Experience unparalleled developer productivity with continuous integration using Visual Studio Team Services, GitHub, and live-site debugging.</p>
+</li>
+<li><p><strong>Enterprise grade:</strong> App Service is designed for building and hosting secure mission-critical applications. Build Azure Active Directory-integrated business apps that connect securely to on-premises resources, and then host them on a secure cloud platform that&#39;s compliant with ISO information security standard, SOC2 accounting standards, and PCI security standards. Automatically back up and restore your apps, all while enjoying enterprise-level SLAs.</p>
+</li>
+<li><p><strong>Build on Linux or bring your own Linux container image:</strong> Azure App Service provides default containers for versions of Node.js and PHP that make it easy to quickly get up and running on the service. With our new container support, developers can create a customized container based on the defaults. For example, developers could create a container with specific builds of Node.js and PHP that differ from the default versions provided by the service. This enables developers to use new or experimental framework versions that are not available in the default containers.</p>
+</li>
+<li><p><strong>Global scale:</strong> App Service provides availability and automatic scale on a global datacenter infrastructure. Easily scale applications up or down on demand, and get high availability within and across different geographical regions. Replicating data and hosting services in multiple locations is quick and easy, making expansion into new regions and geographies as simple as a mouse click.</p>
+</li>
+<li><p><strong>Optimized for DevOps:</strong> Focus on rapidly improving your apps without ever worrying about infrastructure. Deploy app updates with built-in staging, roll-back, testing-in-production, and performance testing capabilities. Achieve high availability with geo-distributed deployments. Monitor all aspects of your apps in real-time and historically with detailed operational logs. Never worry about maintaining or patching your infrastructure again.</p>
+</li>
+</ul>
+<h3 id="deploying-to-a-web-app-from-visual-studio">Deploying to a Web App from Visual Studio</h3>
+<p>Now that you understand the basics of web apps, let&#39;s create one and deploy our app to the cloud! </p>
+<p>Earlier in this chapter, you created a resource group to house resources for this workshop. You did this via the Azure Portal. You can also create Web Apps via the Azure portal in the same manner. But, I&#39;m going to show you another way of creating a Web App: from Visual Studio.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Deploying to a Web App from Visual Studio 2017
+</h4>
+
+<blockquote>
+<p><strong>Visual Studio 2017 Warning</strong> </p>
+<p>This exercise assumes you&#39;re running Visual Studio 2017. The UI and screens in Visual Studio 2015 aren&#39;t the same, but similar. We&#39;re not going to include screen shots for 2015, but we think you can figure it out.</p>
+</blockquote>
+<p>From Visual Studio, right-click the <em>Web</em> project and select <em>Publish</em>. In the web publish window, select <em>Microsoft Azure App Service</em>, <em>Create New</em>, and press <em>Publish</em>. This short clip walks you through the process:</p>
+<p><img src="images/chapter1/publish-web-app.gif" class="img-large" /></p>
+<p>On the next page, give your Web App a name, select your Azure subscription, and select the Resource Group you created earlier (mine was named <em>workshop</em>).</p>
+<blockquote>
+<p><strong>Unique Web App Names</strong></p>
+<p>Because a web app&#39;s name is used as part of it&#39;s URL in Azure, you need to ensure it&#39;s name is unique. Luckily, Visual Studio will check to ensure your web app name is unique before it attempts to create it. In other words, don&#39;t try to use the web app name you see below, because I already used it.</p>
+</blockquote>
+<p><img src="images/chapter1/web-app-settings.png" class="img-override" /></p>
+<p>Click <em>New...</em> to create a new Web App plan.</p>
+<blockquote>
+<p><strong>Web App Plans</strong> </p>
+<p>Web App plans describe the performance needs of a web app. Plans range from free (where multiple web apps run on shared hardware) to not-so-free, where you have dedicated hardware, lots of processing power, RAM, and SSDs. To learn more about the various plans, check out this <a href="https://azure.microsoft.com/en-us/pricing/details/app-service/plans/">article</a>.</p>
+</blockquote>
+<p>Create a new free plan.</p>
+<p><img src="images/chapter1/new-plan.png" class="img-override" /></p>
+<p>After the plan is created, click <em>Create</em> to create the Web App in Azure.</p>
+<p>When the Azure Web App is created in Azure, Visual Studio will publish the app to the Web App. After the publish has finished, your browser window will launch, showing you your deployed website. </p>
+<blockquote>
+<p><strong>Web App URLs</strong></p>
+<p>The deployed web app has a URL of <em>Web App Name</em>.azurewebsites.net. Remember this URL, because you&#39;ll be using it in later chapters.</p>
+</blockquote>
+<p>One final note is to check the Azure Portal to see the App Service plan and Web App deployed to your resource group:</p>
+<p><img src="images/chapter1/deployed-webapp.png" class="img-override" /></p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="introduction-to-the-custom-speech-service">Introduction to the Custom Speech Service</h2>
+<p>In this chapter you&#39;ll learn about the Custom Speech Service, how to provision one in the Azure Portal, and how to link your subscription to the Custom Speech Service portal.</p>
+<blockquote>
+<p><strong>Abbreviation</strong> </p>
+<p>To save some time, you may see me refer to the Custom Speech Service as CSS. I know it can be confusing, especially if you&#39;re a web developer. But, let&#39;s pretend for a day that you&#39;re not, and use CSS in a different way. Thanks!</p>
+</blockquote>
+<h3 id="overview">Overview</h3>
+<p>The Custom Speech Service enables you to create a customized speech-to-text platform that meets the needs of your business. With the service, you create customized language models and acoustic models tailored to your application and your users. By uploading your specific speech and/or text data to the Custom Speech Service, you can create custom models that can be used in conjunction with Microsoft’s existing state-of-the-art speech models. With these capabilities, you&#39;re able to filter out common background noise, adjust for localized dialects, and train the speech service to recognize non-standard/obscure words and phrases (like &quot;Pokemon&quot;, scientific terms, and technical jargon).</p>
+<p>For example, if you’re adding voice interaction to a mobile phone, tablet or PC app, you can create a custom language model that can be combined with Microsoft’s acoustic model to create a speech-to-text endpoint designed especially for your app. If your application is designed for use in a particular environment or by a particular user population, you can also create and deploy a custom acoustic model with this service.</p>
+<h4 id="how-do-speech-recognition-systems-work-">How do speech recognition systems work?</h4>
+<p>Before you get started, it&#39;s important to understand how speech recognition systems work.</p>
+<p>Speech recognition systems are composed of several components that work together. Two of the most important components are the acoustic model and the language model.</p>
+<blockquote>
+<p><strong>Acoustic Model</strong></p>
+<p>The acoustic model is a classifier that labels short fragments of audio into one of a number of phonemes, or sound units, in a given language. For example, the word “speech” is comprised of four phonemes “s p iy ch”. These classifications are made on the order of 100 times per second.</p>
+</blockquote>
+<blockquote>
+<p><strong>Phoneme</strong></p>
+<p>In short, a sound unit. Any of the perceptually distinct units of sound in a specified language that distinguish one word from another, for example p, b, d, and t in the English words pad, pat, bad, and bat.</p>
+</blockquote>
+<blockquote>
+<p><strong>Language Model</strong></p>
+<p>The language model is a probability distribution over sequences of words. The language model helps the system decide among sequences of words that sound similar, based on the likelihood of the word sequences themselves. For example, “recognize speech” and “wreck a nice beach” sound alike but the first hypothesis is far more likely to occur, and therefore will be assigned a higher score by the language model.</p>
+</blockquote>
+<p>Both the acoustic and language models are statistical models learned from training data. As a result, they perform best when the speech they encounter when used in applications is similar to the data observed during training. The acoustic and language models in the Microsoft Speech-To-Text engine have been trained on an enormous collection of speech and text and provide state-of-the-art performance for the most common usage scenarios, such as interacting with Cortana on your smart phone, tablet or PC, searching the web by voice or dictating text messages to a friend.</p>
+<blockquote>
+<p><strong>Credits</strong></p>
+<p>This section was borrowed from Microsoft&#39;s <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Speech-Service/cognitive-services-custom-speech-home#what-is-the-custom-speech-service">official documentation</a>. Thank you!</p>
+</blockquote>
+<h4 id="using-the-custom-speech-service-acoustic-models-and-language-models">Using the Custom Speech Service, Acoustic Models, and Language Models</h4>
+<p>Throughout the next several chapters, you&#39;ll be building acoustic and language models. Don&#39;t worry if you don&#39;t understand everything right now, because you&#39;ll be learning as you go.</p>
+<blockquote>
+<p><strong>Bing Speech API</strong></p>
+<p>Microsoft has another speech-to-text service in Azure called the Bing Speech API. This API is like the Custom Speech Service, but it cannot be customized. I like to think of the Bing Speech API as a v1 product, and the Custom Speech Service as a v2 product. Both are highly capable, but when I need to account for background noise, custom words, etc. I choose the Custom Speech Service.</p>
+</blockquote>
+<h3 id="provisioning-in-azure">Provisioning in Azure</h3>
+<p>Now that you know what the Custom Speech Service can do, let&#39;s start using it! You&#39;ll start by creating a Custom Speech Service instance in the Azure portal. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Creating a Custom Speech Service Instance
+</h4>
+
+<p>Start by jumping back to the Azure portal, and create a new resource by clicking the <em>Create a resource</em> button.</p>
+<p>Search for <em>Custom Speech Service</em>:</p>
+<p><img src="images/chapter2/css-search.png" class="img-override" /></p>
+<p>Fill out the required parameters as you create an instance:</p>
+<ul>
+<li>Name: <em>workshop-css</em>, or something similar</li>
+<li>Subscription</li>
+<li>Location: <em>West US</em></li>
+<li>Pricing tier: <em>F0</em></li>
+<li>Resource group: the resource group you created earlier</li>
+</ul>
+<p><img src="images/chapter2/css-create.png" class="img-override" /></p>
+<blockquote>
+<p><strong>West US Location</strong></p>
+<p>Normally, I recommend you keep resources in the same region, but the Custom Speech Service is in preview right now, so it&#39;s only available in West US.</p>
+</blockquote>
+<p>When the Custom Speech Service instance is provisioned, it will appear in your resource group:</p>
+<p><img src="images/chapter2/css-resource-group.png" class="img-override" /></p>
+<p>The final step is to navigate to the Custom Speech Service instance by clicking on it. </p>
+<p>Locate the <em>Keys</em> area and take note of <em>KEY 1</em>:</p>
+<p><img src="images/chapter2/css-keys.png" class="img-override" /></p>
+<p>You&#39;ll need this key in the next step, so don&#39;t forget it.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<h3 id="linking-your-subscription-on-the-css-web-portal">Linking your Subscription on the CSS Web Portal</h3>
+<p>There&#39;s not much you can do with the Custom Speech Service in the Azure portal because the service is still in preview. Instead, a separate portal exists to perform customizations and work with the service. In the next section, you&#39;ll be introduced to the Custom Speech Service portal.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Linking your CSS subscription to the CSS portal
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.</p>
+<p>Click the <em>Sign In</em> link in the upper right and sign in with your Azure portal subscription login.</p>
+<p>After logging in, click on your name the upper right, and select the <em>Subscriptions</em> option below it:</p>
+<p><img src="images/chapter2/portal-sub.png" class="img-override" /></p>
+<h4 id="subscriptions">Subscriptions</h4>
+<p>The <em>Subscriptions</em> page shows all of your connected CSS subscriptions. </p>
+<p><img src="images/chapter2/portal-sub-page.png" class="img-override" /></p>
+<p>Click the <em>Connect existing subscription</em> button. Add the CSS subscription you just created in the Azure portal. Give it a name and enter <em>KEY 1</em> from the Azure portal.</p>
+<p><img src="images/chapter2/sub-add.png" class="img-override" /></p>
+<p>You should see the subscription appear on the subscriptions page.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<p>That&#39;s it. In the next chapter, you&#39;ll start to use the CSS by creating various data sets for training and testing.</p>
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="building-custom-speech-service-data-sets">Building Custom Speech Service data sets</h2>
+<p>In this chapter, you&#39;ll learn:</p>
+<ul>
+<li>The difference between training and testing data sets</li>
+<li>How acoustic data sets are built </li>
+<li>That language data sets help the Custom Speech Service (CSS) understand the likelihood of certain words and phrases</li>
+<li>That pronunciation data sets can help with simple word and and syllable replacements</li>
+</ul>
+<h3 id="understanding-machine-learning-data-sets">Understanding Machine Learning Data Sets</h3>
+<p>At the core of every artificial intelligence (or machine learning) problem is data. And that data is used in various capacities to train, build, and test the systems you develop. Because data is so critical to machine learning endeavors, you&#39;ll need to learn about the different ways data is used.</p>
+<blockquote>
+<p><strong>Thank you, StackExchange</strong></p>
+<p>This next section was adapted from a <a href="https://stats.stackexchange.com/questions/19048/what-is-the-difference-between-test-set-and-validation-set">StackExchange post</a>. Thank you to all that contributed, as you said it better than I could have.</p>
+</blockquote>
+<h4 id="training-and-test-data-sets">Training and Test Data Sets</h4>
+<p>In many machine learning processes, you need two types of data sets:</p>
+<ul>
+<li><p>In one data set (your <em>gold standard</em>) you have the input data together with correct/expected output, This data set is usually duly prepared either by humans or by collecting some data in semi-automated way. But it is important that you have the expected output for every data row here, because you need to feed the machine learning algorithms the <em>expected</em>, or <em>correct</em> results for it to learn. This data set is often referred to as the <em>training data set</em>. </p>
+</li>
+<li><p>In the other data set, you collect the data you are going to apply your model to. In many cases this is the data where you are interested for the output of your model and thus you don&#39;t have any &quot;expected&quot; output here yet. This is often real-world data. </p>
+</li>
+</ul>
+<p>With these two data sets, the machine learning process adheres to a standard 3-phase process:</p>
+<ol>
+<li><p>Training phase: you present your data from your &quot;gold standard&quot; (or <em>training</em> data set) and train your model, by pairing the input with expected output. Often you split your entire training data set into two pieces. Approximately 70% of the training data is used for training, and 30% reserved for validation/testing. The 30% reserved data is often referred to as <em>test</em> data. The result of this phase is a trained model.</p>
+</li>
+<li><p>Validation/Test phase: to estimate how well your trained model has been trained, you pass in the reserved 30% of your testing data and evaluate it&#39;s accuracy. </p>
+</li>
+<li><p>Application phase: now you apply your trained model to the real-world data and get the results. Since you normally don&#39;t have any reference value in this type of data, you can only speculate about the quality of your model output using the results of your validation phase. You perform additional accuracy tests.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Separation of Training, Test, and Real-World Data Sets</strong></p>
+<p>An easy mistake to make with your training, test, and real-world data sets is overlapping data (or reusing data from one set in another). Imagine that you training a model to answer true/false questions using a series of 10 questions and answers. After the model is trained, you use the same 10 questions to evaluate how well the model performs. Ideally, it should perform 100%, but you don&#39;t know how well it <em>really</em> performs because you tested with the training data. The only true test is to use other real-world questions, then re-evaluate its performance.</p>
+</blockquote>
+<h4 id="applying-machine-learning-data-set-concepts-to-the-custom-speech-service">Applying Machine Learning Data Set Concepts to the Custom Speech Service</h4>
+<p>Now that you know about the different types of data, you&#39;ll be creating training data sets for acoustic, language, and pronunciation data, then testing acoustic data. </p>
+<blockquote>
+<p><strong>Acoustic, Language, and Pronunciation</strong></p>
+<p>Don&#39;t worry if you don&#39;t know the difference between these 3 types of data the CSS uses, you&#39;ll be learning about it next.</p>
+</blockquote>
+<h3 id="acoustic-training-data-sets">Acoustic Training data sets</h3>
+<p>In a previous chapter, you learned about acoustic models. </p>
+<blockquote>
+<p><strong>Acoustic Model</strong></p>
+<p>The acoustic model is a classifier that labels short fragments of audio into one of a number of phonemes, or sound units, in a given language. For example, the word “speech” is comprised of four phonemes “s p iy ch”. </p>
+</blockquote>
+<p>To build acoustic models, you need acoustic data sets. An acoustic data set consists of two parts: </p>
+<ol>
+<li>a set of audio files containing the speech data</li>
+<li>a file containing the transcriptions of all audio files</li>
+</ol>
+<h4 id="audio-file-format-and-recommendations">Audio File Format and Recommendations</h4>
+<p>To build testing acoustic audio data for the Custom Speech Service, you should adhere to the following guidelines:</p>
+<ul>
+<li>All audio files in the data set should be stored in the WAV (RIFF) audio format.</li>
+<li>The audio must have a sampling rate of 8 kHz or 16 kHz and the sample values should be stored as uncompressed PCM 16-bit signed integers (shorts).</li>
+<li>Only single channel (mono) audio files are supported.</li>
+<li>The audio files must be between 100ms and 1 minute in length. Each audio file should ideally start and end with at least 100ms of silence, and somewhere between 500ms and 1 second is common.</li>
+<li>If you have background noise in your data, it is recommended to also have some examples with longer segments of silence, e.g. a few seconds, in your data, before and/or after the speech content.</li>
+<li>Each audio file should consist of a single utterance, e.g. a single sentence for dictation, a single query, or a single turn of a dialog system.</li>
+<li>Each audio file to in the data set should have a unique filename and the extension “wav”.</li>
+<li>The set of audio files should be placed in a single folder without subdirectories and the entire set of audio files should be packaged as a single ZIP file archive.</li>
+</ul>
+<blockquote>
+<p><strong>Holy Audio Requirements, Batman!</strong></p>
+<p>Yeah. This is a lot to take in. Don&#39;t worry. I&#39;ve already built the audio files for you. We&#39;ll take a look in a bit.</p>
+</blockquote>
+<h4 id="audio-file-transcriptions">Audio File Transcriptions</h4>
+<p>The second component of acoustic data is a text file containing transcripts of each audio file. </p>
+<p>The transcriptions for all WAV files should be contained in a single plain-text file. Each line of the transcription file should have the name of one of the audio files, followed by the corresponding transcription. The file name and transcription should be separated by a tab (\t). Each line must end with a line feed and new line character (\r\n).</p>
+<p>For example:</p>
+<pre><code>speech01.wav    speech recognition is awesome
+speech02.wav    the quick brown fox jumped all over the place
+speech03.wav    the lazy dog was not amused
+</code></pre><p>The transcriptions should be text-normalized so they can be processed by the system. However, there are some very important normalizations that must be done by the user prior to uploading the data to the Custom Speech Service. The <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/custom-speech-service/customspeech-how-to-topics/cognitive-services-custom-speech-transcription-guidelines">normalization rules</a> are too lengthy to cover here, so you should check them out on your own. It may seem like a lot at first, but i&#39;ve found it fairly straight-forward and I was quickly able to learn and apply them regularly.</p>
+<h4 id="prepping-your-acoustic-data-for-the-css-portal">Prepping your acoustic data for the CSS portal</h4>
+<p>In the source code you downloaded from Github, you&#39;ll find the training audio files and an audio transcript of the files in the <em>custom-speech-service-data/training</em> folder:</p>
+<p><img src="images/chapter3/acoustic-training-data.png" class="img-override" /></p>
+<blockquote>
+<p><strong>Pokemon!</strong></p>
+<p>You may have noticed the file names of the acoustic data are Pokemon. My son and I have recently started to play Pokemon the Card Game together, so I thought this would be a fun way (and topic) to teach you about speech recognition. After all, Pokemon names <em>are</em> difficult to pronounce, and are a domain-specific language of their own. They&#39;re a perfect match for the capabilities of the Custom Speech Service.</p>
+</blockquote>
+<p>Let&#39;s get started by uploading an acoustic data set to the CSS portal.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Uploading an acoustic data set to the CSS portal
+</h4>
+
+<p>Start by locating the acoustic .wav audio files. Select the 17 audio files, zip them up, and name the zip file <em>training-utterances.zip</em>.</p>
+<p><img src="images/chapter3/training-utterances.gif" class="img-override" /></p>
+<p>Next, navigate to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.</p>
+<p>Click the <em>Sign In</em> link in the upper right and sign in with your Azure portal subscription login.</p>
+<p>After logging in, click on the <em>Custom Speech</em> navigation option and navigate to <em>Adpatation Data</em>:</p>
+<p><img src="images/chapter3/adaptation-data.png" class="img-override" /></p>
+<p>At the top of the <em>Adaptation Data</em> page, will be an area for <em>Acoustic Datasets</em>. </p>
+<p><img src="images/chapter3/import1.png" class="img-override" /></p>
+<p>Click the <em>Import</em> button and complete the following fields:</p>
+<ul>
+<li>Name: Pokemon - Acoustic Data - Training</li>
+<li>Description <em>blank</em></li>
+<li>Locale: en-US</li>
+<li>Transcriptions file (.txt): upload the <em>training-utterances.txt</em> file</li>
+<li>Audio files (.zip): upload the <em>training-utterances.zip</em> file you created earlier</li>
+</ul>
+<p><img src="images/chapter3/import-acoustic-data.png" class="img-override" /></p>
+<p>Click <em>Import</em> to upload the acoustic data and build the data set.</p>
+<p>When the data is uploaded, you&#39;ll navigate back to the <em>Acoustic Datasets</em> page and your data set will be displayed in the grid:</p>
+<p><img src="images/chapter3/import3.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the acoustic dataset is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>:</p>
+<p><img src="images/chapter3/import4.png" class="img-override" /></p>
+<p>When you upload acoustic data, the CSS will analyze the data, check it for errors, and ensure the transcription file matches the uploaded audio filenames. There are a variety of other checks that are performed that aren&#39;t important, but it&#39;s good to know that there is some post-processing that needs to occur before you can use the acoustic data set.</p>
+<p>When the CSS finishes analyzing and validating the acoustic data, the <em>Status</em> will change to <em>Succeeded</em>:</p>
+<p><img src="images/chapter3/import5.png" class="img-override" /></p>
+<p>Congratulations! You&#39;ve created your first acoustic data set. We&#39;ll be using it later in this chapter.</p>
+<blockquote>
+<p><strong>Curious? ...and Challenge #1</strong></p>
+<p>If you&#39;re wondering what the audio files sound like, don&#39;t hesitate to download them to your computer and play them. Just remember that playing the audio files on the VM we&#39;ve created for the workshop probably won&#39;t work, so you&#39;ll have to download the files to your actual computer.</p>
+<p>If you&#39;re in the mood for a challenge, augment the training data by adding your own audio files. I&#39;ve found the open-source software <a href="https://www.audacityteam.org/">Audacity</a> to be a great tool for recording, editing, and exporting audio files in the right format. I suggest creating a few sample audio utterances relating to your favorite Pokemon (or try <a href="https://wiki.kidzsearch.com/wiki/Charizard">Charizard</a>).</p>
+<p><img src="images/chapter3/charizard.png" class="img-small" /></p>
+<p>If you do add to the acoustic data set, don&#39;t forget to transcribe your audio and add the transcription to the <em>training-utterances.txt</em> file!</p>
+</blockquote>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div> 
+
+<h3 id="language-training-data-sets">Language Training data sets</h3>
+<p>Now that you&#39;ve created an acoustic data set, let&#39;s build a language data set. As you&#39;ll recall from a previous chapter, language models and language data sets teach the CSS the likelihood of encountering certain words or phrases. </p>
+<blockquote>
+<p><strong>Language Model</strong></p>
+<p>The language model is a probability distribution over sequences of words. The language model helps the system decide among sequences of words that sound similar, based on the likelihood of the word sequences themselves. For example, “recognize speech” and “wreck a nice beach” sound alike but the first hypothesis is far more likely to occur, and therefore will be assigned a higher score by the language model.</p>
+</blockquote>
+<h4 id="language-data-sets">Language Data Sets</h4>
+<p>To create a custom language data set for your application, you need to provide a list of example utterances to the system, for example:</p>
+<ul>
+<li>&quot;pikachu please sit down&quot;</li>
+<li>&quot;don&#39;t sing jigglypuff you&#39;ll put me to sleep&quot;</li>
+<li>&quot;meowth put away those sharp claws&quot;</li>
+</ul>
+<p>The sentences do not need to be complete sentences or grammatically correct, and should accurately reflect the spoken input you expect the system to encounter in deployment. These examples should reflect both the style and content of the task the users will perform with your application.</p>
+<p>The language model data should be written in plain-text file using either the US-ASCII or UTF-8, depending of the locale. For en-US, both encodings are supported. The text file should contain one example (sentence, utterance, or query) per line.</p>
+<p>If you wish some sentences to have a higher weight (importance), you can add it several times to your data. A good number of repetitions is between 10 - 100. If you normalize it to 100 you can weight sentence relative to this easily.</p>
+<blockquote>
+<p><strong>More Rules!</strong></p>
+<p>Don&#39;t worry about these rules for now, because we&#39;ve already assembled a collection of utterances appropriate for our needs today.</p>
+</blockquote>
+<p>Before we get started, take a look at the utterances in the <em>training-language-model-data.txt</em> file. Here&#39;s a short excerpt:</p>
+<pre><code>ash&#39;s best friend should sit down
+sit pikachu
+sit on the floor pikachu
+have a seat meowth
+meowth please sit on the ground
+i&#39;d like to see ash&#39;s best friend act angry
+get really mad pikachu
+</code></pre><p>You&#39;ll notice that this is a collection of commands. This is of importance and significance. Later in the workshop, you&#39;ll be using the Language Understanding (LUIS) service to analyze the intent of spoken commands. So, it makes sense that the language model we&#39;ll be building contains commands.</p>
+<h4 id="creating-a-language-data-set">Creating a Language Data Set</h4>
+<p>Now that you know what is in a language data set, let&#39;s head over to the CSS portal and create one.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Uploading a language data set to the CSS portal
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the <em>Adaptation Data</em> page.</p>
+<p>Scroll down past the <em>Acoustic Datasets</em> area, and you&#39;ll find the <em>Language Datasets</em> area:</p>
+<p><img src="images/chapter3/lang1.png" class="img-override" /></p>
+<p>Click the <em>Import</em> button and complete the following fields:</p>
+<ul>
+<li>Name: Pokemon - Language Data - Training</li>
+<li>Description <em>blank</em></li>
+<li>Locale: en-US</li>
+<li>Language data file (.txt): upload the <em>training-language-model-data.txt</em> file</li>
+</ul>
+<p><img src="images/chapter3/lang2.png" class="img-override" /></p>
+<p>Click <em>Import</em> to upload the language data and build the data set.</p>
+<p>When the data is uploaded, you&#39;ll navigate back to the <em>Language Datasets</em> page and your data set will be displayed in the grid:</p>
+<p><img src="images/chapter3/lang3.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the language data set is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, the <em>Succeeded</em>, just like the acoustic data set did.</p>
+<p>Congratulations! You&#39;ve created your first language data set. We&#39;ll be using it later in this chapter.</p>
+<blockquote>
+<p><strong>Challenge #2</strong></p>
+<p>Just like you did for the acoustic data set, feel free to augment the utterances I built. I suggest continuing to create utterances related to the Pokemon you added in the last challenge.</p>
+</blockquote>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div> 
+
+<h3 id="pronunciation-training-data-sets">Pronunciation Training data sets</h3>
+<p>Now that you&#39;ve created acoustic and language data sets, you could be ready to move on to designing the models for each. But, there&#39;s another customization you can provide that helps to train you model in a special way: pronunciation data.</p>
+<p>Custom pronunciation enables users to define the phonetic form and display of a word or term. It is useful for handling customized terms, such as product names or acronyms. All you need is a pronunciation file (a simple .txt file).</p>
+<p>Here&#39;s how it works. In a single .txt file, you can enter several custom pronunciation entries. The structure is as follows:</p>
+<pre><code>Display form &lt;Tab&gt;(\t) Spoken form &lt;Newline&gt;(\r\n)
+</code></pre><h4 id="requirements-for-the-spoken-form">Requirements for the spoken form</h4>
+<p>The spoken form must be lowercase, which can be forced during the import. No tab in either the spoken form or the display form is permitted. There might, however, be more forbidden characters in the display form (for example, ~ and ^).</p>
+<p>Each .txt file can have several entries. For example, see the following screenshot:</p>
+<p><img src="images/chapter3/custom-speech-pronunciation-file.png" class="img-override" /></p>
+<p>The spoken form is the phonetic sequence of the display form. It is composed of letters, words, or syllables. Currently, there is no further guidance or set of standards to help you formulate the spoken form.</p>
+<h4 id="when-to-use-pronunciation-data">When to use Pronunciation data</h4>
+<p>I&#39;ve found it useful to use pronunciation in a variety of circumstances. In the above example, pronunciation helps transform <em>see three pee oh</em> to <em>C3PO</em>. I&#39;ve also used it in the past to transform <em>a t and t</em> to <em>AT&amp;T</em>, and <em>microsoft dot com</em> to <em>Microsoft.com</em>.</p>
+<h4 id="adding-a-pronunciation-data-set">Adding a Pronunciation Data Set</h4>
+<p>For your final data set, you&#39;ll create a pronunciation data set. Let&#39;s get to it!</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Uploading a pronunciation data set to the CSS portal
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the <em>Adaptation Data</em> page.</p>
+<p>Scroll down past the <em>Language Datasets</em> area, and you&#39;ll find the <em>Pronunciation Datasets</em> area:</p>
+<p><img src="images/chapter3/pro1.png" class="img-override" /></p>
+<p>Click the <em>Import</em> button and complete the following fields:</p>
+<ul>
+<li>Name: Pokemon - Pronunciation Data - Training</li>
+<li>Description <em>blank</em></li>
+<li>Locale: en-US</li>
+<li>Language data file (.txt): upload the <em>training-pronunciation-data.txt</em> file</li>
+</ul>
+<p><img src="images/chapter3/pro2.png" class="img-override" /></p>
+<p>Click <em>Import</em> to upload the pronunciation data and build the data set.</p>
+<p>When the data is uploaded, you&#39;ll navigate back to the <em>Pronunciation Datasets</em> page and your data set will be displayed in the grid:</p>
+<p><img src="images/chapter3/pro3.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the language data set is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, the <em>Succeeded</em>, just like the acoustic data set did.</p>
+<p>Congratulations! You&#39;ve created your first pronunciation data set. We&#39;ll be using it in the next chapter.</p>
+<blockquote>
+<p><strong>Challenge #3</strong></p>
+<p>I bet you can&#39;t guess what this challenge is about... This is a more difficult challenge, probably. That&#39;s because you don&#39;t really know about your problem domain yet. Typically, you add pronunciation data sets once you know more about your problem domain that you&#39;re trying to train for. But, if you think you can add something to what we already have, go for it!</p>
+</blockquote>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div> 
+
+<h3 id="acoustic-testing-data-sets">Acoustic Testing data sets</h3>
+<p>You&#39;ll recall earlier in this chapter that there are multiple types of data sets we&#39;ll need: training, testing, and real-world. </p>
+<p>So far, you&#39;ve created 3 training data sets: acoustic, language, and pronunciation. Next, you&#39;ll need to create a testing data set.</p>
+<h4 id="testing-data-sets-are-acoustic-data-sets">Testing Data Sets are Acoustic Data Sets</h4>
+<p>Here&#39;s a secret - testing data sets for the CSS <em>are</em> acoustic data sets. And here&#39;s why. Think about it - an acoustic data set provides audio files, with transcriptions of the audio file content. As a result, an acoustic data set is ideal for testing because it includes audio files, and their actual content.</p>
+<p>Now, we have to be a bit careful, because it&#39;s easy to confuse your training and testing data sets because they are both acoustic data sets. So, as we create a second acoustic data set, we&#39;ll be sure to name it properly - with <em>testing</em> in it&#39;s name. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Creating a testing acoustic data set
+</h4>
+
+<p>Start by locating the testing files we included in the workshop files. You&#39;ll find 6 .wav audio files in the <em>custom-speech-service-data/testing</em> folder:</p>
+<p><img src="images/chapter3/files.png" class="img-override" /></p>
+<p>Select the 6 audio files, zip them up, and name the zip file <em>testing-utterances.zip</em>.</p>
+<p><img src="images/chapter3/testing-utterances.gif" class="img-override" /></p>
+<p>Next, navigate to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Adpatation Data</em>.</p>
+<p>Click the <em>Import</em> button by <em>Acoustic Datasets</em> and complete the following fields:</p>
+<ul>
+<li>Name: Pokemon - Acoustic Data - Testing</li>
+<li>Description <em>blank</em></li>
+<li>Locale: en-US</li>
+<li>Transcriptions file (.txt): upload the <em>testing-acoustic-model-data.txt</em> file</li>
+<li>Audio files (.zip): upload the <em>testing-utterances.zip</em> file you created earlier</li>
+</ul>
+<p><img src="images/chapter3/testing2.png" class="img-override" /></p>
+<p>Click <em>Import</em> to upload the acoustic data and build the data set.</p>
+<p>When the data is uploaded, you&#39;ll navigate back to the <em>Acoustic Datasets</em> page and your data set will be displayed in the grid:</p>
+<p><img src="images/chapter3/testing3.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the acoustic dataset is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, then <em>Succeeded</em>.</p>
+<p>Congratulations! You&#39;ve created your testing acoustic data set. </p>
+<blockquote>
+<p><strong>Challenge #4</strong></p>
+<p>Yes. Again. Feel free to augment the testing data set you just created. Remember - don&#39;t overlap training/testing data, and make the data similar enough. For example, if you added <em>Charizard</em> to your training data sets, it would be a good idea to test for <em>Charizard</em>. Likewise, if you didn&#39;t add another pokemon, like <em>Chespin</em>, you shouldn&#39;t expect the CSS to magically recognize it.</p>
+<p><img src="images/chapter3/chespin.jpeg" class="img-small" /></p>
+</blockquote>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div> 
+
+<p>Phew! That was a long chapter! But, you learned quite a bit, like:</p>
+<ul>
+<li>the importance of separating training data from testing data</li>
+<li>that acoustic data is a combination of .wav files and normalized text transcripts</li>
+<li>pronunciation data sets can help your CSS models interpret multi-word phrases into an abbreviation - like C3PO and AT&amp;T</li>
+</ul>
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="custom-speech-service-models">Custom Speech Service Models</h2>
+<p>In this chapter, you&#39;ll learn how to:</p>
+<ul>
+<li>perform testing on Microsoft&#39;s base models</li>
+<li>train acoustic and language models</li>
+<li>demonstrate that your hard work of creating custom models pays off by dramatically increasing the accuracy of Microsoft&#39;s base models</li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>After creating Custom Speech Service (CSS) data sets, you need to instruct CSS to train models based on these data sets. </p>
+<p>Training acoustic and language models is easy to do in the CSS portal - point and click. But, before we do that, we&#39;ll take a pit stop and establish a baseline accuracy of the CSS capabilities using Microsoft&#39;s base models.</p>
+<blockquote>
+<p><strong>Base Models - What Are They?</strong></p>
+<p>The CSS comes with several pre-trained acoustic and language models. In fact, there are different models for conversations and search/diction. If you stop to think about it, this makes a lot of sense. We tend to speak differently when we converse with others, as compared to dictating text or speaking search terms for a search engine. See below for the base models Microsoft provides.</p>
+<p><img src="images/chapter4/model1.png" class="img-override" /></p>
+</blockquote>
+<h3 id="testing-the-accuracy-of-the-base-models">Testing the Accuracy of the Base Models</h3>
+<p>To understand the effect our CSS customization will have, it&#39;s important to establish a baseline accuracy for the CSS service against our testing data set.</p>
+<p>Let&#39;s get started and see how the CSS does against some of these Pokemon names ;-)</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Performing an accuracy test on the Microsoft base model
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Accuracy Tests</em>. </p>
+<p><img src="images/chapter4/test1.png" class="img-override" /></p>
+<p>This page shows the status of the past and ongoing accuracy tests performed by the CSS.</p>
+<p>Click the <em>Create New</em> button to begin a test against an acoustic and language model.</p>
+<p>Complete the following fields:</p>
+<ul>
+<li>Locale: en-US</li>
+<li>Subscription: <em>the one you created earlier</em></li>
+<li>Base Model: Microsoft Search and Diction Model, then select the base acoustic and base language models below</li>
+<li>Acoustic Data: Pokemon - Acoustic Data - Testing</li>
+</ul>
+<p><img src="images/chapter4/test2.png" class="img-override" /></p>
+<p>Click <em>Create</em> to begin the test run.</p>
+<p>When the test run is saved, you&#39;ll navigate back to the <em>Accuracy Test Results</em> page:</p>
+<p><img src="images/chapter4/test3.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the test run is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, then <em>Succeeded</em>.</p>
+<p>The test run may take some time to execute (up to 10 minutes). So, it&#39;s a good time to take a short break. Check back in 5.</p>
+<div style="padding-left: 20px;"> <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SEXXES5v59o?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> </div>
+
+<p>Hi, welcome back. I wish you had just won $1700. Will you settle for a lousy accuracy test?</p>
+<p>So, let&#39;s check back in on the accuracy test.</p>
+<p><img src="images/chapter4/test4.png" class="img-override" /></p>
+<p>Ugh! 45% word error rate - not good.</p>
+<blockquote>
+<p><strong>Word Error Rate (WER)</strong></p>
+<p>&#39;WER&#39; (Word Error Rate) and &#39;Word Accuracy&#39; are the best measurements to take when comparing two utterances, these are typically values in % and are derived by comparing a reference transcript with the speech-to-text generated transcript (or hypothesis) for the audio. In our case, the reference transcript is the transcript file we supplied for the testing data set, and the speech-to-text generated transcript (or hypothesis) is what the CSS generated when it processed the 6 audio files in the testing dataset.</p>
+<p>The algorithm used is called the Levenshtein distance, it is calculated by aligning the reference with hypothesis and counting the words that are Insertions, Deletions, and Substitutions. </p>
+<p>In general, WER is fairly complex to calculate. We won&#39;t dive much deeper, but if you&#39;re interested in learning more, check out <a href="http://blog.voicebase.com/how-to-compare-speech-engine-accuracy">this website</a>. </p>
+</blockquote>
+<p>Well, 45% error rate is still pretty high. Let&#39;s explore the results of the accuracy test.</p>
+<p>Click the <em>Details</em> link to learn more. At the bottom of the page, you&#39;ll find the detailed transcription (we provided that) and the hypothesis (decoder output).</p>
+<p><img src="images/chapter4/test5.png" class="img-override" /></p>
+<p>You should notice several mis-interpretations, as the CSS had trouble with:</p>
+<ul>
+<li>Pikachu</li>
+<li>Meowth</li>
+<li>Jigglypuff</li>
+<li>Wink at me</li>
+</ul>
+<p>What&#39;s interesting is that aside from the Pokemon names, the CSS did a pretty good job. It got confused a bit about winking, but perhaps I didn&#39;t annunciate very well in the test files. We&#39;ll see later on.</p>
+<p>Another thing to note is our testing data set is <em>SMALL</em>. Really small. In fact, there are only ~30 words in the entire data set. That&#39;s really too small, and for each word missed, we add ~3% word error rate. In a production system, we&#39;d want hundreds of utterances, and thousands of words in a testing data set. So, keep that in mind for future endeavors.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>  
+
+<p>I know we can do better then 45%, and we will as we build our own acoustic and language models. </p>
+<h3 id="acoustic-models">Acoustic Models</h3>
+<p>Let&#39;s get started building an acoustic model based on our acoustic data set we uploaded earlier.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Training an acoustic model
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Acoustic Models</em>. </p>
+<p><img src="images/chapter4/acoustic-model1.png" class="img-override" /></p>
+<p>This page shows the various acoustic models you&#39;ve trained for the CSS.</p>
+<p>Click the <em>Create New</em> button and complete the following fields:</p>
+<ul>
+<li>Locale: en-US</li>
+<li>Name: Pokemon - Acoustic Model</li>
+<li>Description: <em>blank</em></li>
+<li>Base Acoustic Model: Microsoft Search and Diction Model</li>
+<li>Acoustic Data: Pokemon - Acoustic Data - Training</li>
+<li>Subscription: <em>your subscription</em></li>
+<li>Accuracy Testing: <em>unchecked</em>, b/c we&#39;ve already run a test</li>
+</ul>
+<p><img src="images/chapter4/acoustic-model2.png" class="img-override" /></p>
+<p>Click <em>Create</em> to train the model.</p>
+<p>When the model is saved, you&#39;ll navigate back to the <em>Acoustic Models</em> page:</p>
+<p><img src="images/chapter4/acoustic-model3.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the test run is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, then <em>Succeeded</em>.</p>
+<p>The test run may take some time to execute (up to 10 minutes). So, it&#39;s a good time to take a short break. Check back in another 10.</p>
+<div style="padding-left: 20px;"> <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/25ShHY0LMpE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> </div>
+
+<p>Hi, welcome back. My son <em>loves</em> these videos. </p>
+<p>So, let&#39;s check back in on the model training:</p>
+<p><img src="images/chapter4/acoustic-model4.png" class="img-override" /></p>
+<p>Excellent, it&#39;s finished.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>  
+
+<p>There&#39;s not much more to do with the acoustic model, so let&#39;s do the same with our language data set and train a language model</p>
+<h3 id="language-models">Language Models</h3>
+<p>Training language models is just like training acoustic models, so let&#39;s dive in.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Training a language model
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Language Models</em>. </p>
+<p><img src="images/chapter4/lang-model1.png" class="img-override" /></p>
+<p>This page shows the various language models you&#39;ve trained for the CSS.</p>
+<p>Click the <em>Create New</em> button and complete the following fields:</p>
+<ul>
+<li>Locale: en-US</li>
+<li>Name: Pokemon - Language Model</li>
+<li>Description: <em>blank</em></li>
+<li>Base Language Model: Microsoft Search and Diction Model</li>
+<li>Language Data: Pokemon - Language Data - Training</li>
+<li>Pronunciation Data: Pokemon - Pronunciation Data - Training</li>
+<li>Subscription: <em>your subscription</em></li>
+<li>Accuracy Testing: <em>unchecked</em>, b/c we&#39;ve already run a test</li>
+</ul>
+<p><img src="images/chapter4/lang-model2.png" class="img-override" /></p>
+<p>Click <em>Create</em> to train the model.</p>
+<p>When the model is saved, you&#39;ll navigate back to the <em>Language Models</em> page:</p>
+<p><img src="images/chapter4/lang-model3.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the test run is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, then <em>Succeeded</em>.</p>
+<p>The training process may take some time to execute (up to 10 minutes). So, it&#39;s a good time to take yet another short break. Check back in another 5.</p>
+<div style="padding-left: 20px;"> <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/8_lfxPI5ObM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> </div>
+
+<p>Welcome back, again. This video was for me. I <em>love</em> Tesla. Hopefully, I&#39;ll get one someday. Someday soon.</p>
+<p>So, let&#39;s check back in on the model training:</p>
+<p><img src="images/chapter4/lang-model4.png" class="img-override" /></p>
+<p>Excellent, it&#39;s finished.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>  
+
+<h3 id="testing-the-trained-models">Testing the Trained Models</h3>
+<p>Now that you&#39;ve built an acoustic model and language model that customizes the base models, let&#39;s test them! The original WER was 45%, so I think we can do better. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Performing an accuracy test on your trained models
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Accuracy Tests</em>. </p>
+<p>Click the <em>Create New</em> button to begin a test against an acoustic and language model.</p>
+<p>Complete the following fields:</p>
+<ul>
+<li>Locale: en-US</li>
+<li>Subscription: <em>the one you created earlier</em></li>
+<li>Base Model: Microsoft Search and Diction Model, then select the Pokemon models below</li>
+<li>Acoustic Data: Pokemon - Acoustic Data - Testing</li>
+</ul>
+<p><img src="images/chapter4/test6.png" class="img-override" /></p>
+<p>Click <em>Create</em> to begin the test run.</p>
+<p>When the test run is saved, you&#39;ll navigate back to the <em>Accuracy Test Results</em> page:</p>
+<p><img src="images/chapter4/test7.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the test run is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, then <em>Succeeded</em>.</p>
+<p>The test run may take some time to execute (up to 10 minutes). So, it&#39;s a good time to take a short break. Check back in 2.</p>
+<div style="padding-left: 20px;"> <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/A0FZIwabctw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> </div>
+
+<p>This one was for everyone. And it&#39;s amazing.</p>
+<p>So, let&#39;s check back in on the accuracy test.</p>
+<p><img src="images/chapter4/test8.png" class="img-override" /></p>
+<p>Sweet! Look at that - 6% WER. I&#39;m ok with that (for now). Feel free to explore the details of the accuracy test to learn more.</p>
+<blockquote>
+<p><strong>Challenge #5</strong></p>
+<p>Try to get the accuracy test WER down to 0%. Enough said.</p>
+</blockquote>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div> 
+
+<p>In this chapter, you learned:</p>
+<ul>
+<li>why it&#39;s important to test Microsoft&#39;s base model to establish a baseline accuracy</li>
+<li>how to create acoustic and language models</li>
+<li>how to improve CSS accuracy by building customized models </li>
+</ul>
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="deploying-custom-speech-service-endpoints">Deploying Custom Speech Service Endpoints</h2>
+<p>In this chapter, you&#39;ll learn how to:</p>
+<ul>
+<li>deploy your customized acoustic and language models and create a secured endpoint</li>
+<li>test the customized CSS endpoint using the web app you deployed earlier  </li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>Previously, you learned about the various data sets you need to train, test, and operationalize machine learning systems. Over the past 2 chapters, you created training and testing data sets, built customized acoustic and language models, then tested the customization accuracy.</p>
+<p>The next step is to deploy your customization and test them with real-world data.</p>
+<p>Let&#39;s get started!</p>
+<h3 id="deploying-custom-models">Deploying Custom Models</h3>
+<p>You&#39;ve already done the hard work of building the customized models, so let&#39;s use them to create a deployment.</p>
+<blockquote>
+<p><strong>PREREQUISITES</strong></p>
+<p>Before you proceed, you&#39;ll need a customized acoustic and language model that have a <em>Succeeded</em> status. If your models are still training, wait a few more minutes, then check back when the models are ready.</p>
+</blockquote>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Deploying customized acoustic and language models
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Deployments</em>. </p>
+<p>Click the <em>Create New</em> button to create a new deployment.</p>
+<p>Complete the following fields:</p>
+<ul>
+<li>Locale: en-US</li>
+<li>Description: <em>blank</em></li>
+<li>Name: Pokemon</li>
+<li>Subscription: <em>the one you created earlier</em></li>
+<li>Base Model: Microsoft Search and Diction Model, then select the Pokemon models below</li>
+</ul>
+<p><img src="images/chapter5/deploy1.png" class="img-override" /></p>
+<p>Click <em>Create</em> to deploy the models to production.</p>
+<p>When the test run is saved, you&#39;ll navigate back to the <em>Deployments</em> page:</p>
+<p><img src="images/chapter5/deploy2.png" class="img-override" /></p>
+<p>Note the <em>Status</em> of the test run is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>, then <em>Succeeded</em>.</p>
+<p>The deployment will not take long (up to 1 minute). That&#39;s it! You&#39;ve deployed your models.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div> 
+
+<h3 id="exploring-the-custom-speech-service-endpoint">Exploring the Custom Speech Service Endpoint</h3>
+<p>Now that you&#39;ve deployed a customized CSS endpoint, you can consume it in an application. But how?</p>
+<p>Let&#39;s take a closer look at your deployment.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Exploring a CSS endpoint deployment
+</h4>
+
+<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Deployments</em>. </p>
+<p>Click the <em>Details</em> link next to your <em>Pokemon</em> deployment:</p>
+<p><img src="images/chapter5/deploy3.png" class="img-override" /></p>
+<p>The deployment details page shows you a variety of details about your deployment. Scroll down to the <em>Endpoints</em> area:</p>
+<p><img src="images/chapter5/deploy4.png" class="img-override" /></p>
+<p>The endpoints area shows a variety of URIs that you can use to access your customized deployment. You can interact with the CSS via a:</p>
+<ul>
+<li>HTTP REST API</li>
+<li>WebSockets, using a .NET/Android/iOS client library</li>
+<li>WebSockets, using a .NET service library</li>
+<li>WebSockets with support for the Speech Protocol/JavaScript WebSocket API</li>
+</ul>
+<p>You&#39;ll notice that for each option, you have endpoints for short and long-form audio. In some cases, endpoints support punctuation detection.</p>
+<p>Depending on the needs of your application, you may choose a different endpoint. I&#39;ve used each of these previously and think it&#39;s good to walk through each at a high-level.</p>
+<h4 id="http-rest-api">HTTP REST API</h4>
+<p>Use this option when you have a .wav file that you want to upload and get a single response back. You won&#39;t get real-time speech results back, but it works well when you want to do quick, bulk processing of a large collection of audio files. </p>
+<h4 id="websockets-using-a-net-android-ios-client-library">WebSockets, using a .NET/Android/iOS client library</h4>
+<p>If you need real-time processing of audio, when using a microphone that&#39;s embedded in software with a .NET app, Android app, or iOS app, this is the right choice for you. An important designation here is that you need to use this in conjunction with the SDKs/libraries provided by Microsoft. It&#39;s also important to note that these are intended for client-side applications, not a server-side process that will have a long life span. </p>
+<h4 id="websockets-using-a-net-service-library">WebSockets, using a .NET service library</h4>
+<p>When you need a long-running server-side process to interact in real-time with the CSS in a .NET app, use these endpoints. You&#39;ll also need to use the .NET SDK built for this purpose.</p>
+<h4 id="websockets-with-support-for-the-speech-protocol-javascript-websocket-api">WebSockets with support for the Speech Protocol/JavaScript WebSocket API</h4>
+<p>The last option is to interact with the CSS using a specific protocol called the Speech Protocol. This also has it&#39;s own SDK and API you need to adhere to when using these endpoints. </p>
+<blockquote>
+<p><strong>The Speech Protocol</strong></p>
+<p>I consider the first three options a legacy way of interacting with the CSS. The 4th option (Speech Protocol) is the new and recommended way of interfacing with the CSS. Eventually the first 3 options will be deprecated and the Speech Protocol will be <em>the</em> way to interact. </p>
+<p>Right now, support for the new Speech Protocol is limited to a JavaScript SDK, but if you need a C# version, you can roll your own. To learn more about the protocol, check out the official <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/speech/api-reference-rest/websocketprotocol">protocol documentation</a>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Rolling your Own Speech Protocol Client</strong></p>
+<p>Don&#39;t do this, and I speak from experience. I&#39;ve done it. It&#39;s not easy, the documentation isn&#39;t great, and unless you have a lot of experience writing web socket protocol code in C#, this can be really time consuming and difficult. I lost a month of my life to this. The end result was pretty cool. I didn&#39;t have an option of waiting for Microsoft&#39;s team to implement the C# SDK, but you probably will. </p>
+</blockquote>
+<h4 id="subscription-key-and-endpoint-url">Subscription Key and Endpoint URL</h4>
+<p>Ok, sorry for the tangent. Let&#39;s get back to the deployment. You&#39;ll need to keep track of a few pieces of data:</p>
+<p><img src="images/chapter5/deploy4.png" class="img-override" /></p>
+<p>First, take note of the <em>Subscription Key</em> at the top. Second, you&#39;ll need the web socket protocol base URL from the <em>WebSocket with the Speech Protocol/JavaScript WebSocket API</em> (wss://610e08d3ae4b4d4eb7d45dcf2e877698.api.cris.ai) for my deployment. </p>
+<blockquote>
+<p><strong>Don&#39;t Use MY Endpoint Base URL</strong></p>
+<p>Please don&#39;t copy my endpoint base URL. If you do, you&#39;ll get errors later on. Please copy your own.</p>
+</blockquote>
+<p>With these two values copied/saved, you&#39;re ready to move on to testing the endpoint.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+
+<h3 id="testing-the-css-endpoint">Testing the CSS Endpoint</h3>
+<p>Now, let&#39;s return to the web app you deployed to Azure earlier and test your Custom Speech Service deployment. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Testing a CSS endpoint deployment
+</h4>
+
+<blockquote>
+<p><strong>Don&#39;t use your VM for this exercise</strong></p>
+<p>It&#39;s important that you don&#39;t use your VM for this exercise, because you&#39;ll be using your computer&#39;s microphone. This just doesn&#39;t work well through a remote desktop connection.</p>
+</blockquote>
+<p>Start by navigating to your deployed Azure web site. My URL was <a href="http://workshopwebapp.azurewebsites.net/">http://workshopwebapp.azurewebsites.net/</a>. </p>
+<p>After the page loads, paste your deployed CSS endpoint base URL into the <em>Endpoint</em> text box, and the subscription key into the <em>Subscription Key</em> text box:</p>
+<p><img src="images/chapter5/deploy5.png" class="img-override" /></p>
+<p>Ignore the LUIS-related fields, change the <em>Recognition Mode</em> drop down to <em>Dictation</em>, and <em>Format</em> to <em>Detailed Result</em>:</p>
+<p><img src="images/chapter5/deploy6.png" class="img-override" /></p>
+<p>Press the <em>Start</em> button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the CSS endpoint you created and return incremental speech results in real-time.</p>
+<p>Try speaking the phrase, &quot;Pikachu is a cool pokemon.&quot;:</p>
+<p><img src="images/chapter5/speech.gif" class="img-override" /></p>
+<p>Now, that&#39;s cool! As you speak, you&#39;ll see incremental results returned to you browser and displayed in the <em>Current hypothesis</em> area. Then, when the CSS recognizes the end of your utterance, it returns JSON-formatted result:</p>
+<pre><code class="lang-json">{
+   &quot;RecognitionStatus&quot;: &quot;Success&quot;,
+   &quot;Offset&quot;: 0,
+   &quot;Duration&quot;: 26300000,
+   &quot;NBest&quot;: [
+      {
+         &quot;Confidence&quot;: 0.923154,
+         &quot;Lexical&quot;: &quot;pikachu is a cool pokemon&quot;,
+         &quot;ITN&quot;: &quot;pikachu is a cool Pokémon&quot;,
+         &quot;MaskedITN&quot;: &quot;pikachu is a cool Pokémon&quot;,
+         &quot;Display&quot;: &quot;Pikachu is a cool Pokémon.&quot;
+      }
+   ]
+}
+{
+   &quot;RecognitionStatus&quot;: &quot;EndOfDictation&quot;,
+   &quot;Offset&quot;: 54210000,
+   &quot;Duration&quot;: 0
+}
+</code></pre>
+<p>The way this CSS endpoint works is that each time an utterance is detected, a JSON object is returned with <code>&quot;RecognitionStatus&quot;: &quot;Success&quot;</code>. Inside, it tracks the audio millisecond count that was sent, based on the <em>Offset</em> and <em>Duration</em>, meaning that at audio millisecond 0, the system detected an utterance beginning, and an utterance ending after 26300000 milliseconds.</p>
+<p>The CSS also returns the speech hypothesis in a variety of formats. The most meaningful is the <code>&quot;Display&quot;: &quot;Pikachu is a cool Pokémon.&quot;</code> result, which is the official transcription with a confidence % of 92.3154%.</p>
+<p>Pretty cool.</p>
+<p>Go ahead an try a few more phrases.</p>
+<h4 id="diving-into-the-web-page-code">Diving into the web page code</h4>
+<p>We&#39;re not going to dive into the JavaScript code that manages interacting with the Speech Protocol WebSocket endpoint. It&#39;s <em>really</em> complicated. You&#39;re welcome to dive into the details on your own, but it&#39;s out of scope for us today.</p>
+<blockquote>
+<p><strong>Challenge #6</strong></p>
+<p>Now that you have a full training to testing to real-world testing methodology for the CSS, try to stump your trained model. Then, return back to your data sets, models, and deployments. Update all of them and attempt to retrain the system to address the shortcomings you identified. </p>
+</blockquote>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<p>In this chapter, you learned:</p>
+<ul>
+<li>how to test your trained models with real-world data </li>
+<li>that a CSS deployment deploy various endpoints that are used in different scenarios</li>
+</ul>
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="introduction-to-language-understanding-luis-">Introduction to Language Understanding (LUIS)</h2>
+<p>In this chapter, you&#39;ll learn:</p>
+<ul>
+<li>how Azure&#39;s Language Understanding (LUIS) service can identify the intent of text</li>
+<li>how to provision a LUIS subscription and it to the LUIS web portal</li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>In the past chapters, you&#39;ve been focused on building a customized speech recognition engine with the CSS. Now that you are equipped with the knowledge to build these on your own, we&#39;ll turn our attention to analyzing the results your CSS generates.</p>
+<p>In most machine learning and speech-to-text projects, using a single product (like CSS) isn&#39;t common. Instead, you&#39;ll often chain the results of one service to the input of another. This process is referred to as building a machine learning <em>pipeline</em>. </p>
+<p>In the final chapters of this workshop, you&#39;ll be expanding your speech-to-text pipeline by adding intent analysis with Language Understanding (LUIS).</p>
+<h4 id="about-language-understanding-luis-">About Language Understanding (LUIS)</h4>
+<p>Language Understanding (LUIS) allows your application to understand what a person wants in their own words. LUIS uses machine learning to allow developers to build applications that can receive user input in natural language and extract meaning from it. A client application that converses with the user can pass user input to a LUIS app and receive relevant, detailed information back.</p>
+<h4 id="what-is-a-luis-app-">What is a LUIS app?</h4>
+<p>A LUIS app is a domain-specific language model designed by you and tailored to your needs. You can start with a prebuilt domain model, build your own, or blend pieces of a prebuilt domain with your own custom information.</p>
+<p>A model starts with a list of general user intentions such as &quot;Book Flight&quot; or &quot;Contact Help Desk.&quot; Once the intentions are identified, you supply example phrases called utterances for the intents. Then you label the utterances with any specific details you want LUIS to pull out of the utterance.</p>
+<p>Prebuilt domain models include all these pieces for you and are a great way to start using LUIS quickly.</p>
+<p>After the model is designed, trained, and published, it is ready to receive and process utterances. The LUIS app receives the utterance as an HTTP request and responds with extracted user intentions. Your client application sends the utterance and receives LUIS&#39;s evaluation as a JSON object. Your client app can then take appropriate action.</p>
+<p><img src="images/chapter6/luis-overview-process.png" class="img-override" /></p>
+<h4 id="key-luis-concepts">Key LUIS Concepts</h4>
+<p><strong>Intents</strong> </p>
+<p>An intent represents actions the user wants to perform. The intent is a purpose or goal expressed in a user&#39;s input, such as booking a flight, paying a bill, or finding a news article. You define and name intents that correspond to these actions. A travel app may define an intent named &quot;BookFlight.&quot;</p>
+<p><strong>Utterances</strong></p>
+<p>An utterance is text input from the user that your app needs to understand. It may be a sentence, like &quot;Book a ticket to Paris&quot;, or a fragment of a sentence, like &quot;Booking&quot; or &quot;Paris flight.&quot; Utterances aren&#39;t always well-formed, and there can be many utterance variations for a particular intent.</p>
+<p><strong>Entities</strong></p>
+<p>An entity represents detailed information that is relevant in the utterance. For example, in the utterance &quot;Book a ticket to Paris&quot;, &quot;Paris&quot; is a location. By recognizing and labeling the entities that are mentioned in the user’s utterance, LUIS helps you choose the specific action to take to answer a user&#39;s request.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Intent</th>
+<th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align:left">Sample User Utterance</th>
+<th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align:left">Entities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">BookFlight</td>
+<td>&nbsp;</td>
+<td style="text-align:left">&quot;Book a flight to Seattle?&quot;</td>
+<td>&nbsp;</td>
+<td style="text-align:left">Seattle</td>
+</tr>
+<tr>
+<td style="text-align:left">StoreHoursAndLocation</td>
+<td>&nbsp;</td>
+<td style="text-align:left">&quot;When does your store open?&quot;</td>
+<td>&nbsp;</td>
+<td style="text-align:left">open</td>
+</tr>
+<tr>
+<td style="text-align:left">ScheduleMeeting</td>
+<td>&nbsp;</td>
+<td style="text-align:left">&quot;Schedule a meeting at 1pm with Bob in Distribution&quot;</td>
+<td>&nbsp;</td>
+<td style="text-align:left">1pm, Bob</td>
+</tr>
+</tbody>
+</table>
+<h4 id="how-you-ll-use-luis">How you&#39;ll use LUIS</h4>
+<p>Now that you know a little bit about LUIS, let&#39;s see how it&#39;ll be used in conjunction with CSS. </p>
+<p>When you&#39;re finished integrating LUIS into your solution, you&#39;ll be able to speak commands into the web site you published, and ask a variety of Pokemon (Pikachu, Jigglypuff, Meowth, etc.) to perform a variety of actions (sit, jump, scratch, sing, etc.).</p>
+<p>LUIS will be used to take the output of the CSS endpoint you created and identify the intent (the action) and entity (the Pokemon). Then, the web site will parse the LUIS response and act accordingly by displaying the appropriate image at the bottom of the page. </p>
+<h3 id="provisioning-in-azure">Provisioning in Azure</h3>
+<p>Before we can use LUIS, we&#39;ll need to provision a LUIS subscription in the Azure portal. Let&#39;s get started!</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Creating a LUIS Subscription
+</h4>
+
+<p>Start by jumping back to the Azure portal, and create a new resource by clicking the <em>Create a resource</em> button.</p>
+<p>Search for <em>Language Understanding</em>:</p>
+<p><img src="images/chapter6/luis1.png" class="img-override" /></p>
+<p>Fill out the required parameters as you create an instance:</p>
+<ul>
+<li>Name: <em>workshop-luis</em>, or something similar</li>
+<li>Subscription: <em>your Azure subscription</em></li>
+<li>Location: <em>East US</em></li>
+<li>Pricing tier: <em>F0</em></li>
+<li>Resource group: the resource group you created earlier</li>
+</ul>
+<p><img src="images/chapter6/luis2.png" class="img-override" /></p>
+<p>When the LUIS subscription is provisioned, it will appear in your resource group:</p>
+<p><img src="images/chapter6/luis3.png" class="img-override" /></p>
+<p>The final step is to navigate to the LUIS subscription by clicking on it. </p>
+<p>Locate the <em>Keys</em> area and take note of <em>KEY 1</em>:</p>
+<p><img src="images/chapter6/luis4.png" class="img-override" /></p>
+<p>You&#39;ll need this key in the next chapter, so don&#39;t forget it.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<h3 id="linking-your-subscription-on-the-luis-web-portal">Linking your Subscription on the LUIS Web Portal</h3>
+<p>There&#39;s not much you can do with LUIS in the Azure portal because it has a separate portal (like the Custom Speech Service). </p>
+<p>The process for linking your LUIS subscription in the LUIS portal is a bit different than linking your CSS subscription. As a result, we&#39;ll revisit this in a later chapter. </p>
+<p>For now, hold on to your subscription key.</p>
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="building-a-luis-app">Building a LUIS App</h2>
+<p>In this chapter, you&#39;ll learn:</p>
+<ul>
+<li>how to build intents</li>
+<li>how to create entities and map them to intent phrases</li>
+<li>how phrase lists can help increase accuracy</li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>In the last chapter you learned about the basics of LUIS: intents, utterances, entities. You also learned how we&#39;ll be using LUIS and how it will integrate into our speech-to-text pipeline.</p>
+<p>I don&#39;t want to delay us too much, so let&#39;s dive right in by creating your first LUIS app.</p>
+<h3 id="creating-a-luis-app">Creating a LUIS app</h3>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Creating a LUIS App
+</h4>
+
+<p>Log in to the LUIS portal at <a href="https://www.luis.ai">https://www.luis.ai</a>, and navigate to the <em>My Apps</em> area:</p>
+<p><img src="images/chapter7/luis1.png" class="img-override" /></p>
+<p>This page lists the various LUIS apps you have created.</p>
+<p>Click the <em>Create new app</em> button. Name it <em>Pokemon</em>:</p>
+<p><img src="images/chapter7/luis2.png" class="img-override" /></p>
+<p>After creating the app, you&#39;ll be redirected to the <em>Intent</em> page automatically:</p>
+<p><img src="images/chapter7/luis3.png" class="img-override" /></p>
+<p>There&#39;s not much more to creating the initial LUIS app, so let&#39;s continue on with defining your app intents.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<h3 id="creating-intents">Creating Intents</h3>
+<p>You&#39;ll recall that LUIS intents are represent actions the user wants to perform. The intent is a purpose or goal expressed in a user&#39;s input, such as booking a flight, paying a bill, or finding a news article. In our case, we&#39;ll be creating intents like sitting down, scratching, jumping, etc.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Creating LUIS intents
+</h4>
+
+<p>Log in to the LUIS portal at <a href="https://www.luis.ai">https://www.luis.ai</a>, and navigate to the <em>Intents</em> area by first navigating to the <em>My Apps</em> areas, drilling down into the <em>Pokemon</em> app:</p>
+<p><img src="images/chapter7/luis3.png" class="img-override" /></p>
+<p>This page lists the various intents you have created. You&#39;ll notice that a <em>None</em> intent was automatically created for you. All LUIS apps start with this intent - you <em>should not</em> delete it. The <em>None</em> intent is used as a default fall-back intent for your LUIS apps. </p>
+<h4 id="finding-the-intents">Finding the intents</h4>
+<p>You&#39;ll be creating a variety of intents in the <em>Pokemon</em> app. To help you, we&#39;ve already defined the intents for you. In the code you downloaded from Github, locate the <em>language-understanding-data</em> folder. It contains a file named <em>luis-utterances.md</em>:</p>
+<p><img src="images/chapter7/luis4.png" class="img-override" /></p>
+<p>Inside the markdown file, you&#39;ll find an intent followed by a series of utterances. For example:</p>
+<pre><code># Sit
+- ash&#39;s best friend should sit down
+- sit pikachu
+- sit on the floor pikachu
+- have a seat meowth
+- meowth please sit on the ground
+</code></pre><p>In the snippet above, the heading <code>Sit</code> is the name of an intent you&#39;ll create, followed by utterances that align to the intent.</p>
+<p>LUIS is like the Custom Speech Service, as it needs to <em>learn</em> the types of phrases (or utterances) that map to an intent. </p>
+<p>Referencing the <em>luis-utterances.md</em> file, create intents for each intent listed in the document.</p>
+<p>Follow along below to create the first intent, then rinse and repeat for the remaining intents.</p>
+<h4 id="adding-an-intent">Adding an intent</h4>
+<p>To add an intent, click the <em>Create new intent</em> button:</p>
+<p><img src="images/chapter7/luis5.png" class="img-override" /></p>
+<p>Name the intent <em>Sit</em>, as referenced in the <em>luis-utterances.md</em> file:</p>
+<p><img src="images/chapter7/luis6.png" class="img-override" /></p>
+<p>On the next screen, the <em>Sit</em> intent will be listed at the top. In the text box below the intent, enter in the related utterances from the <em>luis-utterances.md</em> file. After each utterance, press <em>Enter</em> to save the utterance.</p>
+<p><img src="images/chapter7/intent.gif" class="img-override" /></p>
+<p>You&#39;ll notice that the LUIS portal associated the utterance with the intent each time you press <em>Enter</em>.</p>
+<p>When you&#39;ve finished entering the associated utterances, you can scroll down to review and modify them:</p>
+<p><img src="images/chapter7/luis7.png" class="img-override" /></p>
+<p>You&#39;ll also notice each utterance has a drop down next to it allow you to re-associate it with a different intent, if you made a mistake.</p>
+<p>When you&#39;re finished entering the utterances for this intent, navigate back to the list of intents by clicking the <em>Intents</em> link on the left:</p>
+<p><img src="images/chapter7/luis8.png" class="img-override" /></p>
+<h4 id="finish-adding-the-remaining-intents">Finish adding the remaining intents</h4>
+<p>Proceed to add the remaining intents listed in the <em>luis-utterances.md</em> file. When you&#39;re finished, your list of intents should look like these:</p>
+<p><img src="images/chapter7/luis9.png" class="img-override" /></p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<h3 id="adding-entities">Adding Entities</h3>
+<p>After adding intents to your LUIS app, it&#39;s time to add entities. As you&#39;ll recall, an entity represents detailed information that is relevant in an utterance. For example, in the utterance &quot;Jigglypuff, stop singing&quot;, &quot;Jigglypuff&quot; is a Pokemon. By recognizing and labeling the entities that are mentioned in the user’s utterance, LUIS helps you choose the specific action to take to answer a user&#39;s request.</p>
+<h4 id="additional-entity-information">Additional entity information</h4>
+<p>There are a few important things about entities that are relevant, but we hadn&#39;t covered them yet. </p>
+<p>First, entities are optional but highly recommended.</p>
+<p>While intents are required, entities are optional. You do not need to create entities for every concept in your app, but only for those required for the app to take action.</p>
+<p>For example, as you begin to develop a machine learning pipeline that integrates LUIS, you may not have a need to identify details/entities to act upon. So, when starting off, don&#39;t add them. Then, as your app matures, you can slowly add entities. </p>
+<p>Second, entities are shared across intents. They don&#39;t belong to any single intent. Intents and entities can be semantically associated but it is not an exclusive relationship. This allows you to have a detail/entity be applicable across various intents. </p>
+<p>In the LUIS app you&#39;re building today, we&#39;ll be defining a <em>Pokemon</em> entity that can identify a Pokemon by name. Because each of our intents typically involves a particular Pokemon, the <em>Pokemon</em> entity will be shared across intents. This means that an intent/entity combination gives us a unique action to perform. </p>
+<p>For example, the &quot;Jigglypuff, sing.&quot; utterance yields the intent of <em>Sing</em> with an identified <em>Pokemon</em> entity of type <em>Jigglypuff</em>. </p>
+<h4 id="types-of-entities">Types of entities</h4>
+<p>LUIS has a variety of entity types, and each has a specific use. There are too many to dive into here, but I encourage you to learn more by reading the <a href="">LUIS documentation</a><a href="https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types#types-of-entities">https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types#types-of-entities</a>.</p>
+<p>Now that you know about entities, let&#39;s add the <em>Pokemon</em> entity.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Creating LUIS intents
+</h4>
+
+<p>Log in to the LUIS portal at <a href="https://www.luis.ai">https://www.luis.ai</a>, and navigate to the <em>Entities</em> area by first navigating to the <em>My Apps</em> areas, drilling down into the <em>Pokemon</em> app:</p>
+<p><img src="images/chapter7/ent1.png" class="img-override" /></p>
+<p>This page lists the entities you have defined.</p>
+<p>Click the <em>Create new entity</em> button to create the <em>Pokemon</em> entity. Select <em>List</em> as the entity type:</p>
+<p><img src="images/chapter7/ent2.png" class="img-override" /></p>
+<blockquote>
+<p><strong>List Entities</strong></p>
+<p>A list entity is a fixed list of values. Each value is itself a list of synonyms or other forms the value may take. For example, a list entity named PacificStates include the values Washington, Oregon, California. The Washington value then includes both &quot;Washington&quot; and the abbreviation &quot;WA&quot;.</p>
+</blockquote>
+<p>After clicking the <em>Done</em> button, you&#39;re redirected to the <em>Pokemon</em> entity detail page. Add the following values:</p>
+<ul>
+<li>Pikachu</li>
+<li>Jigglypuff</li>
+<li>Meowth</li>
+</ul>
+<p>After adding these Pokemon, add synonyms for each, as shown below.</p>
+<p><img src="images/chapter7/ent3.png" class="img-override" /></p>
+<p>By adding these synonyms, you train LUIS to recognize the synonyms as the entity list value. For example, <em>bubble pokemon</em> will be recognized as a <em>Pokemon</em> entity, with <em>Jigglypuff</em> as the specific type.</p>
+<h4 id="validating-entity-mapping">Validating entity mapping</h4>
+<p>When you&#39;ve finished adding the entities and synonyms, refresh your browser.</p>
+<p>To validate that the entities are being properly recognized, navigate back to the <em>Intents</em> page, then open the detail page for an intent.</p>
+<p>You&#39;ll notice that text in each utterance is now replaced with a generic intent <em>Pokemon</em> block. You can use the <em>Entities view</em> toggle switch to see how utterance text maps to an entity:</p>
+<p><img src="images/chapter7/entity.gif" class="img-override" /></p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<h3 id="increasing-accuracy-with-phrase-lists">Increasing Accuracy with Phrase Lists</h3>
+<p>Now that you&#39;ve added intents and entities, let&#39;s explore a quick way to improve the accuracy of your LUIS app with phrase lists.</p>
+<h4 id="what-is-a-phrase-list-">What is a phrase list?</h4>
+<p>A phrase list includes a group of values (words or phrases) that belong to the same class and must be treated similarly (for example, names of cities or products). What LUIS learns about one of them is automatically applied to the others as well. This is not a white list of matched words.</p>
+<p>In other words, a phrase list can help you better identify an intent or entity in a more dynamic manner.</p>
+<h4 id="how-to-use-phrase-lists">How to use phrase lists</h4>
+<p>For example, in a travel agent app, you can create a phrase list named &quot;Cities&quot; that contains the values London, Paris, and Cairo. If you label one of these values as an entity, LUIS learns to recognize the others.</p>
+<p>A phrase list may be interchangeable or non-interchangeable. An interchangeable phrase list is for values that are synonyms, and a non-interchangeable phrase list is intended for values that aren&#39;t synonyms but are similar in another way.</p>
+<p>There are two rules of thumb to keep in mind when using phrase lists:</p>
+<ol>
+<li><p>Use phrase lists for terms that LUIS has difficulty recognizing. Phrase lists are a good way to tune the performance of your LUIS app. If your app has trouble classifying some utterances as the correct intent, or recognizing some entities, think about whether the utterances contain unusual words, or words that might be ambiguous in meaning. These words are good candidates to include in a phrase list feature.</p>
+</li>
+<li><p>Use phrase lists for rare, proprietary, and foreign words.
+LUIS may be unable to recognize rare and proprietary words, as well as foreign words (outside of the culture of the app), and therefore they should be added to a phrase list feature. This phrase list should be marked non-interchangeable, to indicate that the set of rare words form a class that LUIS should learn to recognize, but they are not synonyms or interchangeable with each other.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>A note on using phrase lists</strong></p>
+<p>A phrase list feature is not an instruction to LUIS to perform strict matching or always label all terms in the phrase list exactly the same. It is simply a hint. For example, you could have a phrase list that indicates that &quot;Patti&quot; and &quot;Selma&quot; are names, but LUIS can still use contextual information to recognize that they mean something different in &quot;make a reservation for 2 at patti&#39;s diner for dinner&quot; and &quot;give me driving directions to selma, georgia&quot;.</p>
+</blockquote>
+<h4 id="when-to-use-phrase-lists-instead-of-list-entities">When to use phrase lists instead of list entities</h4>
+<p>After learning about phrase lists, you may be confused on whether to use these, or to use a list entity.</p>
+<p>With a phrase list, LUIS can still take context into account and generalize to identify items that are similar to, but not an exact match, as items in a list. If you need your LUIS app to be able to generalize and identify new items in a category, it&#39;s better to use a phrase list. When you want to be able to recognize new instances of an entity, like a meeting scheduler that should recognize the names of new contacts, or an inventory app that should recognize new products, use another type of machine learned entity such as a simple or hierarchical entity. Then create a phrase list of words and phrases. This list guides LUIS to recognize examples of the entity by adding additional significance to the value of those words.</p>
+<p>A list entity explicitly defines every value an entity can take, and only identifies values that match exactly. A list entity may be appropriate for an app in which all instances of an entity are known and don&#39;t change often, like the food items on a restaurant menu that changes infrequently.</p>
+<blockquote>
+<p><strong>LUIS Best practice</strong></p>
+<p>After the model&#39;s first iteration, add a phrase list feature that has domain-specific words and phrases. This feature helps LUIS adapt to the domain-specific vocabulary, and learn it fast.</p>
+</blockquote>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Creating phrase lists to increase accuracy
+</h4>
+
+<p>Log in to the LUIS portal at <a href="https://www.luis.ai">https://www.luis.ai</a>, and navigate to the <em>My Apps</em> areas, drilling down into the <em>Pokemon</em> app.</p>
+<p>Click on the <em>Phrase lists</em> navigation option:</p>
+<p><img src="images/chapter7/phrase1.png" class="img-override" /></p>
+<p>Click the <em>Create new phrase list</em> button to create a phrase list.</p>
+<p>You&#39;ll be using the phrase list feature to create a phrase list for each of our intents. This is a good idea because our intents like <em>Sit</em> and <em>Jump</em> are fairly generic, and you can describe each of these intents in a variety of ways. For example, &quot;sit down&quot; and &quot;grab a chair&quot; are different utterances that have the same intent: <em>Sit</em>.</p>
+<p>Add a phrase list named <em>Sit</em>, and either type in a variety of synonyms for sit, or use the <em>Recommend</em> option to help identify a list of words that are related to sitting:</p>
+<p><img src="images/chapter7/phrase.gif" class="img-override" /></p>
+<p>I added the following options to my phrase lists, feel free to create your own, add more, subtract some, but be sure to create a phrase list for each intent:</p>
+<ul>
+<li>Sit: sit, lie, rest, be seated, sits, sitting, stay, relax, take a seat, to stay </li>
+<li>Wave: wave, signal, waves, sign, gesticulate </li>
+<li>Sing: sing, singing, sings, chant, sang </li>
+<li>Jump: jump, skip, hop, jumping, jumps, bounce, leap, jumped </li>
+<li>Wink: wink, smile, grin, twinkle, winks </li>
+<li>Scratch: scratch, scrape, rub, scratching, graze, scratches, scratched</li>
+<li>ActAngry: angry, annoyed, enraged, frustrated, angered, irate, angers, sad, irritated, fuming </li>
+</ul>
+<p>When you&#39;re finished, your phrase lists should look like this:</p>
+<p><img src="images/chapter7/phrase2.png" class="img-override" /></p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<p>That&#39;s it - you&#39;ve created intents and entities to help train your LUIS app to recognize Pokemon and an action you want the Pokemon to perform. You&#39;ve also added phrase lists to help train your app to respond and identify intents more efficiently.</p>
+<p>In the next chapter, you&#39;ll train, test, and publish your LUIS app.</p>
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="publishing-and-testing-luis-apps">Publishing and Testing LUIS Apps</h2>
+<p>In this chapter, you&#39;ll learn how to:</p>
+<ul>
+<li>train your LUIS app</li>
+<li>test a trained app</li>
+<li>publish a trained LUIS app</li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>The concept of training a LUIS app is like training Custom Speech Service apps. So far, you&#39;ve created a training data set including intents and entities, so the next step is to train your app. Then you&#39;ll test the trained app, and publish for consumption.</p>
+<p>In a real-world scenario, you&#39;ll incrementally advance the functionality of a LUIS app. For example, you&#39;ll start with a few intents and entities, then as your app matures (or when you identify a deficiency), you&#39;ll add new intents and entities, re-train, and publish a new version of the LUIS app.</p>
+<p>Let&#39;s jump into the training process.</p>
+<h3 id="training-luis">Training LUIS</h3>
+<p>Training a LUIS app is easy. Seriously. I don&#39;t like to refer to machine learning concepts as <em>easy</em>, but all you do is click a button. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Training your LUIS app 
+</h4>
+
+<p>Log in to the LUIS portal at <a href="https://www.luis.ai">https://www.luis.ai</a>, and navigate to the <em>My Apps</em> areas, drilling down into the <em>Pokemon</em> app.</p>
+<p>In the upper-right corner, you&#39;ll see a <em>Train</em> button. Visually, the button will appear with a red dot when there are changes in the LUIS app that can be trained. Hovering over the button also indicates that it can untrained changes.</p>
+<p>Click the <em>Train</em> button to train your LUIS app, integrating intents and entities into the trained app model:</p>
+<p><img src="images/chapter8/training.gif" class="img-override" /></p>
+<p>When training is finished, the <em>Train</em> button has a green dot:</p>
+<p><img src="images/chapter8/train1.png" class="img-override" /></p>
+<p>That&#39;s it. It was easy.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<h3 id="testing-luis">Testing LUIS</h3>
+<p>Now that your LUIS app is trained, you can test it. The LUIS portal offers a cool testing utility embedded, so it makes testing your app quick.</p>
+<p>Let&#39;s test a few phrases that we may expect our app should handle.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Testing your LUIS app 
+</h4>
+
+<p>Log in to the LUIS portal at <a href="https://www.luis.ai">https://www.luis.ai</a>, and navigate to the <em>My Apps</em> areas, drilling down into the <em>Pokemon</em> app.</p>
+<p>In the upper-right corner, you&#39;ll see a <em>Test</em> button. </p>
+<p><img src="images/chapter8/test1.png" class="img-override" /></p>
+<p>Click the <em>Test</em> button and a sidebar will pop out. In the textbox, enter in several utterances and see how your trained LUIS app performs. </p>
+<p>Try these utterances:</p>
+<ul>
+<li>Pikachu sit down.</li>
+<li>Jigglypuff jump.</li>
+<li>Stop being so loud Jigglypuff.</li>
+</ul>
+<p><img src="images/chapter8/test.gif" class="img-override" /></p>
+<p>That&#39;s it for testing in the LUIS portal. </p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<p>With a tested LUIS app that you&#39;re satisfied with, let&#39;s move on to publishing your LUIS app.</p>
+<h3 id="publishing-a-luis-app">Publishing a LUIS App</h3>
+<p>Let&#39;s jump right into publishing.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Publishing a LUIS app 
+</h4>
+
+<p>Log in to the LUIS portal at <a href="https://www.luis.ai">https://www.luis.ai</a>, and navigate to the <em>My Apps</em> areas, drilling down into the <em>Pokemon</em> app.</p>
+<p>In the upper-right corner, you&#39;ll see a <em>PUBLISH</em> link. Click it: </p>
+<p><img src="images/chapter8/pub1.png" class="img-override" /></p>
+<p>On the publishing page, there are a few things you can do:</p>
+<ul>
+<li>select whether you publish your trained LUIS app to a staging slot (for testing) or a production slot</li>
+<li>choose the timezone of the published app</li>
+<li>have LUIS return the all intent analysis results or only the highest ranking value</li>
+<li>incorporate Bing spell checker to auto-correct words submitted</li>
+<li>add resource / subscription keys</li>
+</ul>
+<blockquote>
+<p><strong>Intent Analysis Results</strong></p>
+<p>As you&#39;re getting started with LUIS, I recommend you have your LUIS apps return all of the identified intents, because it can aid in your debugging of complex intents and models. When you become more comfortable with LUIS and have a greater confidence in it&#39;s results, you&#39;ll want to disable returning ALL results. This is also especially important on lower-bandwidth apps (like mobile).</p>
+</blockquote>
+<blockquote>
+<p><strong>Bing spell checking</strong></p>
+<p>In many cases, I like to enable Bing spell checker, because I cannot guarantee that text coming into LUIS is valid. But, in your Pokemon app, you should not enable Bing spell checker because you&#39;re not guaranteed the CSS speech-to-text pipeline will return valid words, plus you don&#39;t know if <em>Pikachu</em> will be replaced by something else by Bing spell checker. </p>
+<p>A good rule of thumb: if you&#39;re using a speech-domain that could have strange words present, don&#39;t use Bing spell checker. </p>
+</blockquote>
+<p>We&#39;ll be publishing directly to production, so select <em>Production</em> and <em>Eastern</em> time zones. </p>
+<p>Before you click the <em>Publish to Production</em> button, scroll down a bit further and click the <em>Add Key</em> button.</p>
+<p><img src="images/chapter8/pub3.png" class="img-override" /></p>
+<p>Select your Azure tenant, subscription, and the LUIS subscription you created in an earlier chapter and add the key.</p>
+<p>This adds your LUIS subscription to the LUIS app you just created and allows you to deploy your app to that subscription.</p>
+<p>After add the LUIS subscription, you can click the <em>Publish to Production</em> button:</p>
+<p><img src="images/chapter8/pub2.png" class="img-override" /></p>
+<p>It will take a few minutes for LUIS to publish your app to the LUIS subscriptions you entered.</p>
+<p>When it&#39;s finished, take note of two values below: the LUIS endpoint base URL and the Key String. For my LUIS app deployment, mine are:</p>
+<ul>
+<li>LUIS endpoint base URL: <a href="https://eastus.api.cognitive.microsoft.com/luis/v2.0/apps/6f0e678b-212c-4d4e-b0cc-967cb57f0a3a">https://eastus.api.cognitive.microsoft.com/luis/v2.0/apps/6f0e678b-212c-4d4e-b0cc-967cb57f0a3a</a>
+Key String: 4a580409############ad344e6f25 (some obscured)</li>
+</ul>
+<p>You&#39;ll need these values in the final chapter to test it all out!</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+
+
+			</div>
+			<hr>
+			<div class="chapter">
+				<h2 id="integrating-luis-into-your-apps">Integrating LUIS into Your Apps</h2>
+<p>In the final chapter of the workshop, you&#39;ll learn:</p>
+<ul>
+<li>how to integrate LUIS into an app</li>
+</ul>
+<h3 id="overview">Overview</h3>
+<p>With a published app, you&#39;re ready to get LUIS into the Speech Recognition website you deployed to Azure earlier in the workshop.</p>
+<p>Before you jump into testing, let&#39;s learn how to access LUIS endpoints.</p>
+<h4 id="luis-rest-api">LUIS REST API</h4>
+<p>LUIS is exposed as a REST API endpoint and can be accessed right from your web browser, or through your favorite REST API testing software. I like to use <a href="https://www.getpostman.com/">Postman</a>.</p>
+<p>Let&#39;s test out your LUIS endpoint.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Testing out your LUIS endpoint with Postman
+</h4>
+
+<p>Start by downloading and installing <a href="https://www.getpostman.com/">Postman</a> on the Azure VM you&#39;ve been using today.</p>
+<p>After Postman is installed, close out of all the windows/popups it shows on startup, and you should see a screen like this:</p>
+<p><img src="images/chapter9/postman1.png" class="img-override" /></p>
+<p>Navigate back to the LUIS portal and copy the URL next to your LUIS subscription on the <em>Publish</em> page of your <em>Pokemon</em> app:</p>
+<p><img src="images/chapter9/copy-link.gif" class="img-override" /></p>
+<p>Paste the link into the HTTP GET textbox in Postman, then click the <em>Params</em> button. Next to the <em>q</em> query string parameter, type in <em>pikachu sit down on the ground</em>, then click the <em>Send</em> button:</p>
+<p><img src="images/chapter9/send.gif" class="img-override" /></p>
+<p>The HTTP response will be displayed in the <em>Body</em> area below. My response is included below. I&#39;ll let you examine the HTTP response from LUIS on your own.</p>
+<pre><code class="lang-json">{
+    &quot;query&quot;: &quot;pikachu sit down on the ground&quot;,
+    &quot;topScoringIntent&quot;: {
+        &quot;intent&quot;: &quot;Sit&quot;,
+        &quot;score&quot;: 0.956479847
+    },
+    &quot;intents&quot;: [
+        {
+            &quot;intent&quot;: &quot;Sit&quot;,
+            &quot;score&quot;: 0.956479847
+        },
+        {
+            &quot;intent&quot;: &quot;ActAngry&quot;,
+            &quot;score&quot;: 0.0324947946
+        },
+        {
+            &quot;intent&quot;: &quot;Sing&quot;,
+            &quot;score&quot;: 0.00468421541
+        },
+        {
+            &quot;intent&quot;: &quot;Wave&quot;,
+            &quot;score&quot;: 0.00439580763
+        },
+        {
+            &quot;intent&quot;: &quot;None&quot;,
+            &quot;score&quot;: 0.00238293572
+        },
+        {
+            &quot;intent&quot;: &quot;Scratch&quot;,
+            &quot;score&quot;: 0.00228275615
+        },
+        {
+            &quot;intent&quot;: &quot;Jump&quot;,
+            &quot;score&quot;: 0.00204163464
+        },
+        {
+            &quot;intent&quot;: &quot;Wink&quot;,
+            &quot;score&quot;: 0.00131020416
+        }
+    ],
+    &quot;entities&quot;: [
+        {
+            &quot;entity&quot;: &quot;pikachu&quot;,
+            &quot;type&quot;: &quot;Pokemon&quot;,
+            &quot;startIndex&quot;: 0,
+            &quot;endIndex&quot;: 6,
+            &quot;resolution&quot;: {
+                &quot;values&quot;: [
+                    &quot;Pikachu&quot;
+                ]
+            }
+        }
+    ]
+}
+</code></pre>
+<p>As you can see, LUIS returns the query we passed <em>pikachu sit down on the ground</em>, and all of the intents it believes are applicable, with associated confidence percentages. It also selects the top-ranking intent and displays it separately. Finally, LUIS returns any entities it identifies, and indicates where in the query the entity occurred.</p>
+<p>Pretty cool, and easy to use. </p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<p>Now that you understand how to send data to LUIS via an HTTP GET and what the output of a LUIS request looks like, let&#39;s jump into the web site you published to Azure.</p>
+<h3 id="testing-luis-through-the-speech-recognition-web-app">Testing LUIS through the Speech Recognition web app</h3>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Testing LUIS in your web app
+</h4>
+
+<p>Return to your laptop, not the VM you&#39;ve bee using. Navigate to the Speech recognition web app you published to Azure earlier. My URL was <a href="https://workshopwebapp.azurewebsites.net/">https://workshopwebapp.azurewebsites.net/</a>.</p>
+<p>This time, enter your CSS endpoint URL, CSS Subscription key, check the LUIS checkbox, and add your LUIS endpoint base URL, and LUIS subscription key.</p>
+<p><img src="images/chapter9/site1.png" class="img-override" /></p>
+<blockquote>
+<p><strong>LUIS Endpoint base URL</strong></p>
+<p>The LUIS endpoint URL should be everything before the query string in the LUIS endpoint URL. For example, mine is <a href="https://eastus.api.cognitive.microsoft.com/luis/v2.0/apps/6f0e678b-212c-4d4e-b0cc-967cb57f0a3a">https://eastus.api.cognitive.microsoft.com/luis/v2.0/apps/6f0e678b-212c-4d4e-b0cc-967cb57f0a3a</a>. Do not include the query string.</p>
+</blockquote>
+<p>With LUIS enabled on the web site, test it out. Using the <em>Start</em> and <em>Stop</em> buttons, speak a few phrases:</p>
+<ul>
+<li>pikachu sit down</li>
+<li>jigglypuff don&#39;t sing that loud, i&#39;m trying to sleep</li>
+</ul>
+<p>Check out the results!</p>
+<p><img src="images/chapter9/speak.gif" class="img-override" /></p>
+<p>Sweet!</p>
+<p>Now, how does it all work? Well, I&#39;ll let you check out the JavaScript code on your own in the MVC app. Here&#39;s a hint: check out the <code>UpdateRecognizedPhrase</code> JavaScript function in the Index.cshtml view.</p>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
+<p>Wow. So, we have a full end-to-end solution for performing speech-to-text analysis, identifying the intent of the text, and reacting to the identified intent. Congratulations on sticking it out.</p>
+<p>I have a few more things to share, so you&#39;re not finished yet.</p>
+<blockquote>
+<p><strong>Final Challenge</strong></p>
+<p>Starting from the beginning with the Custom Speech Service (acoustic &amp; language data sets, models, and deployments), add some more Pokemon to the mix. Then update the LUIS intents, entities, and phrase lists. Finally, add more images to the web site and deploy it all to Azure. </p>
+</blockquote>
+<blockquote>
+<p><strong>Super Double Secret Probation Challenge</strong></p>
+<p>As you can see, I desperately need help styling the web site that&#39;s part of this workshop. Submit a PR to my Github repo! Please. Someone. </p>
+</blockquote>
+<h3 id="increasing-luis-accuracy">Increasing LUIS Accuracy</h3>
+<p>Earlier in the workshop, you learned how to use phrase lists to increase the accuracy of your LUIS app. But that&#39;s not the only way. LUIS has adaptive learning capabilities and the ability to update the trained LUIS model by validating the generated intent and entity hypothesis of queries it has processed.</p>
+<p>We&#39;re not going to cover this in the workshop, but you should check out the <em>Review endpoint utterances</em> area of your <em>Pokemon</em> app. </p>
+<p><img src="images/chapter9/review.png" class="img-override" /></p>
+<p>That&#39;s officially the end of the workshop. Thank you for your time! I hope you enjoyed learning some of the advanced artificial intelligence offerings on Azure!</p>
+<p>Go forth and build some modern apps!</p>
+
+			</div>
+			<hr>
+			<br />
+			<br />
+			<br />
+			<br />
+		</div>
+	</div>
+</div>
+
+<script src="scripts/built.js"></script>
+
+</body>
+</html>
