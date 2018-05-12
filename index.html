@@ -761,8 +761,12 @@ get really mad pikachu
 <p>Training acoustic and language models is easy to do in the STT portal - point and click. But, before we do that, we&#39;ll take a pit stop and establish a baseline accuracy of the STT capabilities using Microsoft&#39;s base models.</p>
 <blockquote>
 <p><strong>Base Models - What Are They?</strong></p>
-<p>The STT comes with several pre-trained acoustic and language models. In fact, there are different models for conversations and search/diction. If you stop to think about it, this makes a lot of sense. We tend to speak differently when we converse with others, as compared to dictating text or speaking search terms for a search engine. See below for the base models Microsoft provides.</p>
-<p><img src="images/chapter4/model1.png" class="img-override" /></p>
+<p>The STT comes with pre-trained acoustic and language models, known as the Universal models. With these base universal models, the STT service can convert audio to text. But, if you have specific business terms, language patterns, regional dialects, etc., you&#39;ll build upon the base universal model to get higher accuracy.</p>
+<p>Microsoft updates the base universal model regularly, so your customized models can improve accuracy over time without adding to your training data. </p>
+</blockquote>
+<blockquote>
+<p><strong>Previous Base Models</strong></p>
+<p>In May 2018, Microsoft deprecated a variety of acoustic and language models. Previously the base models were customized for voice dictation and conversation, but now, there is a single base model capable of providing the same capabilities of the separate models, and with higher accuracy. You may see references to these models throughout the STT portal, but you can ignore them, as they are deprecated.   </p>
 </blockquote>
 <h3 id="testing-the-accuracy-of-the-base-models">Testing the Accuracy of the Base Models</h3>
 <p>To understand the effect our STT customization will have, it&#39;s important to establish a baseline accuracy for the STT service against our testing data set.</p>
@@ -779,7 +783,7 @@ get really mad pikachu
 <ul>
 <li>Locale: en-US</li>
 <li>Subscription: <em>the one you created earlier</em></li>
-<li>Base Model: Microsoft Search and Diction Model, then select the base acoustic and base language models below</li>
+<li>Scenario: Universal, then select the Universal acoustic and Universal language models below</li>
 <li>Acoustic Data: Pokemon - Acoustic Data - Testing</li>
 </ul>
 <p><img src="images/chapter4/test2.png" class="img-override" /></p>
@@ -830,7 +834,7 @@ get really mad pikachu
 <li>Locale: en-US</li>
 <li>Name: Pokemon - Acoustic Model</li>
 <li>Description: <em>blank</em></li>
-<li>Base Acoustic Model: Microsoft Search and Diction Model</li>
+<li>Scenario: Universal</li>
 <li>Acoustic Data: Pokemon - Acoustic Data - Training</li>
 <li>Subscription: <em>your subscription</em></li>
 <li>Accuracy Testing: <em>unchecked</em>, b/c we&#39;ve already run a test</li>
@@ -865,7 +869,7 @@ get really mad pikachu
 <li>Locale: en-US</li>
 <li>Name: Pokemon - Language Model</li>
 <li>Description: <em>blank</em></li>
-<li>Base Language Model: Microsoft Search and Diction Model</li>
+<li>Scenario: Universal</li>
 <li>Language Data: Pokemon - Language Data - Training</li>
 <li>Pronunciation Data: Pokemon - Pronunciation Data - Training</li>
 <li>Subscription: <em>your subscription</em></li>
@@ -898,7 +902,7 @@ get really mad pikachu
 <ul>
 <li>Locale: en-US</li>
 <li>Subscription: <em>the one you created earlier</em></li>
-<li>Base Model: Microsoft Search and Diction Model, then select the Pokemon models below</li>
+<li>Scenario: Universal, then select the Pokemon models below</li>
 <li>Acoustic Data: Pokemon - Acoustic Data - Testing</li>
 </ul>
 <p><img src="images/chapter4/test6.png" class="img-override" /></p>
@@ -912,10 +916,10 @@ get really mad pikachu
 <p>This one was for everyone. And it&#39;s amazing.</p>
 <p>So, let&#39;s check back in on the accuracy test.</p>
 <p><img src="images/chapter4/test8.png" class="img-override" /></p>
-<p>Sweet! Look at that - 6% WER. I&#39;m ok with that (for now). Feel free to explore the details of the accuracy test to learn more.</p>
+<p>Sweet! Look at that - 0% WER. I&#39;m ok with that!. Feel free to explore the details of the accuracy test to learn more.</p>
 <blockquote>
 <p><strong>Challenge #5</strong></p>
-<p>Try to get the accuracy test WER down to 0%. Enough said.</p>
+<p>Add several utterances to the testing data set that increase the word error rate (WER), then train the acoustic and language models to reduce it.</p>
 </blockquote>
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div> 

@@ -13,9 +13,13 @@ Training acoustic and language models is easy to do in the STT portal - point an
 
 > **Base Models - What Are They?**
 >
-> The STT comes with several pre-trained acoustic and language models. In fact, there are different models for conversations and search/diction. If you stop to think about it, this makes a lot of sense. We tend to speak differently when we converse with others, as compared to dictating text or speaking search terms for a search engine. See below for the base models Microsoft provides.
+> The STT comes with pre-trained acoustic and language models, known as the Universal models. With these base universal models, the STT service can convert audio to text. But, if you have specific business terms, language patterns, regional dialects, etc., you'll build upon the base universal model to get higher accuracy.
 >
-> <img src="images/chapter4/model1.png" class="img-override" />
+> Microsoft updates the base universal model regularly, so your customized models can improve accuracy over time without adding to your training data. 
+
+> **Previous Base Models**
+>
+> In May 2018, Microsoft deprecated a variety of acoustic and language models. Previously the base models were customized for voice dictation and conversation, but now, there is a single base model capable of providing the same capabilities of the separate models, and with higher accuracy. You may see references to these models throughout the STT portal, but you can ignore them, as they are deprecated.   
 
 ### Testing the Accuracy of the Base Models
 
@@ -38,7 +42,7 @@ Click the *Create New* button to begin a test against an acoustic and language m
 Complete the following fields:
 - Locale: en-US
 - Subscription: *the one you created earlier*
-- Base Model: Microsoft Search and Diction Model, then select the base acoustic and base language models below
+- Scenario: Universal, then select the Universal acoustic and Universal language models below
 - Acoustic Data: Pokemon - Acoustic Data - Testing
 
 <img src="images/chapter4/test2.png" class="img-override" />
@@ -111,7 +115,7 @@ Click the *Create New* button and complete the following fields:
 - Locale: en-US
 - Name: Pokemon - Acoustic Model
 - Description: *blank*
-- Base Acoustic Model: Microsoft Search and Diction Model
+- Scenario: Universal
 - Acoustic Data: Pokemon - Acoustic Data - Training
 - Subscription: *your subscription*
 - Accuracy Testing: *unchecked*, b/c we've already run a test
@@ -162,7 +166,7 @@ Click the *Create New* button and complete the following fields:
 - Locale: en-US
 - Name: Pokemon - Language Model
 - Description: *blank*
-- Base Language Model: Microsoft Search and Diction Model
+- Scenario: Universal
 - Language Data: Pokemon - Language Data - Training
 - Pronunciation Data: Pokemon - Pronunciation Data - Training
 - Subscription: *your subscription*
@@ -209,7 +213,7 @@ Click the *Create New* button to begin a test against an acoustic and language m
 Complete the following fields:
 - Locale: en-US
 - Subscription: *the one you created earlier*
-- Base Model: Microsoft Search and Diction Model, then select the Pokemon models below
+- Scenario: Universal, then select the Pokemon models below
 - Acoustic Data: Pokemon - Acoustic Data - Testing
 
 <img src="images/chapter4/test6.png" class="img-override" />
@@ -232,11 +236,11 @@ So, let's check back in on the accuracy test.
 
 <img src="images/chapter4/test8.png" class="img-override" />
 
-Sweet! Look at that - 6% WER. I'm ok with that (for now). Feel free to explore the details of the accuracy test to learn more.
+Sweet! Look at that - 0% WER. I'm ok with that!. Feel free to explore the details of the accuracy test to learn more.
 
 > **Challenge #5**
 >
-> Try to get the accuracy test WER down to 0%. Enough said.
+> Add several utterances to the testing data set that increase the word error rate (WER), then train the acoustic and language models to reduce it.
 
 This concludes the exercise. 
 
