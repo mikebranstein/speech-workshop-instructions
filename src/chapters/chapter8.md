@@ -7,7 +7,7 @@ In this chapter, you'll learn how to:
 
 ### Overview
 
-The concept of training a LUIS app is like training Custom Speech Service apps. So far, you've created a training data set including intents and entities, so the next step is to train your app. Then you'll test the trained app, and publish for consumption.
+The concept of training a LUIS app is like training Speech to Text Service apps. So far, you've created a training data set including intents and entities, so the next step is to train your app. Then you'll test the trained app, and publish for consumption.
 
 In a real-world scenario, you'll incrementally advance the functionality of a LUIS app. For example, you'll start with a few intents and entities, then as your app matures (or when you identify a deficiency), you'll add new intents and entities, re-train, and publish a new version of the LUIS app.
 
@@ -99,7 +99,7 @@ On the publishing page, there are a few things you can do:
 
 > **Bing spell checking**
 >
-> In many cases, I like to enable Bing spell checker, because I cannot guarantee that text coming into LUIS is valid. But, in your Pokemon app, you should not enable Bing spell checker because you're not guaranteed the CSS speech-to-text pipeline will return valid words, plus you don't know if *Pikachu* will be replaced by something else by Bing spell checker. 
+> In many cases, I like to enable Bing spell checker, because I cannot guarantee that text coming into LUIS is valid. But, in your Pokemon app, you should not enable Bing spell checker because you're not guaranteed the STT speech-to-text pipeline will return valid words, plus you don't know if *Pikachu* will be replaced by something else by Bing spell checker. 
 >
 > A good rule of thumb: if you're using a speech-domain that could have strange words present, don't use Bing spell checker. 
 

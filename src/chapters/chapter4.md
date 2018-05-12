@@ -1,4 +1,4 @@
-## Custom Speech Service Models
+## Speech to Text Service Models
 
 In this chapter, you'll learn how to:
 - perform testing on Microsoft's base models
@@ -7,31 +7,31 @@ In this chapter, you'll learn how to:
 
 ### Overview
 
-After creating Custom Speech Service (CSS) data sets, you need to instruct CSS to train models based on these data sets. 
+After creating Speech to Text Service (STT) data sets, you need to instruct STT to train models based on these data sets. 
 
-Training acoustic and language models is easy to do in the CSS portal - point and click. But, before we do that, we'll take a pit stop and establish a baseline accuracy of the CSS capabilities using Microsoft's base models.
+Training acoustic and language models is easy to do in the STT portal - point and click. But, before we do that, we'll take a pit stop and establish a baseline accuracy of the STT capabilities using Microsoft's base models.
 
 > **Base Models - What Are They?**
 >
-> The CSS comes with several pre-trained acoustic and language models. In fact, there are different models for conversations and search/diction. If you stop to think about it, this makes a lot of sense. We tend to speak differently when we converse with others, as compared to dictating text or speaking search terms for a search engine. See below for the base models Microsoft provides.
+> The STT comes with several pre-trained acoustic and language models. In fact, there are different models for conversations and search/diction. If you stop to think about it, this makes a lot of sense. We tend to speak differently when we converse with others, as compared to dictating text or speaking search terms for a search engine. See below for the base models Microsoft provides.
 >
 > <img src="images/chapter4/model1.png" class="img-override" />
 
 ### Testing the Accuracy of the Base Models
 
-To understand the effect our CSS customization will have, it's important to establish a baseline accuracy for the CSS service against our testing data set.
+To understand the effect our STT customization will have, it's important to establish a baseline accuracy for the STT service against our testing data set.
 
-Let's get started and see how the CSS does against some of these Pokemon names ;-)
+Let's get started and see how the STT does against some of these Pokemon names ;-)
 
 <h4 class="exercise-start">
     <b>Exercise</b>: Performing an accuracy test on the Microsoft base model
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Accuracy Tests*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Accuracy Tests*. 
 
 <img src="images/chapter4/test1.png" class="img-override" />
 
-This page shows the status of the past and ongoing accuracy tests performed by the CSS.
+This page shows the status of the past and ongoing accuracy tests performed by the STT.
 
 Click the *Create New* button to begin a test against an acoustic and language model.
 
@@ -65,7 +65,7 @@ Ugh! 45% word error rate - not good.
 
 > **Word Error Rate (WER)**
 >
-> 'WER' (Word Error Rate) and 'Word Accuracy' are the best measurements to take when comparing two utterances, these are typically values in % and are derived by comparing a reference transcript with the speech-to-text generated transcript (or hypothesis) for the audio. In our case, the reference transcript is the transcript file we supplied for the testing data set, and the speech-to-text generated transcript (or hypothesis) is what the CSS generated when it processed the 6 audio files in the testing dataset.
+> 'WER' (Word Error Rate) and 'Word Accuracy' are the best measurements to take when comparing two utterances, these are typically values in % and are derived by comparing a reference transcript with the speech-to-text generated transcript (or hypothesis) for the audio. In our case, the reference transcript is the transcript file we supplied for the testing data set, and the speech-to-text generated transcript (or hypothesis) is what the STT generated when it processed the 6 audio files in the testing dataset.
 >
 > The algorithm used is called the Levenshtein distance, it is calculated by aligning the reference with hypothesis and counting the words that are Insertions, Deletions, and Substitutions. 
 >
@@ -77,13 +77,13 @@ Click the *Details* link to learn more. At the bottom of the page, you'll find t
 
 <img src="images/chapter4/test5.png" class="img-override" />
 
-You should notice several mis-interpretations, as the CSS had trouble with:
+You should notice several mis-interpretations, as the STT had trouble with:
 - Pikachu
 - Meowth
 - Jigglypuff
 - Wink at me
 
-What's interesting is that aside from the Pokemon names, the CSS did a pretty good job. It got confused a bit about winking, but perhaps I didn't annunciate very well in the test files. We'll see later on.
+What's interesting is that aside from the Pokemon names, the STT did a pretty good job. It got confused a bit about winking, but perhaps I didn't annunciate very well in the test files. We'll see later on.
 
 Another thing to note is our testing data set is *SMALL*. Really small. In fact, there are only ~30 words in the entire data set. That's really too small, and for each word missed, we add ~3% word error rate. In a production system, we'd want hundreds of utterances, and thousands of words in a testing data set. So, keep that in mind for future endeavors.
 
@@ -101,11 +101,11 @@ Let's get started building an acoustic model based on our acoustic data set we u
     <b>Exercise</b>: Training an acoustic model
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Acoustic Models*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Acoustic Models*. 
 
 <img src="images/chapter4/acoustic-model1.png" class="img-override" />
 
-This page shows the various acoustic models you've trained for the CSS.
+This page shows the various acoustic models you've trained for the STT.
 
 Click the *Create New* button and complete the following fields:
 - Locale: en-US
@@ -152,11 +152,11 @@ Training language models is just like training acoustic models, so let's dive in
     <b>Exercise</b>: Training a language model
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Language Models*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Language Models*. 
 
 <img src="images/chapter4/lang-model1.png" class="img-override" />
 
-This page shows the various language models you've trained for the CSS.
+This page shows the various language models you've trained for the STT.
 
 Click the *Create New* button and complete the following fields:
 - Locale: en-US
@@ -202,7 +202,7 @@ Now that you've built an acoustic model and language model that customizes the b
     <b>Exercise</b>: Performing an accuracy test on your trained models
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Accuracy Tests*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Accuracy Tests*. 
 
 Click the *Create New* button to begin a test against an acoustic and language model.
 
@@ -245,5 +245,5 @@ This concludes the exercise.
 In this chapter, you learned:
 - why it's important to test Microsoft's base model to establish a baseline accuracy
 - how to create acoustic and language models
-- how to improve CSS accuracy by building customized models 
+- how to improve STT accuracy by building customized models 
 

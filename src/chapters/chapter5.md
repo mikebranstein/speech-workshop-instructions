@@ -1,8 +1,8 @@
-## Deploying Custom Speech Service Endpoints
+## Deploying Speech to Text Service Endpoints
 
 In this chapter, you'll learn how to:
 - deploy your customized acoustic and language models and create a secured endpoint
-- test the customized CSS endpoint using the web app you deployed earlier  
+- test the customized STT endpoint using the web app you deployed earlier  
 
 ### Overview
 
@@ -24,7 +24,7 @@ You've already done the hard work of building the customized models, so let's us
     <b>Exercise</b>: Deploying customized acoustic and language models
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Deployments*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Deployments*. 
 
 Click the *Create New* button to create a new deployment.
 
@@ -51,17 +51,17 @@ This concludes the exercise.
 
 <div class="exercise-end"></div> 
 
-### Exploring the Custom Speech Service Endpoint
+### Exploring the Speech to Text Service Endpoint
 
-Now that you've deployed a customized CSS endpoint, you can consume it in an application. But how?
+Now that you've deployed a customized STT endpoint, you can consume it in an application. But how?
 
 Let's take a closer look at your deployment.
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Exploring a CSS endpoint deployment
+    <b>Exercise</b>: Exploring a STT endpoint deployment
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Deployments*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Deployments*. 
 
 Click the *Details* link next to your *Pokemon* deployment:
 
@@ -71,7 +71,7 @@ The deployment details page shows you a variety of details about your deployment
 
 <img src="images/chapter5/deploy4.png" class="img-override" />
 
-The endpoints area shows a variety of URIs that you can use to access your customized deployment. You can interact with the CSS via a:
+The endpoints area shows a variety of URIs that you can use to access your customized deployment. You can interact with the STT via a:
 - HTTP REST API
 - WebSockets, using a .NET/Android/iOS client library
 - WebSockets, using a .NET service library
@@ -91,15 +91,15 @@ If you need real-time processing of audio, when using a microphone that's embedd
 
 #### WebSockets, using a .NET service library
 
-When you need a long-running server-side process to interact in real-time with the CSS in a .NET app, use these endpoints. You'll also need to use the .NET SDK built for this purpose.
+When you need a long-running server-side process to interact in real-time with the STT in a .NET app, use these endpoints. You'll also need to use the .NET SDK built for this purpose.
 
 #### WebSockets with support for the Speech Protocol/JavaScript WebSocket API
 
-The last option is to interact with the CSS using a specific protocol called the Speech Protocol. This also has it's own SDK and API you need to adhere to when using these endpoints. 
+The last option is to interact with the STT using a specific protocol called the Speech Protocol. This also has it's own SDK and API you need to adhere to when using these endpoints. 
 
 > **The Speech Protocol**
 >
-> I consider the first three options a legacy way of interacting with the CSS. The 4th option (Speech Protocol) is the new and recommended way of interfacing with the CSS. Eventually the first 3 options will be deprecated and the Speech Protocol will be *the* way to interact. 
+> I consider the first three options a legacy way of interacting with the STT. The 4th option (Speech Protocol) is the new and recommended way of interfacing with the STT. Eventually the first 3 options will be deprecated and the Speech Protocol will be *the* way to interact. 
 >
 > Right now, support for the new Speech Protocol is limited to a JavaScript SDK, but if you need a C# version, you can roll your own. To learn more about the protocol, check out the official [protocol documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech/api-reference-rest/websocketprotocol).
 
@@ -126,12 +126,12 @@ This concludes the exercise.
 <div class="exercise-end"></div>
 
 
-### Testing the CSS Endpoint
+### Testing the STT Endpoint
 
-Now, let's return to the web app you deployed to Azure earlier and test your Custom Speech Service deployment. 
+Now, let's return to the web app you deployed to Azure earlier and test your Speech to Text Service deployment. 
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Testing a CSS endpoint deployment
+    <b>Exercise</b>: Testing a STT endpoint deployment
 </h4>
 
 > **Don't use your VM for this exercise**
@@ -140,7 +140,7 @@ Now, let's return to the web app you deployed to Azure earlier and test your Cus
 
 Start by navigating to your deployed Azure web site. My URL was [http://workshopwebapp.azurewebsites.net/](http://workshopwebapp.azurewebsites.net/). 
 
-After the page loads, paste your deployed CSS endpoint base URL into the *Endpoint* text box, and the subscription key into the *Subscription Key* text box:
+After the page loads, paste your deployed STT endpoint base URL into the *Endpoint* text box, and the subscription key into the *Subscription Key* text box:
 
 <img src="images/chapter5/deploy5.png" class="img-override" />
 
@@ -148,13 +148,13 @@ Ignore the LUIS-related fields, change the *Recognition Mode* drop down to *Dict
 
 <img src="images/chapter5/deploy6.png" class="img-override" />
 
-Press the *Start* button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the CSS endpoint you created and return incremental speech results in real-time.
+Press the *Start* button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the STT endpoint you created and return incremental speech results in real-time.
 
 Try speaking the phrase, "Pikachu is a cool pokemon.":
 
 <img src="images/chapter5/speech.gif" class="img-override" />
 
-Now, that's cool! As you speak, you'll see incremental results returned to you browser and displayed in the *Current hypothesis* area. Then, when the CSS recognizes the end of your utterance, it returns JSON-formatted result:
+Now, that's cool! As you speak, you'll see incremental results returned to you browser and displayed in the *Current hypothesis* area. Then, when the STT recognizes the end of your utterance, it returns JSON-formatted result:
 
 ```json
 {
@@ -178,9 +178,9 @@ Now, that's cool! As you speak, you'll see incremental results returned to you b
 }
 ```
 
-The way this CSS endpoint works is that each time an utterance is detected, a JSON object is returned with `"RecognitionStatus": "Success"`. Inside, it tracks the audio millisecond count that was sent, based on the *Offset* and *Duration*, meaning that at audio millisecond 0, the system detected an utterance beginning, and an utterance ending after 26300000 milliseconds.
+The way this STT endpoint works is that each time an utterance is detected, a JSON object is returned with `"RecognitionStatus": "Success"`. Inside, it tracks the audio millisecond count that was sent, based on the *Offset* and *Duration*, meaning that at audio millisecond 0, the system detected an utterance beginning, and an utterance ending after 26300000 milliseconds.
 
-The CSS also returns the speech hypothesis in a variety of formats. The most meaningful is the `"Display": "Pikachu is a cool Pokémon."` result, which is the official transcription with a confidence % of 92.3154%.
+The STT also returns the speech hypothesis in a variety of formats. The most meaningful is the `"Display": "Pikachu is a cool Pokémon."` result, which is the official transcription with a confidence % of 92.3154%.
 
 Pretty cool.
 
@@ -192,7 +192,7 @@ We're not going to dive into the JavaScript code that manages interacting with t
 
 > **Challenge #6**
 >
-> Now that you have a full training to testing to real-world testing methodology for the CSS, try to stump your trained model. Then, return back to your data sets, models, and deployments. Update all of them and attempt to retrain the system to address the shortcomings you identified. 
+> Now that you have a full training to testing to real-world testing methodology for the STT, try to stump your trained model. Then, return back to your data sets, models, and deployments. Update all of them and attempt to retrain the system to address the shortcomings you identified. 
 
 This concludes the exercise. 
 
@@ -200,6 +200,6 @@ This concludes the exercise.
 
 In this chapter, you learned:
 - how to test your trained models with real-world data 
-- that a CSS deployment deploy various endpoints that are used in different scenarios
+- that a STT deployment deploy various endpoints that are used in different scenarios
 
 

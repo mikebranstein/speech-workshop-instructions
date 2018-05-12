@@ -70,7 +70,7 @@ Inside the markdown file, you'll find an intent followed by a series of utteranc
 
 In the snippet above, the heading `Sit` is the name of an intent you'll create, followed by utterances that align to the intent.
 
-LUIS is like the Custom Speech Service, as it needs to *learn* the types of phrases (or utterances) that map to an intent. 
+LUIS is like the Speech to Text Service, as it needs to *learn* the types of phrases (or utterances) that map to an intent. 
 
 Referencing the *luis-utterances.md* file, create intents for each intent listed in the document.
 

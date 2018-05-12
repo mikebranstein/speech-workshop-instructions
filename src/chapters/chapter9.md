@@ -110,7 +110,7 @@ Now that you understand how to send data to LUIS via an HTTP GET and what the ou
 
 Return to your laptop, not the VM you've bee using. Navigate to the Speech recognition web app you published to Azure earlier. My URL was [https://workshopwebapp.azurewebsites.net/](https://workshopwebapp.azurewebsites.net/).
 
-This time, enter your CSS endpoint URL, CSS Subscription key, check the LUIS checkbox, and add your LUIS endpoint base URL, and LUIS subscription key.
+This time, enter your STT endpoint URL, STT Subscription key, check the LUIS checkbox, and add your LUIS endpoint base URL, and LUIS subscription key.
 
 <img src="images/chapter9/site1.png" class="img-override" />
 
@@ -140,7 +140,7 @@ I have a few more things to share, so you're not finished yet.
 
 > **Final Challenge**
 >
-> Starting from the beginning with the Custom Speech Service (acoustic & language data sets, models, and deployments), add some more Pokemon to the mix. Then update the LUIS intents, entities, and phrase lists. Finally, add more images to the web site and deploy it all to Azure. 
+> Starting from the beginning with the Speech to Text Service (acoustic & language data sets, models, and deployments), add some more Pokemon to the mix. Then update the LUIS intents, entities, and phrase lists. Finally, add more images to the web site and deploy it all to Azure. 
 
 > **Super Double Secret Probation Challenge**
 >

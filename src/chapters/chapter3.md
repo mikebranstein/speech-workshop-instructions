@@ -1,9 +1,9 @@
-## Building Custom Speech Service data sets 
+## Building Speech to Text Service data sets 
 
 In this chapter, you'll learn:
 - The difference between training and testing data sets
 - How acoustic data sets are built 
-- That language data sets help the Custom Speech Service (CSS) understand the likelihood of certain words and phrases
+- That language data sets help the Speech to Text Service (STT) understand the likelihood of certain words and phrases
 - That pronunciation data sets can help with simple word and and syllable replacements
 
 ### Understanding Machine Learning Data Sets
@@ -34,13 +34,13 @@ With these two data sets, the machine learning process adheres to a standard 3-p
 >
 > An easy mistake to make with your training, test, and real-world data sets is overlapping data (or reusing data from one set in another). Imagine that you training a model to answer true/false questions using a series of 10 questions and answers. After the model is trained, you use the same 10 questions to evaluate how well the model performs. Ideally, it should perform 100%, but you don't know how well it *really* performs because you tested with the training data. The only true test is to use other real-world questions, then re-evaluate its performance.
 
-#### Applying Machine Learning Data Set Concepts to the Custom Speech Service
+#### Applying Machine Learning Data Set Concepts to the Speech to Text Service
 
 Now that you know about the different types of data, you'll be creating training data sets for acoustic, language, and pronunciation data, then testing acoustic data. 
 
 > **Acoustic, Language, and Pronunciation**
 >
-> Don't worry if you don't know the difference between these 3 types of data the CSS uses, you'll be learning about it next.
+> Don't worry if you don't know the difference between these 3 types of data the STT uses, you'll be learning about it next.
 
 ### Acoustic Training data sets
 
@@ -57,7 +57,7 @@ To build acoustic models, you need acoustic data sets. An acoustic data set cons
 
 #### Audio File Format and Recommendations
 
-To build testing acoustic audio data for the Custom Speech Service, you should adhere to the following guidelines:
+To build testing acoustic audio data for the Speech to Text Service, you should adhere to the following guidelines:
 
 - All audio files in the data set should be stored in the WAV (RIFF) audio format.
 - The audio must have a sampling rate of 8 kHz or 16 kHz and the sample values should be stored as uncompressed PCM 16-bit signed integers (shorts).
@@ -86,9 +86,9 @@ speech02.wav    the quick brown fox jumped all over the place
 speech03.wav    the lazy dog was not amused
 ```
 
-The transcriptions should be text-normalized so they can be processed by the system. However, there are some very important normalizations that must be done by the user prior to uploading the data to the Custom Speech Service. The [normalization rules](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-speech-service/customspeech-how-to-topics/cognitive-services-custom-speech-transcription-guidelines) are too lengthy to cover here, so you should check them out on your own. It may seem like a lot at first, but i've found it fairly straight-forward and I was quickly able to learn and apply them regularly.
+The transcriptions should be text-normalized so they can be processed by the system. However, there are some very important normalization rules that must be applied prior to uploading the data to the Speech to Text Service. The [normalization rules](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-speech-service/customspeech-how-to-topics/cognitive-services-custom-speech-transcription-guidelines) are too lengthy to cover here, so you should check them out on your own. It may seem like a lot at first, but i've found it fairly straight-forward and I was quickly able to learn and apply them regularly.
 
-#### Prepping your acoustic data for the CSS portal
+#### Prepping your acoustic data for the STT portal
 
 In the source code you downloaded from Github, you'll find the training audio files and an audio transcript of the files in the *custom-speech-service-data/training* folder:
 
@@ -96,19 +96,19 @@ In the source code you downloaded from Github, you'll find the training audio fi
 
 > **Pokemon!**
 >
-> You may have noticed the file names of the acoustic data are Pokemon. My son and I have recently started to play Pokemon the Card Game together, so I thought this would be a fun way (and topic) to teach you about speech recognition. After all, Pokemon names *are* difficult to pronounce, and are a domain-specific language of their own. They're a perfect match for the capabilities of the Custom Speech Service.
+> You may have noticed the file names of the acoustic data are Pokemon. My son and I have recently started to play Pokemon the Card Game together, so I thought this would be a fun way (and topic) to teach you about speech recognition. After all, Pokemon names *are* difficult to pronounce, and are a domain-specific language of their own. They're a perfect match for the capabilities of the Speech to Text Service.
 
-Let's get started by uploading an acoustic data set to the CSS portal.
+Let's get started by uploading an acoustic data set to the STT portal.
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Uploading an acoustic data set to the CSS portal
+    <b>Exercise</b>: Uploading an acoustic data set to the STT portal
 </h4>
 
 Start by locating the acoustic .wav audio files. Select the 17 audio files, zip them up, and name the zip file *training-utterances.zip*.
 
 <img src="images/chapter3/training-utterances.gif" class="img-override" />
 
-Next, navigate to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.
+Next, navigate to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.
 
 Click the *Sign In* link in the upper right and sign in with your Azure portal subscription login.
 
@@ -139,9 +139,9 @@ Note the *Status* of the acoustic dataset is *NotStarted*. In a few moments, it 
 
 <img src="images/chapter3/import4.png" class="img-override" />
 
-When you upload acoustic data, the CSS will analyze the data, check it for errors, and ensure the transcription file matches the uploaded audio filenames. There are a variety of other checks that are performed that aren't important, but it's good to know that there is some post-processing that needs to occur before you can use the acoustic data set.
+When you upload acoustic data, the STT will analyze the data, check it for errors, and ensure the transcription file matches the uploaded audio filenames. There are a variety of other checks that are performed that aren't important, but it's good to know that there is some post-processing that needs to occur before you can use the acoustic data set.
 
-When the CSS finishes analyzing and validating the acoustic data, the *Status* will change to *Succeeded*:
+When the STT finishes analyzing and validating the acoustic data, the *Status* will change to *Succeeded*:
 
 <img src="images/chapter3/import5.png" class="img-override" />
 
@@ -163,7 +163,7 @@ This concludes the exercise.
 
 ### Language Training data sets
 
-Now that you've created an acoustic data set, let's build a language data set. As you'll recall from a previous chapter, language models and language data sets teach the CSS the likelihood of encountering certain words or phrases. 
+Now that you've created an acoustic data set, let's build a language data set. As you'll recall from a previous chapter, language models and language data sets teach the STT the likelihood of encountering certain words or phrases. 
 
 > **Language Model**
 >
@@ -203,13 +203,13 @@ You'll notice that this is a collection of commands. This is of importance and s
 
 #### Creating a Language Data Set
 
-Now that you know what is in a language data set, let's head over to the CSS portal and create one.
+Now that you know what is in a language data set, let's head over to the STT portal and create one.
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Uploading a language data set to the CSS portal
+    <b>Exercise</b>: Uploading a language data set to the STT portal
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the *Adaptation Data* page.
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the *Adaptation Data* page.
 
 Scroll down past the *Acoustic Datasets* area, and you'll find the *Language Datasets* area:
 
@@ -272,10 +272,10 @@ I've found it useful to use pronunciation in a variety of circumstances. In the 
 For your final data set, you'll create a pronunciation data set. Let's get to it!
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Uploading a pronunciation data set to the CSS portal
+    <b>Exercise</b>: Uploading a pronunciation data set to the STT portal
 </h4>
 
-Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the *Adaptation Data* page.
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the *Adaptation Data* page.
 
 Scroll down past the *Language Datasets* area, and you'll find the *Pronunciation Datasets* area:
 
@@ -315,7 +315,7 @@ So far, you've created 3 training data sets: acoustic, language, and pronunciati
 
 #### Testing Data Sets are Acoustic Data Sets
 
-Here's a secret - testing data sets for the CSS *are* acoustic data sets. And here's why. Think about it - an acoustic data set provides audio files, with transcriptions of the audio file content. As a result, an acoustic data set is ideal for testing because it includes audio files, and their actual content.
+Here's a secret - testing data sets for the STT *are* acoustic data sets. And here's why. Think about it - an acoustic data set provides audio files, with transcriptions of the audio file content. As a result, an acoustic data set is ideal for testing because it includes audio files, and their actual content.
 
 Now, we have to be a bit careful, because it's easy to confuse your training and testing data sets because they are both acoustic data sets. So, as we create a second acoustic data set, we'll be sure to name it properly - with *testing* in it's name. 
 
@@ -331,7 +331,7 @@ Select the 6 audio files, zip them up, and name the zip file *testing-utterances
 
 <img src="images/chapter3/testing-utterances.gif" class="img-override" />
 
-Next, navigate to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Adpatation Data*.
+Next, navigate to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Adpatation Data*.
 
 Click the *Import* button by *Acoustic Datasets* and complete the following fields:
 - Name: Pokemon - Acoustic Data - Testing
@@ -354,7 +354,7 @@ Congratulations! You've created your testing acoustic data set.
 
 > **Challenge #4**
 >
-> Yes. Again. Feel free to augment the testing data set you just created. Remember - don't overlap training/testing data, and make the data similar enough. For example, if you added *Charizard* to your training data sets, it would be a good idea to test for *Charizard*. Likewise, if you didn't add another pokemon, like *Chespin*, you shouldn't expect the CSS to magically recognize it.
+> Yes. Again. Feel free to augment the testing data set you just created. Remember - don't overlap training/testing data, and make the data similar enough. For example, if you added *Charizard* to your training data sets, it would be a good idea to test for *Charizard*. Likewise, if you didn't add another pokemon, like *Chespin*, you shouldn't expect the STT to magically recognize it.
 >
 > <img src="images/chapter3/chespin.jpeg" class="img-small" />
 
@@ -365,5 +365,5 @@ This concludes the exercise.
 Phew! That was a long chapter! But, you learned quite a bit, like:
 - the importance of separating training data from testing data
 - that acoustic data is a combination of .wav files and normalized text transcripts
-- pronunciation data sets can help your CSS models interpret multi-word phrases into an abbreviation - like C3PO and AT&T
+- pronunciation data sets can help your STT models interpret multi-word phrases into an abbreviation - like C3PO and AT&T
 

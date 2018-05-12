@@ -27,17 +27,17 @@ Azure is big. Really big. Too big to talk about all things Azure in a single day
 
 We've assembled an exciting workshop to introduce you to several Azure services that cloud developers should know about:
 * [Web app](https://azure.microsoft.com/en-us/services/app-service/web/)
-* [Cognitive Services](https://www.microsoft.com/cognitive-services) API for [customized speech to text](https://azure.microsoft.com/en-us/services/cognitive-services/custom-speech-service/)
+* [Cognitive Services](https://www.microsoft.com/cognitive-services) API for [customized speech to text](https://azure.microsoft.com/en-us/services/cognitive-services/speech-to-text/)
 * [Cognitive Services](https://www.microsoft.com/cognitive-services) API for [Language Understanding (LUIS)](https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/)
 
-In this workshop, you’ll learn how to integrate Azure’s customizable speech recognition, text analytics, and intent analysis APIs into an Azure-hosted app. You’ll start by learning about the Custom Speech Service, a speech recognition API that can be trained to filter out background noise and recognize obscure words and phrases. After training the speech recognition model, you’ll integrate it into an Azure-hosted web app to recognize real-time speech. Finally, you’ll integrate and train the Language Understanding and Intelligence Service (LUIS) to analyze the intent of speech phrases you generate. With the intent identified, your app will be able to respond in real time.
+In this workshop, you’ll learn how to integrate Azure’s customizable speech recognition, text analytics, and intent analysis APIs into an Azure-hosted app. You’ll start by learning about the Speech to Text Service, a speech recognition API that can be trained to filter out background noise and recognize obscure words and phrases. After training the speech recognition model, you’ll integrate it into an Azure-hosted web app to recognize real-time speech. Finally, you’ll integrate and train the Language Understanding and Intelligence Service (LUIS) to analyze the intent of speech phrases you generate. With the intent identified, your app will be able to respond in real time.
 
 #### Key concepts and takeaways
 
 * Navigating the Azure portal
 * Using Azure Resource Groups to manage multiple Azure services
 * Deploying a web app to Azure web app service
-* Developing language and acoustic models for the Custom Speech Service
+* Developing language and acoustic models for the Speech to Text Service
 * Deploying a customized speech recognition API
 * Developing intent models for the Language Understanding (LUIS) service
 * Deploying a customized LUIS endpoint
@@ -47,10 +47,10 @@ In this workshop, you’ll learn how to integrate Azure’s customizable speech 
 
 * Chapter 0: Introduction
 * Chapter 1: Getting Started in Azure
-* Chapter 2: Introduction to the Custom Speech Service
-* Chapter 3: Building Custom Speech Service data sets 
-* Chapter 4: Custom Speech Service Models
-* Chapter 5: Deploying Custom Speech Service Endpoints
+* Chapter 2: Introduction to the Speech to Text Service
+* Chapter 3: Building Speech to Text Service data sets 
+* Chapter 4: Speech to Text Service Models
+* Chapter 5: Deploying Speech to Text Service Endpoints
 * Chapter 6: Introduction to Language Understanding (LUIS)
 * Chapter 7: Building a LUIS App
 * Chapter 8: Publishing and Testing LUIS Endpoints

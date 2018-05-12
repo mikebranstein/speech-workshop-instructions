@@ -54,16 +54,16 @@
 <p>We&#39;ve assembled an exciting workshop to introduce you to several Azure services that cloud developers should know about:</p>
 <ul>
 <li><a href="https://azure.microsoft.com/en-us/services/app-service/web/">Web app</a></li>
-<li><a href="https://www.microsoft.com/cognitive-services">Cognitive Services</a> API for <a href="https://azure.microsoft.com/en-us/services/cognitive-services/custom-speech-service/">customized speech to text</a></li>
+<li><a href="https://www.microsoft.com/cognitive-services">Cognitive Services</a> API for <a href="https://azure.microsoft.com/en-us/services/cognitive-services/speech-to-text/">customized speech to text</a></li>
 <li><a href="https://www.microsoft.com/cognitive-services">Cognitive Services</a> API for <a href="https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/">Language Understanding (LUIS)</a></li>
 </ul>
-<p>In this workshop, you’ll learn how to integrate Azure’s customizable speech recognition, text analytics, and intent analysis APIs into an Azure-hosted app. You’ll start by learning about the Custom Speech Service, a speech recognition API that can be trained to filter out background noise and recognize obscure words and phrases. After training the speech recognition model, you’ll integrate it into an Azure-hosted web app to recognize real-time speech. Finally, you’ll integrate and train the Language Understanding and Intelligence Service (LUIS) to analyze the intent of speech phrases you generate. With the intent identified, your app will be able to respond in real time.</p>
+<p>In this workshop, you’ll learn how to integrate Azure’s customizable speech recognition, text analytics, and intent analysis APIs into an Azure-hosted app. You’ll start by learning about the Speech to Text Service, a speech recognition API that can be trained to filter out background noise and recognize obscure words and phrases. After training the speech recognition model, you’ll integrate it into an Azure-hosted web app to recognize real-time speech. Finally, you’ll integrate and train the Language Understanding and Intelligence Service (LUIS) to analyze the intent of speech phrases you generate. With the intent identified, your app will be able to respond in real time.</p>
 <h4 id="key-concepts-and-takeaways">Key concepts and takeaways</h4>
 <ul>
 <li>Navigating the Azure portal</li>
 <li>Using Azure Resource Groups to manage multiple Azure services</li>
 <li>Deploying a web app to Azure web app service</li>
-<li>Developing language and acoustic models for the Custom Speech Service</li>
+<li>Developing language and acoustic models for the Speech to Text Service</li>
 <li>Deploying a customized speech recognition API</li>
 <li>Developing intent models for the Language Understanding (LUIS) service</li>
 <li>Deploying a customized LUIS endpoint</li>
@@ -73,10 +73,10 @@
 <ul>
 <li>Chapter 0: Introduction</li>
 <li>Chapter 1: Getting Started in Azure</li>
-<li>Chapter 2: Introduction to the Custom Speech Service</li>
-<li>Chapter 3: Building Custom Speech Service data sets </li>
-<li>Chapter 4: Custom Speech Service Models</li>
-<li>Chapter 5: Deploying Custom Speech Service Endpoints</li>
+<li>Chapter 2: Introduction to the Speech to Text Service</li>
+<li>Chapter 3: Building Speech to Text Service data sets </li>
+<li>Chapter 4: Speech to Text Service Models</li>
+<li>Chapter 5: Deploying Speech to Text Service Endpoints</li>
 <li>Chapter 6: Introduction to Language Understanding (LUIS)</li>
 <li>Chapter 7: Building a LUIS App</li>
 <li>Chapter 8: Publishing and Testing LUIS Endpoints</li>
@@ -385,14 +385,14 @@
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="introduction-to-the-custom-speech-service">Introduction to the Custom Speech Service</h2>
-<p>In this chapter you&#39;ll learn about the Custom Speech Service, how to provision one in the Azure Portal, and how to link your subscription to the Custom Speech Service portal.</p>
+				<h2 id="introduction-to-the-speech-to-text-service">Introduction to the Speech to Text Service</h2>
+<p>In this chapter you&#39;ll learn about the Speech to Text Service, how to provision one in the Azure Portal, and how to link your subscription to the Speech to Text Service portal.</p>
 <blockquote>
 <p><strong>Abbreviation</strong> </p>
-<p>To save some time, you may see me refer to the Custom Speech Service as CSS. I know it can be confusing, especially if you&#39;re a web developer. But, let&#39;s pretend for a day that you&#39;re not, and use CSS in a different way. Thanks!</p>
+<p>To save some time, you may see me refer to the Speech to Text Service as STT.</p>
 </blockquote>
 <h3 id="overview">Overview</h3>
-<p>The Custom Speech Service enables you to create a customized speech-to-text platform that meets the needs of your business. With the service, you create customized language models and acoustic models tailored to your application and your users. By uploading your specific speech and/or text data to the Custom Speech Service, you can create custom models that can be used in conjunction with Microsoft’s existing state-of-the-art speech models. With these capabilities, you&#39;re able to filter out common background noise, adjust for localized dialects, and train the speech service to recognize non-standard/obscure words and phrases (like &quot;Pokemon&quot;, scientific terms, and technical jargon).</p>
+<p>The Speech to Text Service enables you to create a customized speech-to-text platform that meets the needs of your business. With the service, you create customized language models and acoustic models tailored to your application and your users. By uploading your specific speech and/or text data to the Speech to Text Service, you can create custom models that can be used in conjunction with Microsoft’s existing state-of-the-art speech models. With these capabilities, you&#39;re able to filter out common background noise, adjust for localized dialects, and train the speech service to recognize non-standard/obscure words and phrases (like &quot;Pokemon&quot;, scientific terms, and technical jargon).</p>
 <p>For example, if you’re adding voice interaction to a mobile phone, tablet or PC app, you can create a custom language model that can be combined with Microsoft’s acoustic model to create a speech-to-text endpoint designed especially for your app. If your application is designed for use in a particular environment or by a particular user population, you can also create and deploy a custom acoustic model with this service.</p>
 <h4 id="how-do-speech-recognition-systems-work-">How do speech recognition systems work?</h4>
 <p>Before you get started, it&#39;s important to understand how speech recognition systems work.</p>
@@ -412,23 +412,27 @@
 <p>Both the acoustic and language models are statistical models learned from training data. As a result, they perform best when the speech they encounter when used in applications is similar to the data observed during training. The acoustic and language models in the Microsoft Speech-To-Text engine have been trained on an enormous collection of speech and text and provide state-of-the-art performance for the most common usage scenarios, such as interacting with Cortana on your smart phone, tablet or PC, searching the web by voice or dictating text messages to a friend.</p>
 <blockquote>
 <p><strong>Credits</strong></p>
-<p>This section was borrowed from Microsoft&#39;s <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Speech-Service/cognitive-services-custom-speech-home#what-is-the-custom-speech-service">official documentation</a>. Thank you!</p>
+<p>This section was borrowed from Microsoft&#39;s <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/overview">official documentation</a>. Thank you!</p>
 </blockquote>
-<h4 id="using-the-custom-speech-service-acoustic-models-and-language-models">Using the Custom Speech Service, Acoustic Models, and Language Models</h4>
+<h4 id="using-the-speech-to-text-service-acoustic-models-and-language-models">Using the Speech to Text Service, Acoustic Models, and Language Models</h4>
 <p>Throughout the next several chapters, you&#39;ll be building acoustic and language models. Don&#39;t worry if you don&#39;t understand everything right now, because you&#39;ll be learning as you go.</p>
 <blockquote>
-<p><strong>Bing Speech API</strong></p>
-<p>Microsoft has another speech-to-text service in Azure called the Bing Speech API. This API is like the Custom Speech Service, but it cannot be customized. I like to think of the Bing Speech API as a v1 product, and the Custom Speech Service as a v2 product. Both are highly capable, but when I need to account for background noise, custom words, etc. I choose the Custom Speech Service.</p>
+<p><strong>Bing Speech API and Custom Speech Service</strong></p>
+<p>Microsoft has various other speech-to-text services in Azure. The first is called the Bing Speech API, and the second Custom Speech Service. The Bing Speech API is like the Speech to Text Service, but it cannot be customized. I like to think of the Bing Speech API as a v1 product.</p>
+<p>The Custom Speech Service was their first version of Microsoft&#39;s customized speech-to-text platform. As of the 2018 //BUILD conference, the Custom Speech Service was enhanced and renamed to the Speech to Text service. From time to time, you may see Custom Speech Service used interchangeably with Speech to Text service.</p>
+<p>The Bing Speech API and Speech to Text Service are highly capable, but when I need to account for background noise, custom words, etc. I choose the Speech to Text Service.</p>
 </blockquote>
 <h3 id="provisioning-in-azure">Provisioning in Azure</h3>
-<p>Now that you know what the Custom Speech Service can do, let&#39;s start using it! You&#39;ll start by creating a Custom Speech Service instance in the Azure portal. </p>
+<p>Now that you know what the Speech to Text Service can do, let&#39;s start using it! You&#39;ll start by creating a Speech to Text Service instance in the Azure portal. </p>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Creating a Custom Speech Service Instance
+    <b>Exercise</b>: Creating a Speech to Text Service Instance
 </h4>
 
 <p>Start by jumping back to the Azure portal, and create a new resource by clicking the <em>Create a resource</em> button.</p>
-<p>Search for <em>Custom Speech Service</em>:</p>
+<p>Search for <em>Custom Speech</em>:</p>
 <p><img src="images/chapter2/css-search.png" class="img-override" /></p>
+<p>In the of search results, select <em>Custom Speech (preview)</em>:</p>
+<p><img src="images/chapter2/css-search-results.png" class="img-override" /></p>
 <p>Fill out the required parameters as you create an instance:</p>
 <ul>
 <li>Name: <em>workshop-css</em>, or something similar</li>
@@ -440,47 +444,47 @@
 <p><img src="images/chapter2/css-create.png" class="img-override" /></p>
 <blockquote>
 <p><strong>West US Location</strong></p>
-<p>Normally, I recommend you keep resources in the same region, but the Custom Speech Service is in preview right now, so it&#39;s only available in West US.</p>
+<p>Normally, I recommend you keep resources in the same region, but the Speech to Text Service is in preview right now, so it&#39;s only available in West US.</p>
 </blockquote>
-<p>When the Custom Speech Service instance is provisioned, it will appear in your resource group:</p>
+<p>When the Speech to Text Service instance is provisioned, it will appear in your resource group:</p>
 <p><img src="images/chapter2/css-resource-group.png" class="img-override" /></p>
-<p>The final step is to navigate to the Custom Speech Service instance by clicking on it. </p>
+<p>The final step is to navigate to the Speech to Text Service instance by clicking on it. </p>
 <p>Locate the <em>Keys</em> area and take note of <em>KEY 1</em>:</p>
 <p><img src="images/chapter2/css-keys.png" class="img-override" /></p>
 <p>You&#39;ll need this key in the next step, so don&#39;t forget it.</p>
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div>
 
-<h3 id="linking-your-subscription-on-the-css-web-portal">Linking your Subscription on the CSS Web Portal</h3>
-<p>There&#39;s not much you can do with the Custom Speech Service in the Azure portal because the service is still in preview. Instead, a separate portal exists to perform customizations and work with the service. In the next section, you&#39;ll be introduced to the Custom Speech Service portal.</p>
+<h3 id="linking-your-subscription-on-the-speech-to-text-service-web-portal">Linking your Subscription on the Speech To Text Service Web Portal</h3>
+<p>There&#39;s not much you can do with the Speech to Text Service in the Azure portal because the service is still in preview. Instead, a separate portal exists to customize and work with the service. In the next section, you&#39;ll be introduced to the Speech to Text Service portal.</p>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Linking your CSS subscription to the CSS portal
+    <b>Exercise</b>: Linking your STT subscription to the STT portal
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.</p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.</p>
 <p>Click the <em>Sign In</em> link in the upper right and sign in with your Azure portal subscription login.</p>
 <p>After logging in, click on your name the upper right, and select the <em>Subscriptions</em> option below it:</p>
 <p><img src="images/chapter2/portal-sub.png" class="img-override" /></p>
 <h4 id="subscriptions">Subscriptions</h4>
-<p>The <em>Subscriptions</em> page shows all of your connected CSS subscriptions. </p>
+<p>The <em>Subscriptions</em> page shows all of your connected STT subscriptions. </p>
 <p><img src="images/chapter2/portal-sub-page.png" class="img-override" /></p>
-<p>Click the <em>Connect existing subscription</em> button. Add the CSS subscription you just created in the Azure portal. Give it a name and enter <em>KEY 1</em> from the Azure portal.</p>
+<p>Click the <em>Connect existing subscription</em> button. Add the STT subscription you just created in the Azure portal. Give it a name and enter <em>KEY 1</em> from the Azure portal.</p>
 <p><img src="images/chapter2/sub-add.png" class="img-override" /></p>
 <p>You should see the subscription appear on the subscriptions page.</p>
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div>
 
-<p>That&#39;s it. In the next chapter, you&#39;ll start to use the CSS by creating various data sets for training and testing.</p>
+<p>That&#39;s it. In the next chapter, you&#39;ll start to use the STT by creating various data sets for training and testing.</p>
 
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="building-custom-speech-service-data-sets">Building Custom Speech Service data sets</h2>
+				<h2 id="building-speech-to-text-service-data-sets">Building Speech to Text Service data sets</h2>
 <p>In this chapter, you&#39;ll learn:</p>
 <ul>
 <li>The difference between training and testing data sets</li>
 <li>How acoustic data sets are built </li>
-<li>That language data sets help the Custom Speech Service (CSS) understand the likelihood of certain words and phrases</li>
+<li>That language data sets help the Speech to Text Service (STT) understand the likelihood of certain words and phrases</li>
 <li>That pronunciation data sets can help with simple word and and syllable replacements</li>
 </ul>
 <h3 id="understanding-machine-learning-data-sets">Understanding Machine Learning Data Sets</h3>
@@ -510,11 +514,11 @@
 <p><strong>Separation of Training, Test, and Real-World Data Sets</strong></p>
 <p>An easy mistake to make with your training, test, and real-world data sets is overlapping data (or reusing data from one set in another). Imagine that you training a model to answer true/false questions using a series of 10 questions and answers. After the model is trained, you use the same 10 questions to evaluate how well the model performs. Ideally, it should perform 100%, but you don&#39;t know how well it <em>really</em> performs because you tested with the training data. The only true test is to use other real-world questions, then re-evaluate its performance.</p>
 </blockquote>
-<h4 id="applying-machine-learning-data-set-concepts-to-the-custom-speech-service">Applying Machine Learning Data Set Concepts to the Custom Speech Service</h4>
+<h4 id="applying-machine-learning-data-set-concepts-to-the-speech-to-text-service">Applying Machine Learning Data Set Concepts to the Speech to Text Service</h4>
 <p>Now that you know about the different types of data, you&#39;ll be creating training data sets for acoustic, language, and pronunciation data, then testing acoustic data. </p>
 <blockquote>
 <p><strong>Acoustic, Language, and Pronunciation</strong></p>
-<p>Don&#39;t worry if you don&#39;t know the difference between these 3 types of data the CSS uses, you&#39;ll be learning about it next.</p>
+<p>Don&#39;t worry if you don&#39;t know the difference between these 3 types of data the STT uses, you&#39;ll be learning about it next.</p>
 </blockquote>
 <h3 id="acoustic-training-data-sets">Acoustic Training data sets</h3>
 <p>In a previous chapter, you learned about acoustic models. </p>
@@ -528,7 +532,7 @@
 <li>a file containing the transcriptions of all audio files</li>
 </ol>
 <h4 id="audio-file-format-and-recommendations">Audio File Format and Recommendations</h4>
-<p>To build testing acoustic audio data for the Custom Speech Service, you should adhere to the following guidelines:</p>
+<p>To build testing acoustic audio data for the Speech to Text Service, you should adhere to the following guidelines:</p>
 <ul>
 <li>All audio files in the data set should be stored in the WAV (RIFF) audio format.</li>
 <li>The audio must have a sampling rate of 8 kHz or 16 kHz and the sample values should be stored as uncompressed PCM 16-bit signed integers (shorts).</li>
@@ -550,22 +554,22 @@
 <pre><code>speech01.wav    speech recognition is awesome
 speech02.wav    the quick brown fox jumped all over the place
 speech03.wav    the lazy dog was not amused
-</code></pre><p>The transcriptions should be text-normalized so they can be processed by the system. However, there are some very important normalizations that must be done by the user prior to uploading the data to the Custom Speech Service. The <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/custom-speech-service/customspeech-how-to-topics/cognitive-services-custom-speech-transcription-guidelines">normalization rules</a> are too lengthy to cover here, so you should check them out on your own. It may seem like a lot at first, but i&#39;ve found it fairly straight-forward and I was quickly able to learn and apply them regularly.</p>
-<h4 id="prepping-your-acoustic-data-for-the-css-portal">Prepping your acoustic data for the CSS portal</h4>
+</code></pre><p>The transcriptions should be text-normalized so they can be processed by the system. However, there are some very important normalization rules that must be applied prior to uploading the data to the Speech to Text Service. The <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/custom-speech-service/customspeech-how-to-topics/cognitive-services-custom-speech-transcription-guidelines">normalization rules</a> are too lengthy to cover here, so you should check them out on your own. It may seem like a lot at first, but i&#39;ve found it fairly straight-forward and I was quickly able to learn and apply them regularly.</p>
+<h4 id="prepping-your-acoustic-data-for-the-stt-portal">Prepping your acoustic data for the STT portal</h4>
 <p>In the source code you downloaded from Github, you&#39;ll find the training audio files and an audio transcript of the files in the <em>custom-speech-service-data/training</em> folder:</p>
 <p><img src="images/chapter3/acoustic-training-data.png" class="img-override" /></p>
 <blockquote>
 <p><strong>Pokemon!</strong></p>
-<p>You may have noticed the file names of the acoustic data are Pokemon. My son and I have recently started to play Pokemon the Card Game together, so I thought this would be a fun way (and topic) to teach you about speech recognition. After all, Pokemon names <em>are</em> difficult to pronounce, and are a domain-specific language of their own. They&#39;re a perfect match for the capabilities of the Custom Speech Service.</p>
+<p>You may have noticed the file names of the acoustic data are Pokemon. My son and I have recently started to play Pokemon the Card Game together, so I thought this would be a fun way (and topic) to teach you about speech recognition. After all, Pokemon names <em>are</em> difficult to pronounce, and are a domain-specific language of their own. They&#39;re a perfect match for the capabilities of the Speech to Text Service.</p>
 </blockquote>
-<p>Let&#39;s get started by uploading an acoustic data set to the CSS portal.</p>
+<p>Let&#39;s get started by uploading an acoustic data set to the STT portal.</p>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Uploading an acoustic data set to the CSS portal
+    <b>Exercise</b>: Uploading an acoustic data set to the STT portal
 </h4>
 
 <p>Start by locating the acoustic .wav audio files. Select the 17 audio files, zip them up, and name the zip file <em>training-utterances.zip</em>.</p>
 <p><img src="images/chapter3/training-utterances.gif" class="img-override" /></p>
-<p>Next, navigate to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.</p>
+<p>Next, navigate to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>.</p>
 <p>Click the <em>Sign In</em> link in the upper right and sign in with your Azure portal subscription login.</p>
 <p>After logging in, click on the <em>Custom Speech</em> navigation option and navigate to <em>Adpatation Data</em>:</p>
 <p><img src="images/chapter3/adaptation-data.png" class="img-override" /></p>
@@ -585,8 +589,8 @@ speech03.wav    the lazy dog was not amused
 <p><img src="images/chapter3/import3.png" class="img-override" /></p>
 <p>Note the <em>Status</em> of the acoustic dataset is <em>NotStarted</em>. In a few moments, it will change to <em>Running</em>:</p>
 <p><img src="images/chapter3/import4.png" class="img-override" /></p>
-<p>When you upload acoustic data, the CSS will analyze the data, check it for errors, and ensure the transcription file matches the uploaded audio filenames. There are a variety of other checks that are performed that aren&#39;t important, but it&#39;s good to know that there is some post-processing that needs to occur before you can use the acoustic data set.</p>
-<p>When the CSS finishes analyzing and validating the acoustic data, the <em>Status</em> will change to <em>Succeeded</em>:</p>
+<p>When you upload acoustic data, the STT will analyze the data, check it for errors, and ensure the transcription file matches the uploaded audio filenames. There are a variety of other checks that are performed that aren&#39;t important, but it&#39;s good to know that there is some post-processing that needs to occur before you can use the acoustic data set.</p>
+<p>When the STT finishes analyzing and validating the acoustic data, the <em>Status</em> will change to <em>Succeeded</em>:</p>
 <p><img src="images/chapter3/import5.png" class="img-override" /></p>
 <p>Congratulations! You&#39;ve created your first acoustic data set. We&#39;ll be using it later in this chapter.</p>
 <blockquote>
@@ -600,7 +604,7 @@ speech03.wav    the lazy dog was not amused
 <div class="exercise-end"></div> 
 
 <h3 id="language-training-data-sets">Language Training data sets</h3>
-<p>Now that you&#39;ve created an acoustic data set, let&#39;s build a language data set. As you&#39;ll recall from a previous chapter, language models and language data sets teach the CSS the likelihood of encountering certain words or phrases. </p>
+<p>Now that you&#39;ve created an acoustic data set, let&#39;s build a language data set. As you&#39;ll recall from a previous chapter, language models and language data sets teach the STT the likelihood of encountering certain words or phrases. </p>
 <blockquote>
 <p><strong>Language Model</strong></p>
 <p>The language model is a probability distribution over sequences of words. The language model helps the system decide among sequences of words that sound similar, based on the likelihood of the word sequences themselves. For example, “recognize speech” and “wreck a nice beach” sound alike but the first hypothesis is far more likely to occur, and therefore will be assigned a higher score by the language model.</p>
@@ -629,12 +633,12 @@ i&#39;d like to see ash&#39;s best friend act angry
 get really mad pikachu
 </code></pre><p>You&#39;ll notice that this is a collection of commands. This is of importance and significance. Later in the workshop, you&#39;ll be using the Language Understanding (LUIS) service to analyze the intent of spoken commands. So, it makes sense that the language model we&#39;ll be building contains commands.</p>
 <h4 id="creating-a-language-data-set">Creating a Language Data Set</h4>
-<p>Now that you know what is in a language data set, let&#39;s head over to the CSS portal and create one.</p>
+<p>Now that you know what is in a language data set, let&#39;s head over to the STT portal and create one.</p>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Uploading a language data set to the CSS portal
+    <b>Exercise</b>: Uploading a language data set to the STT portal
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the <em>Adaptation Data</em> page.</p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the <em>Adaptation Data</em> page.</p>
 <p>Scroll down past the <em>Acoustic Datasets</em> area, and you&#39;ll find the <em>Language Datasets</em> area:</p>
 <p><img src="images/chapter3/lang1.png" class="img-override" /></p>
 <p>Click the <em>Import</em> button and complete the following fields:</p>
@@ -672,10 +676,10 @@ get really mad pikachu
 <h4 id="adding-a-pronunciation-data-set">Adding a Pronunciation Data Set</h4>
 <p>For your final data set, you&#39;ll create a pronunciation data set. Let&#39;s get to it!</p>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Uploading a pronunciation data set to the CSS portal
+    <b>Exercise</b>: Uploading a pronunciation data set to the STT portal
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the <em>Adaptation Data</em> page.</p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, then navigate back to the <em>Adaptation Data</em> page.</p>
 <p>Scroll down past the <em>Language Datasets</em> area, and you&#39;ll find the <em>Pronunciation Datasets</em> area:</p>
 <p><img src="images/chapter3/pro1.png" class="img-override" /></p>
 <p>Click the <em>Import</em> button and complete the following fields:</p>
@@ -702,7 +706,7 @@ get really mad pikachu
 <p>You&#39;ll recall earlier in this chapter that there are multiple types of data sets we&#39;ll need: training, testing, and real-world. </p>
 <p>So far, you&#39;ve created 3 training data sets: acoustic, language, and pronunciation. Next, you&#39;ll need to create a testing data set.</p>
 <h4 id="testing-data-sets-are-acoustic-data-sets">Testing Data Sets are Acoustic Data Sets</h4>
-<p>Here&#39;s a secret - testing data sets for the CSS <em>are</em> acoustic data sets. And here&#39;s why. Think about it - an acoustic data set provides audio files, with transcriptions of the audio file content. As a result, an acoustic data set is ideal for testing because it includes audio files, and their actual content.</p>
+<p>Here&#39;s a secret - testing data sets for the STT <em>are</em> acoustic data sets. And here&#39;s why. Think about it - an acoustic data set provides audio files, with transcriptions of the audio file content. As a result, an acoustic data set is ideal for testing because it includes audio files, and their actual content.</p>
 <p>Now, we have to be a bit careful, because it&#39;s easy to confuse your training and testing data sets because they are both acoustic data sets. So, as we create a second acoustic data set, we&#39;ll be sure to name it properly - with <em>testing</em> in it&#39;s name. </p>
 <h4 class="exercise-start">
     <b>Exercise</b>: Creating a testing acoustic data set
@@ -712,7 +716,7 @@ get really mad pikachu
 <p><img src="images/chapter3/files.png" class="img-override" /></p>
 <p>Select the 6 audio files, zip them up, and name the zip file <em>testing-utterances.zip</em>.</p>
 <p><img src="images/chapter3/testing-utterances.gif" class="img-override" /></p>
-<p>Next, navigate to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Adpatation Data</em>.</p>
+<p>Next, navigate to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Adpatation Data</em>.</p>
 <p>Click the <em>Import</em> button by <em>Acoustic Datasets</em> and complete the following fields:</p>
 <ul>
 <li>Name: Pokemon - Acoustic Data - Testing</li>
@@ -729,7 +733,7 @@ get really mad pikachu
 <p>Congratulations! You&#39;ve created your testing acoustic data set. </p>
 <blockquote>
 <p><strong>Challenge #4</strong></p>
-<p>Yes. Again. Feel free to augment the testing data set you just created. Remember - don&#39;t overlap training/testing data, and make the data similar enough. For example, if you added <em>Charizard</em> to your training data sets, it would be a good idea to test for <em>Charizard</em>. Likewise, if you didn&#39;t add another pokemon, like <em>Chespin</em>, you shouldn&#39;t expect the CSS to magically recognize it.</p>
+<p>Yes. Again. Feel free to augment the testing data set you just created. Remember - don&#39;t overlap training/testing data, and make the data similar enough. For example, if you added <em>Charizard</em> to your training data sets, it would be a good idea to test for <em>Charizard</em>. Likewise, if you didn&#39;t add another pokemon, like <em>Chespin</em>, you shouldn&#39;t expect the STT to magically recognize it.</p>
 <p><img src="images/chapter3/chespin.jpeg" class="img-small" /></p>
 </blockquote>
 <p>This concludes the exercise. </p>
@@ -739,13 +743,13 @@ get really mad pikachu
 <ul>
 <li>the importance of separating training data from testing data</li>
 <li>that acoustic data is a combination of .wav files and normalized text transcripts</li>
-<li>pronunciation data sets can help your CSS models interpret multi-word phrases into an abbreviation - like C3PO and AT&amp;T</li>
+<li>pronunciation data sets can help your STT models interpret multi-word phrases into an abbreviation - like C3PO and AT&amp;T</li>
 </ul>
 
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="custom-speech-service-models">Custom Speech Service Models</h2>
+				<h2 id="speech-to-text-service-models">Speech to Text Service Models</h2>
 <p>In this chapter, you&#39;ll learn how to:</p>
 <ul>
 <li>perform testing on Microsoft&#39;s base models</li>
@@ -753,23 +757,23 @@ get really mad pikachu
 <li>demonstrate that your hard work of creating custom models pays off by dramatically increasing the accuracy of Microsoft&#39;s base models</li>
 </ul>
 <h3 id="overview">Overview</h3>
-<p>After creating Custom Speech Service (CSS) data sets, you need to instruct CSS to train models based on these data sets. </p>
-<p>Training acoustic and language models is easy to do in the CSS portal - point and click. But, before we do that, we&#39;ll take a pit stop and establish a baseline accuracy of the CSS capabilities using Microsoft&#39;s base models.</p>
+<p>After creating Speech to Text Service (STT) data sets, you need to instruct STT to train models based on these data sets. </p>
+<p>Training acoustic and language models is easy to do in the STT portal - point and click. But, before we do that, we&#39;ll take a pit stop and establish a baseline accuracy of the STT capabilities using Microsoft&#39;s base models.</p>
 <blockquote>
 <p><strong>Base Models - What Are They?</strong></p>
-<p>The CSS comes with several pre-trained acoustic and language models. In fact, there are different models for conversations and search/diction. If you stop to think about it, this makes a lot of sense. We tend to speak differently when we converse with others, as compared to dictating text or speaking search terms for a search engine. See below for the base models Microsoft provides.</p>
+<p>The STT comes with several pre-trained acoustic and language models. In fact, there are different models for conversations and search/diction. If you stop to think about it, this makes a lot of sense. We tend to speak differently when we converse with others, as compared to dictating text or speaking search terms for a search engine. See below for the base models Microsoft provides.</p>
 <p><img src="images/chapter4/model1.png" class="img-override" /></p>
 </blockquote>
 <h3 id="testing-the-accuracy-of-the-base-models">Testing the Accuracy of the Base Models</h3>
-<p>To understand the effect our CSS customization will have, it&#39;s important to establish a baseline accuracy for the CSS service against our testing data set.</p>
-<p>Let&#39;s get started and see how the CSS does against some of these Pokemon names ;-)</p>
+<p>To understand the effect our STT customization will have, it&#39;s important to establish a baseline accuracy for the STT service against our testing data set.</p>
+<p>Let&#39;s get started and see how the STT does against some of these Pokemon names ;-)</p>
 <h4 class="exercise-start">
     <b>Exercise</b>: Performing an accuracy test on the Microsoft base model
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Accuracy Tests</em>. </p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Accuracy Tests</em>. </p>
 <p><img src="images/chapter4/test1.png" class="img-override" /></p>
-<p>This page shows the status of the past and ongoing accuracy tests performed by the CSS.</p>
+<p>This page shows the status of the past and ongoing accuracy tests performed by the STT.</p>
 <p>Click the <em>Create New</em> button to begin a test against an acoustic and language model.</p>
 <p>Complete the following fields:</p>
 <ul>
@@ -792,21 +796,21 @@ get really mad pikachu
 <p>Ugh! 45% word error rate - not good.</p>
 <blockquote>
 <p><strong>Word Error Rate (WER)</strong></p>
-<p>&#39;WER&#39; (Word Error Rate) and &#39;Word Accuracy&#39; are the best measurements to take when comparing two utterances, these are typically values in % and are derived by comparing a reference transcript with the speech-to-text generated transcript (or hypothesis) for the audio. In our case, the reference transcript is the transcript file we supplied for the testing data set, and the speech-to-text generated transcript (or hypothesis) is what the CSS generated when it processed the 6 audio files in the testing dataset.</p>
+<p>&#39;WER&#39; (Word Error Rate) and &#39;Word Accuracy&#39; are the best measurements to take when comparing two utterances, these are typically values in % and are derived by comparing a reference transcript with the speech-to-text generated transcript (or hypothesis) for the audio. In our case, the reference transcript is the transcript file we supplied for the testing data set, and the speech-to-text generated transcript (or hypothesis) is what the STT generated when it processed the 6 audio files in the testing dataset.</p>
 <p>The algorithm used is called the Levenshtein distance, it is calculated by aligning the reference with hypothesis and counting the words that are Insertions, Deletions, and Substitutions. </p>
 <p>In general, WER is fairly complex to calculate. We won&#39;t dive much deeper, but if you&#39;re interested in learning more, check out <a href="http://blog.voicebase.com/how-to-compare-speech-engine-accuracy">this website</a>. </p>
 </blockquote>
 <p>Well, 45% error rate is still pretty high. Let&#39;s explore the results of the accuracy test.</p>
 <p>Click the <em>Details</em> link to learn more. At the bottom of the page, you&#39;ll find the detailed transcription (we provided that) and the hypothesis (decoder output).</p>
 <p><img src="images/chapter4/test5.png" class="img-override" /></p>
-<p>You should notice several mis-interpretations, as the CSS had trouble with:</p>
+<p>You should notice several mis-interpretations, as the STT had trouble with:</p>
 <ul>
 <li>Pikachu</li>
 <li>Meowth</li>
 <li>Jigglypuff</li>
 <li>Wink at me</li>
 </ul>
-<p>What&#39;s interesting is that aside from the Pokemon names, the CSS did a pretty good job. It got confused a bit about winking, but perhaps I didn&#39;t annunciate very well in the test files. We&#39;ll see later on.</p>
+<p>What&#39;s interesting is that aside from the Pokemon names, the STT did a pretty good job. It got confused a bit about winking, but perhaps I didn&#39;t annunciate very well in the test files. We&#39;ll see later on.</p>
 <p>Another thing to note is our testing data set is <em>SMALL</em>. Really small. In fact, there are only ~30 words in the entire data set. That&#39;s really too small, and for each word missed, we add ~3% word error rate. In a production system, we&#39;d want hundreds of utterances, and thousands of words in a testing data set. So, keep that in mind for future endeavors.</p>
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div>  
@@ -818,9 +822,9 @@ get really mad pikachu
     <b>Exercise</b>: Training an acoustic model
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Acoustic Models</em>. </p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Acoustic Models</em>. </p>
 <p><img src="images/chapter4/acoustic-model1.png" class="img-override" /></p>
-<p>This page shows the various acoustic models you&#39;ve trained for the CSS.</p>
+<p>This page shows the various acoustic models you&#39;ve trained for the STT.</p>
 <p>Click the <em>Create New</em> button and complete the following fields:</p>
 <ul>
 <li>Locale: en-US</li>
@@ -853,9 +857,9 @@ get really mad pikachu
     <b>Exercise</b>: Training a language model
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Language Models</em>. </p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Language Models</em>. </p>
 <p><img src="images/chapter4/lang-model1.png" class="img-override" /></p>
-<p>This page shows the various language models you&#39;ve trained for the CSS.</p>
+<p>This page shows the various language models you&#39;ve trained for the STT.</p>
 <p>Click the <em>Create New</em> button and complete the following fields:</p>
 <ul>
 <li>Locale: en-US</li>
@@ -888,7 +892,7 @@ get really mad pikachu
     <b>Exercise</b>: Performing an accuracy test on your trained models
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Accuracy Tests</em>. </p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Accuracy Tests</em>. </p>
 <p>Click the <em>Create New</em> button to begin a test against an acoustic and language model.</p>
 <p>Complete the following fields:</p>
 <ul>
@@ -920,17 +924,17 @@ get really mad pikachu
 <ul>
 <li>why it&#39;s important to test Microsoft&#39;s base model to establish a baseline accuracy</li>
 <li>how to create acoustic and language models</li>
-<li>how to improve CSS accuracy by building customized models </li>
+<li>how to improve STT accuracy by building customized models </li>
 </ul>
 
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="deploying-custom-speech-service-endpoints">Deploying Custom Speech Service Endpoints</h2>
+				<h2 id="deploying-speech-to-text-service-endpoints">Deploying Speech to Text Service Endpoints</h2>
 <p>In this chapter, you&#39;ll learn how to:</p>
 <ul>
 <li>deploy your customized acoustic and language models and create a secured endpoint</li>
-<li>test the customized CSS endpoint using the web app you deployed earlier  </li>
+<li>test the customized STT endpoint using the web app you deployed earlier  </li>
 </ul>
 <h3 id="overview">Overview</h3>
 <p>Previously, you learned about the various data sets you need to train, test, and operationalize machine learning systems. Over the past 2 chapters, you created training and testing data sets, built customized acoustic and language models, then tested the customization accuracy.</p>
@@ -946,7 +950,7 @@ get really mad pikachu
     <b>Exercise</b>: Deploying customized acoustic and language models
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Deployments</em>. </p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Deployments</em>. </p>
 <p>Click the <em>Create New</em> button to create a new deployment.</p>
 <p>Complete the following fields:</p>
 <ul>
@@ -965,19 +969,19 @@ get really mad pikachu
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div> 
 
-<h3 id="exploring-the-custom-speech-service-endpoint">Exploring the Custom Speech Service Endpoint</h3>
-<p>Now that you&#39;ve deployed a customized CSS endpoint, you can consume it in an application. But how?</p>
+<h3 id="exploring-the-speech-to-text-service-endpoint">Exploring the Speech to Text Service Endpoint</h3>
+<p>Now that you&#39;ve deployed a customized STT endpoint, you can consume it in an application. But how?</p>
 <p>Let&#39;s take a closer look at your deployment.</p>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Exploring a CSS endpoint deployment
+    <b>Exercise</b>: Exploring a STT endpoint deployment
 </h4>
 
-<p>Start by navigating to the CSS web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Deployments</em>. </p>
+<p>Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to <em>Deployments</em>. </p>
 <p>Click the <em>Details</em> link next to your <em>Pokemon</em> deployment:</p>
 <p><img src="images/chapter5/deploy3.png" class="img-override" /></p>
 <p>The deployment details page shows you a variety of details about your deployment. Scroll down to the <em>Endpoints</em> area:</p>
 <p><img src="images/chapter5/deploy4.png" class="img-override" /></p>
-<p>The endpoints area shows a variety of URIs that you can use to access your customized deployment. You can interact with the CSS via a:</p>
+<p>The endpoints area shows a variety of URIs that you can use to access your customized deployment. You can interact with the STT via a:</p>
 <ul>
 <li>HTTP REST API</li>
 <li>WebSockets, using a .NET/Android/iOS client library</li>
@@ -991,12 +995,12 @@ get really mad pikachu
 <h4 id="websockets-using-a-net-android-ios-client-library">WebSockets, using a .NET/Android/iOS client library</h4>
 <p>If you need real-time processing of audio, when using a microphone that&#39;s embedded in software with a .NET app, Android app, or iOS app, this is the right choice for you. An important designation here is that you need to use this in conjunction with the SDKs/libraries provided by Microsoft. It&#39;s also important to note that these are intended for client-side applications, not a server-side process that will have a long life span. </p>
 <h4 id="websockets-using-a-net-service-library">WebSockets, using a .NET service library</h4>
-<p>When you need a long-running server-side process to interact in real-time with the CSS in a .NET app, use these endpoints. You&#39;ll also need to use the .NET SDK built for this purpose.</p>
+<p>When you need a long-running server-side process to interact in real-time with the STT in a .NET app, use these endpoints. You&#39;ll also need to use the .NET SDK built for this purpose.</p>
 <h4 id="websockets-with-support-for-the-speech-protocol-javascript-websocket-api">WebSockets with support for the Speech Protocol/JavaScript WebSocket API</h4>
-<p>The last option is to interact with the CSS using a specific protocol called the Speech Protocol. This also has it&#39;s own SDK and API you need to adhere to when using these endpoints. </p>
+<p>The last option is to interact with the STT using a specific protocol called the Speech Protocol. This also has it&#39;s own SDK and API you need to adhere to when using these endpoints. </p>
 <blockquote>
 <p><strong>The Speech Protocol</strong></p>
-<p>I consider the first three options a legacy way of interacting with the CSS. The 4th option (Speech Protocol) is the new and recommended way of interfacing with the CSS. Eventually the first 3 options will be deprecated and the Speech Protocol will be <em>the</em> way to interact. </p>
+<p>I consider the first three options a legacy way of interacting with the STT. The 4th option (Speech Protocol) is the new and recommended way of interfacing with the STT. Eventually the first 3 options will be deprecated and the Speech Protocol will be <em>the</em> way to interact. </p>
 <p>Right now, support for the new Speech Protocol is limited to a JavaScript SDK, but if you need a C# version, you can roll your own. To learn more about the protocol, check out the official <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/speech/api-reference-rest/websocketprotocol">protocol documentation</a>.</p>
 </blockquote>
 <blockquote>
@@ -1016,10 +1020,10 @@ get really mad pikachu
 <div class="exercise-end"></div>
 
 
-<h3 id="testing-the-css-endpoint">Testing the CSS Endpoint</h3>
-<p>Now, let&#39;s return to the web app you deployed to Azure earlier and test your Custom Speech Service deployment. </p>
+<h3 id="testing-the-stt-endpoint">Testing the STT Endpoint</h3>
+<p>Now, let&#39;s return to the web app you deployed to Azure earlier and test your Speech to Text Service deployment. </p>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Testing a CSS endpoint deployment
+    <b>Exercise</b>: Testing a STT endpoint deployment
 </h4>
 
 <blockquote>
@@ -1027,14 +1031,14 @@ get really mad pikachu
 <p>It&#39;s important that you don&#39;t use your VM for this exercise, because you&#39;ll be using your computer&#39;s microphone. This just doesn&#39;t work well through a remote desktop connection.</p>
 </blockquote>
 <p>Start by navigating to your deployed Azure web site. My URL was <a href="http://workshopwebapp.azurewebsites.net/">http://workshopwebapp.azurewebsites.net/</a>. </p>
-<p>After the page loads, paste your deployed CSS endpoint base URL into the <em>Endpoint</em> text box, and the subscription key into the <em>Subscription Key</em> text box:</p>
+<p>After the page loads, paste your deployed STT endpoint base URL into the <em>Endpoint</em> text box, and the subscription key into the <em>Subscription Key</em> text box:</p>
 <p><img src="images/chapter5/deploy5.png" class="img-override" /></p>
 <p>Ignore the LUIS-related fields, change the <em>Recognition Mode</em> drop down to <em>Dictation</em>, and <em>Format</em> to <em>Detailed Result</em>:</p>
 <p><img src="images/chapter5/deploy6.png" class="img-override" /></p>
-<p>Press the <em>Start</em> button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the CSS endpoint you created and return incremental speech results in real-time.</p>
+<p>Press the <em>Start</em> button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the STT endpoint you created and return incremental speech results in real-time.</p>
 <p>Try speaking the phrase, &quot;Pikachu is a cool pokemon.&quot;:</p>
 <p><img src="images/chapter5/speech.gif" class="img-override" /></p>
-<p>Now, that&#39;s cool! As you speak, you&#39;ll see incremental results returned to you browser and displayed in the <em>Current hypothesis</em> area. Then, when the CSS recognizes the end of your utterance, it returns JSON-formatted result:</p>
+<p>Now, that&#39;s cool! As you speak, you&#39;ll see incremental results returned to you browser and displayed in the <em>Current hypothesis</em> area. Then, when the STT recognizes the end of your utterance, it returns JSON-formatted result:</p>
 <pre><code class="lang-json">{
    &quot;RecognitionStatus&quot;: &quot;Success&quot;,
    &quot;Offset&quot;: 0,
@@ -1055,15 +1059,15 @@ get really mad pikachu
    &quot;Duration&quot;: 0
 }
 </code></pre>
-<p>The way this CSS endpoint works is that each time an utterance is detected, a JSON object is returned with <code>&quot;RecognitionStatus&quot;: &quot;Success&quot;</code>. Inside, it tracks the audio millisecond count that was sent, based on the <em>Offset</em> and <em>Duration</em>, meaning that at audio millisecond 0, the system detected an utterance beginning, and an utterance ending after 26300000 milliseconds.</p>
-<p>The CSS also returns the speech hypothesis in a variety of formats. The most meaningful is the <code>&quot;Display&quot;: &quot;Pikachu is a cool Pokémon.&quot;</code> result, which is the official transcription with a confidence % of 92.3154%.</p>
+<p>The way this STT endpoint works is that each time an utterance is detected, a JSON object is returned with <code>&quot;RecognitionStatus&quot;: &quot;Success&quot;</code>. Inside, it tracks the audio millisecond count that was sent, based on the <em>Offset</em> and <em>Duration</em>, meaning that at audio millisecond 0, the system detected an utterance beginning, and an utterance ending after 26300000 milliseconds.</p>
+<p>The STT also returns the speech hypothesis in a variety of formats. The most meaningful is the <code>&quot;Display&quot;: &quot;Pikachu is a cool Pokémon.&quot;</code> result, which is the official transcription with a confidence % of 92.3154%.</p>
 <p>Pretty cool.</p>
 <p>Go ahead an try a few more phrases.</p>
 <h4 id="diving-into-the-web-page-code">Diving into the web page code</h4>
 <p>We&#39;re not going to dive into the JavaScript code that manages interacting with the Speech Protocol WebSocket endpoint. It&#39;s <em>really</em> complicated. You&#39;re welcome to dive into the details on your own, but it&#39;s out of scope for us today.</p>
 <blockquote>
 <p><strong>Challenge #6</strong></p>
-<p>Now that you have a full training to testing to real-world testing methodology for the CSS, try to stump your trained model. Then, return back to your data sets, models, and deployments. Update all of them and attempt to retrain the system to address the shortcomings you identified. </p>
+<p>Now that you have a full training to testing to real-world testing methodology for the STT, try to stump your trained model. Then, return back to your data sets, models, and deployments. Update all of them and attempt to retrain the system to address the shortcomings you identified. </p>
 </blockquote>
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div>
@@ -1071,7 +1075,7 @@ get really mad pikachu
 <p>In this chapter, you learned:</p>
 <ul>
 <li>how to test your trained models with real-world data </li>
-<li>that a CSS deployment deploy various endpoints that are used in different scenarios</li>
+<li>that a STT deployment deploy various endpoints that are used in different scenarios</li>
 </ul>
 
 			</div>
@@ -1084,8 +1088,8 @@ get really mad pikachu
 <li>how to provision a LUIS subscription and it to the LUIS web portal</li>
 </ul>
 <h3 id="overview">Overview</h3>
-<p>In the past chapters, you&#39;ve been focused on building a customized speech recognition engine with the CSS. Now that you are equipped with the knowledge to build these on your own, we&#39;ll turn our attention to analyzing the results your CSS generates.</p>
-<p>In most machine learning and speech-to-text projects, using a single product (like CSS) isn&#39;t common. Instead, you&#39;ll often chain the results of one service to the input of another. This process is referred to as building a machine learning <em>pipeline</em>. </p>
+<p>In the past chapters, you&#39;ve been focused on building a customized speech recognition engine with the STT. Now that you are equipped with the knowledge to build these on your own, we&#39;ll turn our attention to analyzing the results your STT generates.</p>
+<p>In most machine learning and speech-to-text projects, using a single product (like STT) isn&#39;t common. Instead, you&#39;ll often chain the results of one service to the input of another. This process is referred to as building a machine learning <em>pipeline</em>. </p>
 <p>In the final chapters of this workshop, you&#39;ll be expanding your speech-to-text pipeline by adding intent analysis with Language Understanding (LUIS).</p>
 <h4 id="about-language-understanding-luis-">About Language Understanding (LUIS)</h4>
 <p>Language Understanding (LUIS) allows your application to understand what a person wants in their own words. LUIS uses machine learning to allow developers to build applications that can receive user input in natural language and extract meaning from it. A client application that converses with the user can pass user input to a LUIS app and receive relevant, detailed information back.</p>
@@ -1137,9 +1141,9 @@ get really mad pikachu
 </tbody>
 </table>
 <h4 id="how-you-ll-use-luis">How you&#39;ll use LUIS</h4>
-<p>Now that you know a little bit about LUIS, let&#39;s see how it&#39;ll be used in conjunction with CSS. </p>
+<p>Now that you know a little bit about LUIS, let&#39;s see how it&#39;ll be used in conjunction with STT. </p>
 <p>When you&#39;re finished integrating LUIS into your solution, you&#39;ll be able to speak commands into the web site you published, and ask a variety of Pokemon (Pikachu, Jigglypuff, Meowth, etc.) to perform a variety of actions (sit, jump, scratch, sing, etc.).</p>
-<p>LUIS will be used to take the output of the CSS endpoint you created and identify the intent (the action) and entity (the Pokemon). Then, the web site will parse the LUIS response and act accordingly by displaying the appropriate image at the bottom of the page. </p>
+<p>LUIS will be used to take the output of the STT endpoint you created and identify the intent (the action) and entity (the Pokemon). Then, the web site will parse the LUIS response and act accordingly by displaying the appropriate image at the bottom of the page. </p>
 <h3 id="provisioning-in-azure">Provisioning in Azure</h3>
 <p>Before we can use LUIS, we&#39;ll need to provision a LUIS subscription in the Azure portal. Let&#39;s get started!</p>
 <h4 class="exercise-start">
@@ -1168,8 +1172,8 @@ get really mad pikachu
 <div class="exercise-end"></div>
 
 <h3 id="linking-your-subscription-on-the-luis-web-portal">Linking your Subscription on the LUIS Web Portal</h3>
-<p>There&#39;s not much you can do with LUIS in the Azure portal because it has a separate portal (like the Custom Speech Service). </p>
-<p>The process for linking your LUIS subscription in the LUIS portal is a bit different than linking your CSS subscription. As a result, we&#39;ll revisit this in a later chapter. </p>
+<p>There&#39;s not much you can do with LUIS in the Azure portal because it has a separate portal (like the Speech to Text Service). </p>
+<p>The process for linking your LUIS subscription in the LUIS portal is a bit different than linking your STT subscription. As a result, we&#39;ll revisit this in a later chapter. </p>
 <p>For now, hold on to your subscription key.</p>
 
 			</div>
@@ -1221,7 +1225,7 @@ get really mad pikachu
 - have a seat meowth
 - meowth please sit on the ground
 </code></pre><p>In the snippet above, the heading <code>Sit</code> is the name of an intent you&#39;ll create, followed by utterances that align to the intent.</p>
-<p>LUIS is like the Custom Speech Service, as it needs to <em>learn</em> the types of phrases (or utterances) that map to an intent. </p>
+<p>LUIS is like the Speech to Text Service, as it needs to <em>learn</em> the types of phrases (or utterances) that map to an intent. </p>
 <p>Referencing the <em>luis-utterances.md</em> file, create intents for each intent listed in the document.</p>
 <p>Follow along below to create the first intent, then rinse and repeat for the remaining intents.</p>
 <h4 id="adding-an-intent">Adding an intent</h4>
@@ -1354,7 +1358,7 @@ LUIS may be unable to recognize rare and proprietary words, as well as foreign w
 <li>publish a trained LUIS app</li>
 </ul>
 <h3 id="overview">Overview</h3>
-<p>The concept of training a LUIS app is like training Custom Speech Service apps. So far, you&#39;ve created a training data set including intents and entities, so the next step is to train your app. Then you&#39;ll test the trained app, and publish for consumption.</p>
+<p>The concept of training a LUIS app is like training Speech to Text Service apps. So far, you&#39;ve created a training data set including intents and entities, so the next step is to train your app. Then you&#39;ll test the trained app, and publish for consumption.</p>
 <p>In a real-world scenario, you&#39;ll incrementally advance the functionality of a LUIS app. For example, you&#39;ll start with a few intents and entities, then as your app matures (or when you identify a deficiency), you&#39;ll add new intents and entities, re-train, and publish a new version of the LUIS app.</p>
 <p>Let&#39;s jump into the training process.</p>
 <h3 id="training-luis">Training LUIS</h3>
@@ -1419,7 +1423,7 @@ LUIS may be unable to recognize rare and proprietary words, as well as foreign w
 </blockquote>
 <blockquote>
 <p><strong>Bing spell checking</strong></p>
-<p>In many cases, I like to enable Bing spell checker, because I cannot guarantee that text coming into LUIS is valid. But, in your Pokemon app, you should not enable Bing spell checker because you&#39;re not guaranteed the CSS speech-to-text pipeline will return valid words, plus you don&#39;t know if <em>Pikachu</em> will be replaced by something else by Bing spell checker. </p>
+<p>In many cases, I like to enable Bing spell checker, because I cannot guarantee that text coming into LUIS is valid. But, in your Pokemon app, you should not enable Bing spell checker because you&#39;re not guaranteed the STT speech-to-text pipeline will return valid words, plus you don&#39;t know if <em>Pikachu</em> will be replaced by something else by Bing spell checker. </p>
 <p>A good rule of thumb: if you&#39;re using a speech-domain that could have strange words present, don&#39;t use Bing spell checker. </p>
 </blockquote>
 <p>We&#39;ll be publishing directly to production, so select <em>Production</em> and <em>Eastern</em> time zones. </p>
@@ -1534,7 +1538,7 @@ Key String: 4a580409############ad344e6f25 (some obscured)</li>
 </h4>
 
 <p>Return to your laptop, not the VM you&#39;ve bee using. Navigate to the Speech recognition web app you published to Azure earlier. My URL was <a href="https://workshopwebapp.azurewebsites.net/">https://workshopwebapp.azurewebsites.net/</a>.</p>
-<p>This time, enter your CSS endpoint URL, CSS Subscription key, check the LUIS checkbox, and add your LUIS endpoint base URL, and LUIS subscription key.</p>
+<p>This time, enter your STT endpoint URL, STT Subscription key, check the LUIS checkbox, and add your LUIS endpoint base URL, and LUIS subscription key.</p>
 <p><img src="images/chapter9/site1.png" class="img-override" /></p>
 <blockquote>
 <p><strong>LUIS Endpoint base URL</strong></p>
@@ -1556,7 +1560,7 @@ Key String: 4a580409############ad344e6f25 (some obscured)</li>
 <p>I have a few more things to share, so you&#39;re not finished yet.</p>
 <blockquote>
 <p><strong>Final Challenge</strong></p>
-<p>Starting from the beginning with the Custom Speech Service (acoustic &amp; language data sets, models, and deployments), add some more Pokemon to the mix. Then update the LUIS intents, entities, and phrase lists. Finally, add more images to the web site and deploy it all to Azure. </p>
+<p>Starting from the beginning with the Speech to Text Service (acoustic &amp; language data sets, models, and deployments), add some more Pokemon to the mix. Then update the LUIS intents, entities, and phrase lists. Finally, add more images to the web site and deploy it all to Azure. </p>
 </blockquote>
 <blockquote>
 <p><strong>Super Double Secret Probation Challenge</strong></p>

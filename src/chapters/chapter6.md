@@ -6,9 +6,9 @@ In this chapter, you'll learn:
 
 ### Overview
 
-In the past chapters, you've been focused on building a customized speech recognition engine with the CSS. Now that you are equipped with the knowledge to build these on your own, we'll turn our attention to analyzing the results your CSS generates.
+In the past chapters, you've been focused on building a customized speech recognition engine with the STT. Now that you are equipped with the knowledge to build these on your own, we'll turn our attention to analyzing the results your STT generates.
 
-In most machine learning and speech-to-text projects, using a single product (like CSS) isn't common. Instead, you'll often chain the results of one service to the input of another. This process is referred to as building a machine learning *pipeline*. 
+In most machine learning and speech-to-text projects, using a single product (like STT) isn't common. Instead, you'll often chain the results of one service to the input of another. This process is referred to as building a machine learning *pipeline*. 
 
 In the final chapters of this workshop, you'll be expanding your speech-to-text pipeline by adding intent analysis with Language Understanding (LUIS).
 
@@ -50,11 +50,11 @@ An entity represents detailed information that is relevant in the utterance. For
 
 #### How you'll use LUIS
 
-Now that you know a little bit about LUIS, let's see how it'll be used in conjunction with CSS. 
+Now that you know a little bit about LUIS, let's see how it'll be used in conjunction with STT. 
 
 When you're finished integrating LUIS into your solution, you'll be able to speak commands into the web site you published, and ask a variety of Pokemon (Pikachu, Jigglypuff, Meowth, etc.) to perform a variety of actions (sit, jump, scratch, sing, etc.).
 
-LUIS will be used to take the output of the CSS endpoint you created and identify the intent (the action) and entity (the Pokemon). Then, the web site will parse the LUIS response and act accordingly by displaying the appropriate image at the bottom of the page. 
+LUIS will be used to take the output of the STT endpoint you created and identify the intent (the action) and entity (the Pokemon). Then, the web site will parse the LUIS response and act accordingly by displaying the appropriate image at the bottom of the page. 
 
 ### Provisioning in Azure
 
@@ -97,9 +97,9 @@ This concludes the exercise.
 
 ### Linking your Subscription on the LUIS Web Portal
 
-There's not much you can do with LUIS in the Azure portal because it has a separate portal (like the Custom Speech Service). 
+There's not much you can do with LUIS in the Azure portal because it has a separate portal (like the Speech to Text Service). 
 
-The process for linking your LUIS subscription in the LUIS portal is a bit different than linking your CSS subscription. As a result, we'll revisit this in a later chapter. 
+The process for linking your LUIS subscription in the LUIS portal is a bit different than linking your STT subscription. As a result, we'll revisit this in a later chapter. 
 
 For now, hold on to your subscription key.
 
