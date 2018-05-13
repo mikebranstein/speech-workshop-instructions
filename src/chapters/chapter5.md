@@ -24,22 +24,22 @@ You've already done the hard work of building the customized models, so let's us
     <b>Exercise</b>: Deploying customized acoustic and language models
 </h4>
 
-Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Deployments*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Endpoints*. 
 
-Click the *Create New* button to create a new deployment.
+Click the *Create New* button to create a new endpoint.
 
 Complete the following fields:
 - Locale: en-US
 - Description: *blank*
 - Name: Pokemon
 - Subscription: *the one you created earlier*
-- Base Model: Microsoft Search and Diction Model, then select the Pokemon models below
+- Scenario: Universal, then select the Pokemon models below
 
 <img src="images/chapter5/deploy1.png" class="img-override" />
 
 Click *Create* to deploy the models to production.
 
-When the test run is saved, you'll navigate back to the *Deployments* page:
+When the endpoint is saved, you'll navigate back to the *Endpoints* page:
 
 <img src="images/chapter5/deploy2.png" class="img-override" />
 
@@ -55,26 +55,24 @@ This concludes the exercise.
 
 Now that you've deployed a customized STT endpoint, you can consume it in an application. But how?
 
-Let's take a closer look at your deployment.
+Let's take a closer look at your endpoint.
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Exploring a STT endpoint deployment
+    <b>Exercise</b>: Exploring a STT endpoint
 </h4>
 
-Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Deployments*. 
+Start by navigating to the STT web portal at <a href="https://cris.ai" target="_blank">https://cris.ai</a>, and navigate to *Endpoints*. 
 
-Click the *Details* link next to your *Pokemon* deployment:
+Click the *Details* link next to your *Pokemon* endpoint:
 
 <img src="images/chapter5/deploy3.png" class="img-override" />
 
-The deployment details page shows you a variety of details about your deployment. Scroll down to the *Endpoints* area:
+The deployment details page shows you a variety of details about your endpoint. Scroll down to the *Endpoints* area:
 
 <img src="images/chapter5/deploy4.png" class="img-override" />
 
 The endpoints area shows a variety of URIs that you can use to access your customized deployment. You can interact with the STT via a:
 - HTTP REST API
-- WebSockets, using a .NET/Android/iOS client library
-- WebSockets, using a .NET service library
 - WebSockets with support for the Speech Protocol/JavaScript WebSocket API
 
 You'll notice that for each option, you have endpoints for short and long-form audio. In some cases, endpoints support punctuation detection.
@@ -85,27 +83,19 @@ Depending on the needs of your application, you may choose a different endpoint.
 
 Use this option when you have a .wav file that you want to upload and get a single response back. You won't get real-time speech results back, but it works well when you want to do quick, bulk processing of a large collection of audio files. 
 
-#### WebSockets, using a .NET/Android/iOS client library
-
-If you need real-time processing of audio, when using a microphone that's embedded in software with a .NET app, Android app, or iOS app, this is the right choice for you. An important designation here is that you need to use this in conjunction with the SDKs/libraries provided by Microsoft. It's also important to note that these are intended for client-side applications, not a server-side process that will have a long life span. 
-
-#### WebSockets, using a .NET service library
-
-When you need a long-running server-side process to interact in real-time with the STT in a .NET app, use these endpoints. You'll also need to use the .NET SDK built for this purpose.
-
 #### WebSockets with support for the Speech Protocol/JavaScript WebSocket API
 
-The last option is to interact with the STT using a specific protocol called the Speech Protocol. This also has it's own SDK and API you need to adhere to when using these endpoints. 
+The last option is to interact with the STT using a specific protocol called the Speech Protocol. This also has it's own SDK and API you need to adhere to when using these endpoints. There is a JavaScript and C# version of the SDK.
 
 > **The Speech Protocol**
 >
-> I consider the first three options a legacy way of interacting with the STT. The 4th option (Speech Protocol) is the new and recommended way of interfacing with the STT. Eventually the first 3 options will be deprecated and the Speech Protocol will be *the* way to interact. 
+> The Speech Protocol is the recommended way of interfacing with the STT. 
 >
-> Right now, support for the new Speech Protocol is limited to a JavaScript SDK, but if you need a C# version, you can roll your own. To learn more about the protocol, check out the official [protocol documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech/api-reference-rest/websocketprotocol).
+> Support for the Speech Protocol is limited to a JavaScript and C# SDK. To learn more about the protocol, check out the official [protocol documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech/api-reference-rest/websocketprotocol). If you need an alternate implementation, the documentation for the Speech Protocol explains how it works, so you can roll your own.
 
 > **Rolling your Own Speech Protocol Client**
 >
-> Don't do this, and I speak from experience. I've done it. It's not easy, the documentation isn't great, and unless you have a lot of experience writing web socket protocol code in C#, this can be really time consuming and difficult. I lost a month of my life to this. The end result was pretty cool. I didn't have an option of waiting for Microsoft's team to implement the C# SDK, but you probably will. 
+> Don't do this, and I speak from experience. I've done it. It's not easy, the documentation isn't great, and unless you have a lot of experience writing asynchronous web socket protocol code in C#, this can be really time consuming and difficult. I lost a month of my life to this. The end result was pretty cool. I did it because the C# SDK wasn't available yet, and I didn't have an option of waiting for Microsoft's team to implement it. 
 
 #### Subscription Key and Endpoint URL
 
@@ -113,9 +103,9 @@ Ok, sorry for the tangent. Let's get back to the deployment. You'll need to keep
 
 <img src="images/chapter5/deploy4.png" class="img-override" />
 
-First, take note of the *Subscription Key* at the top. Second, you'll need the web socket protocol base URL from the *WebSocket with the Speech Protocol/JavaScript WebSocket API* (wss://610e08d3ae4b4d4eb7d45dcf2e877698.api.cris.ai) for my deployment. 
+First, take note of the *Subscription Key* at the top. Second, you'll need the web socket protocol URL from the *WebSocket with the Speech Protocol/JavaScript WebSocket API* (wss://westus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=fd366d47-aac1-4972-ad7a-2fce21cb5fc1) for my deployment. 
 
-> **Don't Use MY Endpoint Base URL**
+> **Don't Use MY Endpoint URL**
 >
 > Please don't copy my endpoint base URL. If you do, you'll get errors later on. Please copy your own.
 
@@ -150,7 +140,7 @@ Ignore the LUIS-related fields, change the *Recognition Mode* drop down to *Dict
 
 Press the *Start* button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the STT endpoint you created and return incremental speech results in real-time.
 
-Try speaking the phrase, "Pikachu is a cool pokemon.":
+Try speaking the phrase, "Pikachu is a cool pokemon." Remember, use HTTPS when accessing your deployed site. 
 
 <img src="images/chapter5/speech.gif" class="img-override" />
 
