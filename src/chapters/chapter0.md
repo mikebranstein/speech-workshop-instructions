@@ -136,7 +136,7 @@ Click *Activate* to activate the benefits.
 
 You will need to enter your Microsoft account credentials to verify the subscription and complete the activation steps.
 
-<div class="exercise-end"></div>
+<div class="exercise-end"></div>    
 
 ### Preparing your Azure environment
 
