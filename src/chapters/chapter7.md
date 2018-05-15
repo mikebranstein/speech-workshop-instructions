@@ -104,7 +104,7 @@ When you're finished entering the utterances for this intent, navigate back to t
 
 > ** Do I have to type in all the intents?**
 >
-> No. You do niot need ot type in all the intents. LUIS has a comprehensive REST API for interacting with your LUIS apps. Through the API, you can upload intents, entities, training, and deploy your model. For more information check out [this](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-quickstart-javascript-add-utterance) page.
+> No. You do not need ot type in all the intents. LUIS has a comprehensive REST API for interacting with your LUIS apps. Through the API, you can upload intents, entities, training, and deploy your model. For more information check out [this](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-quickstart-javascript-add-utterance) page.
 
 #### Finish adding the remaining intents
 
