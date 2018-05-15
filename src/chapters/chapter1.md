@@ -114,6 +114,10 @@ Click the *Connect* button.
 
 This downloads a file to your computer that will open in your Remote Desktop program.
 
+> **RDP or SSH?**
+>
+> You may notice the Azure portal prompts you whether you should RDP or SSH into your VM. Choose RDP. RDP is a Remote desktop Protocol used by Windows to remotely control a virtual machine. SSH is a Secure Shell (text-based) mechanism for controlling Linux/Unix virtual machines.
+
 <img src="images/chapter1/connect-download.png" class="img-override" />
 
 Click the downloaded file to open a connection to your VM. Enter your username and password you created earlier. 
@@ -198,9 +202,7 @@ The opened solution should look like this:
 
 <img src="images/chapter1/opened-solution.png" class="img-override" />
 
-Build and debug the solution. You should see the Speech Recognition site load in your browser.
-
-<img src="images/chapter1/site.png" class="img-override" />
+Right-click the solution (Solution 'Web'), and select *Restore NuGet Packages*, then Build the solution. You should not see errors.
 
 This concludes the exercise.
 
@@ -276,9 +278,15 @@ When the Azure Web App is created in Azure, Visual Studio will publish the app t
 >
 > The deployed web app has a URL of *Web App Name*.azurewebsites.net. Remember this URL, because you'll be using it in later chapters.
 
-One final note is to check the Azure Portal to see the App Service plan and Web App deployed to your resource group:
+Check the Azure Portal to see the App Service plan and Web App deployed to your resource group:
 
 <img src="images/chapter1/deployed-webapp.png" class="img-override" />
+
+Finally, open your web browser and navigate to the website you just deployed. Be sure to use HTTPS!
+
+You should see a site like this:
+
+<img src="images/chapter1/updated-site.png" class="img-override" />
 
 This concludes the exercise. 
 

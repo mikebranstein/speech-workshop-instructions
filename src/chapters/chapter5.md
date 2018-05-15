@@ -134,10 +134,6 @@ After the page loads, paste your deployed STT endpoint base URL into the *Endpoi
 
 <img src="images/chapter5/deploy5.png" class="img-override" />
 
-Ignore the LUIS-related fields, change the *Recognition Mode* drop down to *Dictation*, and *Format* to *Detailed Result*:
-
-<img src="images/chapter5/deploy6.png" class="img-override" />
-
 Press the *Start* button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the STT endpoint you created and return incremental speech results in real-time.
 
 Try speaking the phrase, "Pikachu is a cool pokemon." Remember, use HTTPS when accessing your deployed site. 
@@ -149,21 +145,13 @@ Now, that's cool! As you speak, you'll see incremental results returned to you b
 ```json
 {
    "RecognitionStatus": "Success",
-   "Offset": 0,
-   "Duration": 26300000,
-   "NBest": [
-      {
-         "Confidence": 0.923154,
-         "Lexical": "pikachu is a cool pokemon",
-         "ITN": "pikachu is a cool Pokémon",
-         "MaskedITN": "pikachu is a cool Pokémon",
-         "Display": "Pikachu is a cool Pokémon."
-      }
-   ]
+   "DisplayText": "Pikachu is a cool Pokémon.",
+   "Offset": 4700000,
+   "Duration": 23100000
 }
 {
    "RecognitionStatus": "EndOfDictation",
-   "Offset": 54210000,
+   "Offset": 43540000,
    "Duration": 0
 }
 ```

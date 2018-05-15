@@ -262,6 +262,10 @@
 <p>Click the <em>Connect</em> button.</p>
 <p><img src="images/chapter1/connect.png" class="img-override" /></p>
 <p>This downloads a file to your computer that will open in your Remote Desktop program.</p>
+<blockquote>
+<p><strong>RDP or SSH?</strong></p>
+<p>You may notice the Azure portal prompts you whether you should RDP or SSH into your VM. Choose RDP. RDP is a Remote desktop Protocol used by Windows to remotely control a virtual machine. SSH is a Secure Shell (text-based) mechanism for controlling Linux/Unix virtual machines.</p>
+</blockquote>
 <p><img src="images/chapter1/connect-download.png" class="img-override" /></p>
 <p>Click the downloaded file to open a connection to your VM. Enter your username and password you created earlier. </p>
 <p><img src="images/chapter1/connect-password.png" class="img-override" /></p>
@@ -320,8 +324,7 @@
 </blockquote>
 <p>The opened solution should look like this:</p>
 <p><img src="images/chapter1/opened-solution.png" class="img-override" /></p>
-<p>Build and debug the solution. You should see the Speech Recognition site load in your browser.</p>
-<p><img src="images/chapter1/site.png" class="img-override" /></p>
+<p>Right-click the solution (Solution &#39;Web&#39;), and select <em>Restore NuGet Packages</em>, then Build the solution. You should not see errors.</p>
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
@@ -378,8 +381,11 @@
 <p><strong>Web App URLs</strong></p>
 <p>The deployed web app has a URL of <em>Web App Name</em>.azurewebsites.net. Remember this URL, because you&#39;ll be using it in later chapters.</p>
 </blockquote>
-<p>One final note is to check the Azure Portal to see the App Service plan and Web App deployed to your resource group:</p>
+<p>Check the Azure Portal to see the App Service plan and Web App deployed to your resource group:</p>
 <p><img src="images/chapter1/deployed-webapp.png" class="img-override" /></p>
+<p>Finally, open your web browser and navigate to the website you just deployed. Be sure to use HTTPS!</p>
+<p>You should see a site like this:</p>
+<p><img src="images/chapter1/updated-site.png" class="img-override" /></p>
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div>
 			</div>
@@ -1031,29 +1037,19 @@ get really mad pikachu
 <p>Start by navigating to your deployed Azure web site. My URL was <a href="http://workshopwebapp.azurewebsites.net/">http://workshopwebapp.azurewebsites.net/</a>. </p>
 <p>After the page loads, paste your deployed STT endpoint base URL into the <em>Endpoint</em> text box, and the subscription key into the <em>Subscription Key</em> text box:</p>
 <p><img src="images/chapter5/deploy5.png" class="img-override" /></p>
-<p>Ignore the LUIS-related fields, change the <em>Recognition Mode</em> drop down to <em>Dictation</em>, and <em>Format</em> to <em>Detailed Result</em>:</p>
-<p><img src="images/chapter5/deploy6.png" class="img-override" /></p>
 <p>Press the <em>Start</em> button and start speaking. The page may ask to access your microphone, and as you speak, the site will submit your speech to the STT endpoint you created and return incremental speech results in real-time.</p>
 <p>Try speaking the phrase, &quot;Pikachu is a cool pokemon.&quot; Remember, use HTTPS when accessing your deployed site. </p>
 <p><img src="images/chapter5/speech.gif" class="img-override" /></p>
 <p>Now, that&#39;s cool! As you speak, you&#39;ll see incremental results returned to you browser and displayed in the <em>Current hypothesis</em> area. Then, when the STT recognizes the end of your utterance, it returns JSON-formatted result:</p>
 <pre><code class="lang-json">{
    &quot;RecognitionStatus&quot;: &quot;Success&quot;,
-   &quot;Offset&quot;: 0,
-   &quot;Duration&quot;: 26300000,
-   &quot;NBest&quot;: [
-      {
-         &quot;Confidence&quot;: 0.923154,
-         &quot;Lexical&quot;: &quot;pikachu is a cool pokemon&quot;,
-         &quot;ITN&quot;: &quot;pikachu is a cool Pokémon&quot;,
-         &quot;MaskedITN&quot;: &quot;pikachu is a cool Pokémon&quot;,
-         &quot;Display&quot;: &quot;Pikachu is a cool Pokémon.&quot;
-      }
-   ]
+   &quot;DisplayText&quot;: &quot;Pikachu is a cool Pokémon.&quot;,
+   &quot;Offset&quot;: 4700000,
+   &quot;Duration&quot;: 23100000
 }
 {
    &quot;RecognitionStatus&quot;: &quot;EndOfDictation&quot;,
-   &quot;Offset&quot;: 54210000,
+   &quot;Offset&quot;: 43540000,
    &quot;Duration&quot;: 0
 }
 </code></pre>
